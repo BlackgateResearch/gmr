@@ -1,5 +1,6 @@
-{% block pagetitle %}{{object.title}}{% endblock %}
-{% block title %}{{object.title}}{% endblock %}
+{% extends 'base.html' %}
+{% block pagetitle %}Detail View:{{ object.title }}{% endblock %}
+{% block title %}Detail View:{{ object.title }}{% endblock %}
 {% block primary %}
 	<ul class="page-nav">
 		{% if object.get_previous_published%}
@@ -16,7 +17,6 @@
 	<h2>{{ object.title }}</h2>
 	<p>{{ object.pub_date }}</p>
 	 {{ object.body_html|safe }}
-	<p>tags: {% for tag in object.get_tags%}<a href="/blog/tags/{{tag.name|slugify}}/">{{tag}}</a>{% endfor %}</p>
-	<p><a href="{{object.get_absolute_url}}">read more</a></p>
+	<p>tags: {% for tag in object.get_tags%}<a href="/blog/tags/{{tag.name|slugify}}/">{{tag}}</a>, {% endfor %}</p>
 {% endblock %}
 
