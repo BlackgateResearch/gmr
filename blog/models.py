@@ -23,16 +23,11 @@ class Entry(models.Model):
     )
     status = models.IntegerField(choices=PUB_STATUS, default=0)
     
-class Meta:
-    ordering = ('-pub_date',)
-    get_latest_by = 'pub_date'
-    verbose_name_plural = 'entries'
-
     def __unicode__(self):
         return u'%s' %(self.title)
 
     def get_absolute_url(self):
-        return "/%s/%s/" %(self.pub_date.strftime("%Y/%b/%d").lower(), self.slug)
+        return "/blog/%s/%s/" %(self.pub_date.strftime("%Y/%b/%d").lower(), self.slug)
 
     def get_previous_published(self):
         return self.get_previous_by_pub_date(status__exact=1)
@@ -43,5 +38,10 @@ class Meta:
     def get_tags(self):
         return Tag.objects.get_for_object(self)
     
-    
+class Meta:
+    ordering = ('-pub_date',)
+    get_latest_by = 'pub_date'
+    verbose_name_plural = 'entries'
 
+    
+    
