@@ -9,6 +9,7 @@ from tagging.models import Tag
 
 class Entry(models.Model):
     title = models.CharField(max_length=200)
+    author = models.CharField(max_length=50)
     slug = models.SlugField(
         unique_for_date='pub_date',
         help_text='Automatically built from the title.'
