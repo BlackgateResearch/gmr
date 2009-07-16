@@ -1,0 +1,307 @@
+/*
+
+File:         screen.css v1 25/06/2009
+Purpose:      Screen styles for GMR
+Project:      GMR
+Author:       Karl Williams
+Copyright:    (c) GMR 2009
+
+
+651100
+383838
+D9D9D9
+6B6350
+171717
+8C8282
+
+*/
+
+/* ----- Reset ----- */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+body {
+	line-height: 1;
+	color: black;
+	background: white;
+}
+ol, ul {
+	list-style: none;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+caption, 
+th, 
+td {
+	text-align: left;
+	font-weight: normal;
+}
+blockquote:before, 
+blockquote:after,
+q:before, 
+q:after {
+	content: "";
+}
+blockquote, q {
+	quotes: "" "";
+}
+
+
+
+/* ----- Global ----- */
+
+body {
+  font-family: arial, helvetica, sans-serif;
+  background-color: #D9D9D9;
+}
+
+h1 {
+  font-size: 1.4em;
+}
+
+h2 {
+  font-size: 1.4em;
+}
+
+.box {
+  margin-bottom: 10px;
+  padding: 7px;
+  background-color: #8C8282;
+  border: 3px solid #171717;
+}
+
+.box img {
+  margin: 0 auto;
+}
+
+p {
+  padding-bottom: 1em;
+}
+
+a:link {
+  color: #651100;
+}
+
+a:visited {
+  color: #501100;
+}
+
+/* ----- Main Layout ----- */
+
+#wrapper {
+  width: 950px;
+  margin: 0 auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding-top: 15px;
+  background-image: url(http://static.dev.gamemasterradio.com/images/wrapper_top.jpg);
+  background-position: top;
+  background-repeat: no-repeat;
+}
+
+#contentWrapper {
+  border-style: solid;
+  border-width: 0px 4px;
+  border-color: #651000;
+  background-color: #B3A686;
+}
+
+#designBottom {
+  background-image: url(http://static.dev.gamemasterradio.com/images/wrapper_bottom.jpg);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  height: 15px;
+  width: 950px;
+}
+
+/* ----- Header ----- */
+
+#header {
+  padding: 10px;
+  height: 160px;
+  position: relative;
+}
+
+#branding {
+  width: 600px;
+}
+
+#logo {
+  height: 161px;
+  width: 100px;
+  margin: 0px 10px 10px 0px;
+  float: left;
+  background-image: url(http://static.dev.gamemasterradio.com/images/gmr-100-161.png);
+}
+
+.siteName {
+  font-size: 2.5em;
+  float: left;
+}
+
+.tagline {
+  font-size: 1.3em;
+  font-style: italic;
+  float: left;
+}
+
+/* Nav */
+#nav {
+  width: 300px;
+  position: absolute;
+  bottom: 0px;
+  right: 200px;
+}
+
+.navItem {
+  width: 80px;
+  height: 1.5em;
+  line-height: 1.5em;
+  padding: 0px 5px;
+  display: block;
+  float: left;
+  background-color: #650D00;
+  text-align: center;
+}
+
+.navItem a {
+  color: #D9D9D9;
+  font-weight: bold;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+}
+
+.navItem a:hover {
+  background-color: #8C8282;
+  color: #650D00;
+}
+
+/* ----- Login Status -----*/
+
+#loginStatus {
+  float: right;
+  background-image: url(http://static.dev.gamemasterradio.com/images/login-box-top.jpg);
+  background-position: left top;
+  background-repeat: no-repeat;
+  width: 260px;
+}
+
+#loginStatus form,
+#loginStatus div {
+  background-image: url(http://static.dev.gamemasterradio.com/images/login-box-bottom.jpg);
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  width: 260px;
+  padding: 15px;
+}
+
+#loginStatus label {
+  font-size: 0.8em;
+}
+
+#id_username,
+#id_password {
+  font-size: 0.7em;
+  height: 12px;
+}
+
+/* ----- Content ----- */
+
+#content {
+
+}
+
+.main {
+  clear: both;
+  background-color: #D9D9D9;
+  border: solid 3px #383838;
+	width: 700px;
+  margin: 0px 10px 10px 10px;
+}
+
+.ancillary {
+  width: 250px;
+  position: absolute;
+  top: 50px;
+  left: 520px;
+}
+
+
+/* ----- Pods ----- */
+
+.pod {
+  padding: 10px;
+  margin: 10px;
+	width: 450px;
+}
+
+.podHead {
+  width: 100%;
+  border-bottom: 3px solid #651100;
+  border-top: 3px solid #651100;
+  padding: 5px 0px;	
+  margin-bottom: 12px;
+}
+
+.podBody {
+
+}
+
+.podImage {
+  width: 150px;
+  height: 180px;
+  margin: 10px;
+  float: right;
+  border: solid 2px #383838;
+}
+
+.podFoot {
+  text-align: right;
+}
+
+
+/* ----- Footer ----- */
+
+#footer {
+  width: 100%;
+  color: #171717;
+  clear: both;
+  text-align: center;
+  padding: 10px;
+}
+
+.copyright {
+
+}
+
+/* ----- ancillary content ----- */
+
+.ancilImage {
+  width: 175px;
+  height: 232px;
+  margin: 10px;
+  border: solid 2px #383838;
+}
