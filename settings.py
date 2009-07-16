@@ -79,10 +79,10 @@ ROOT_URLCONF = 'gamemasterradio.urls'
 
 import os
 gmr_template = os.path.dirname( __file__ ) + '/templates' 
-TEMPLATE_DIRS = (
-    
-    gmr_template
-)
+TEMPLATE_DIRS = (gmr_template)
+
+gmr_doc_root = os.path.dirname( __file__ ) + '/site_media' 
+STATIC_DOC_ROOT = gmr_doc_root
 
 INSTALLED_APPS = (
     'django.contrib.auth',
