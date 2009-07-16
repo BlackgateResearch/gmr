@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block pagetitle %}Detail View:{{ object.title }}{% endblock %}
-{% block title %}Detail View:{{ object.title }}{% endblock %}
+{% block title_primary %}Detail View:{{ object.title }}{% endblock %}
 {% block primary %}
 	<ul class="page-nav">
 		{% if object.get_previous_published%}

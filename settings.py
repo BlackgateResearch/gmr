@@ -36,6 +36,9 @@ TIME_ZONE = 'Europe/London'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-uk'
 
+# Force tags in DB to be lowercase
+FORCE_LOWERCASE_TAGS = True
+
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
@@ -87,7 +90,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'gamemasterradio.blog',
     'gamemasterradio.tagging',
+
 
 )

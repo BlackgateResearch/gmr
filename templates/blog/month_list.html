@@ -3,8 +3,8 @@
 {% block title_primary %}Archive for: {{ month|date:"F Y" }} {% endblock %}
 {% block primary %}
 <ul>
-{% for object in object_list %}
-	<li><h3><a href="{{ object.get_absolute_url }}">{{ object.title }} - {{ object.pub_date }}</a></h3><p>{{ object.body_html|truncatewords_html:"50"|safe }}</p></li>
+{% for entry in object_list %}
+	<li><h3><a href="{{ entry.get_absolute_url }}">{{ entry.title }} - {{ entry.pub_date }}</a></h3><p>{{ entry.body_html|truncatewords_html:"50"|safe }}</p></li>
 {% endfor %}
 </ul>
 {% endblock %}
