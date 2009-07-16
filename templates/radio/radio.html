@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Game Master Radio{% endblock %}
+
+{% block contentTitle %}GMR Music Player{% endblock %}
+
+{% block content %}
+    <h1>You are listening to {{ genreName }} radio.</h1>
+    <br>
+    <object type="application/x-shockwave-flash" width="400" height="170"
+    data="http://namtao.com/gmr/xspf_player.swf?playlist_url=playlist.xspf&autoplay=true&player_title=Game Master Radio">
+    <param name="movie" 
+    value="http://namtao.com/gmr/xspf_player.swf?playlist_url=playlist.xspf&autoplay=true&player_title=Game Master Radio" />
+    </object>
+{% endblock %}

@@ -1,28 +1,57 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
-		<title>My Site - {%block pagetitle %}{% endblock %}</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<meta name="title" content="{% block meta-title %}Game Master Radio - Atmospheric music for RPG and tabletop gaming{% endblock %}" />
+		<meta name="robots" content="{% block meta-robots %}index, follow{% endblock %}" />
+		<meta name="keywords" content="{% block meta-content %}{% endblock %}" />
+		<meta name="description" content="{% block meta-description %}{% endblock %}" />
+		<meta name="language" content="en" />
+    
+		<link rel="stylesheet" type="text/css" href="{% block css %}http://static.dev.gamemasterradio.com/css/screen.css{% endblock %}" />
+    
+		<title>{% block title %}Game Master Radio{% endblock %}</title>
 	</head>
-	<body>
-		<div id="header">My Site</div>
-		<div id="nav">
-			<ul>
-				<li><a href="/">home</a></li>
-				<li><a href="/blog/">Blog</a></li>
-				<li><a href="/links/">Links</a></li>
-				<li><a href="/about/">About</a></li>
-			</ul>
-		</div>
-		<div id="content">
-			<div id="primary">
-				<h1>{% block title_primary %}{% endblock %}</h1>
-				{% block primary %}{% endblock %}
-			</div>
-			<div id="secondary">
-				<h3>{% block title_secondary %}{% endblock %}</h3>
-				{% block secondary %}{% endblock %}
-			<div>
-		</div>
-	</body>
+  
+	<body id="home">
+	  <div id="wrapper">
+	    <div id="contentWrapper">
+			  <div id="header">
+          {% block loginStatus %}
+            {% include "accounts/loginStatus.html" %}       
+          {% endblock %}
+				  <div id="branding">
+					  <div id="logo"></div>
+	          <span class="siteName">{% block headerCopy %}Game Master Radio{% endblock %}</span>
+	          <span class="tagline">{% block headerTagline %}Music for your worlds{% endblock %}</span>
+	        </div>
+          {% block nav %}
+            {% include "navigation.html" %}       
+          {% endblock %}
+	        </div>
+        
+          <div id="content">
+				    <div class="main">
+
+					    <div class="pod">
+						    <div class="podHead">
+							    <h1>{% block contentTitle %}{% endblock %}</h1>
+						    </div>
+						    <div class="podBody">
+							    {% block content %}{% endblock %}
+						    </div>
+						    <div class="podFoot">
+							
+						    </div>
+					    </div>
+				    </div>
+          </div>
+			    <div id="footer">
+				    <span class="copyright">All content &copy; GMR 2009 unless specifically stated.</span>
+			    </div>
+			  </div>
+			  <div id="designBottom"></div>
+      </div>
+    </body>
 </html>
 

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Game Master Radio{% endblock %}
+
+{% block contentTitle %}GMR Music Player{% endblock %}
+
+{% block content %}
+
+    <ul>
+        {% for genre in genre_list %}
+            <li><a href="{% url radio-select genre.id %}">{{ genre.genre }}</a></li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
