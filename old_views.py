@@ -8,7 +8,7 @@ from django.contrib.auth import logout
 from django.shortcuts import render_to_response
 from django import http
 
-from gamemasterradio.radio.models import Track
+from gamemasterradio.radio.models import Track, Genre
 
 
 def index(request):
@@ -20,6 +20,7 @@ def index(request):
 def logout_view(request):
     logout(request)
     return http.HttpResponseRedirect('/')
+
 
 @login_required
 def radio(request, genre="None"):
@@ -63,4 +64,14 @@ def crossdomain(request):
     c = Context({
     })    
     return HttpResponse(t.render(c), mimetype='application/xml')
-
+   
+'''
+@login_required
+def authtest(request):
+    message = "ok"
+    t = loader.get_template('test.html')
+    c = Context({
+        'message': message,
+    })    
+    return HttpResponse(t.render(c))
+'''

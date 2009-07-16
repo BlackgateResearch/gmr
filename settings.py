@@ -93,6 +93,6 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'gamemasterradio.blog',
     'gamemasterradio.tagging',
-
-
+    'gamemasterradio.account',
+    'gamemasterradio.radio',
 )
