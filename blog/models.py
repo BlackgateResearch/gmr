@@ -16,7 +16,7 @@ class Entry(models.Model):
     body_html = models.TextField()
     pub_date = models.DateTimeField('Date published')
     tags = TagField()
-    enable_comments = models.BooleanField(default=True)
+    #enable_comments = models.BooleanField(default=True)
     PUB_STATUS = (
         (0, 'Draft'),
         (1, 'Published'),
@@ -38,10 +38,10 @@ class Entry(models.Model):
     def get_tags(self):
         return Tag.objects.get_for_object(self)
     
-class Meta:
-    ordering = ('-pub_date',)
-    get_latest_by = 'pub_date'
-    verbose_name_plural = 'entries'
+    class Meta:
+        ordering = ('-pub_date',)
+        get_latest_by = 'pub_date'
+        verbose_name_plural = 'entries'
 
     
     
