@@ -19,4 +19,5 @@ urlpatterns = patterns('django.views.generic.date_based',
 
 urlpatterns += patterns('gamemasterradio.blog',
     (r'^tags/(?P<slug>[-\w]+)/$', 'tag_views.tag_detail'),
+    #(r'^tags/$', 'tag_views.tag_list'), Finish this.
 )

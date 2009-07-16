@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
-{% block pagetitle %}Archive for: {{ month|date:"F Y" }} {{ day|date:"j F Y"}}{% endblock %}
-{% block title_primary %}Archive for: {{ month|date:"F Y" }} {{ day|date:"j F Y" }}{% endblock %}
-{% block primary %}
+{% block title %}Archive for: {{ month|date:"F Y" }} {{ day|date:"j F Y"}}{% endblock %}
+{% block contentTitle %}Archive for: {{ month|date:"F Y" }} {{ day|date:"j F Y" }}{% endblock %}
+{% block content %}
 <ul>
 {% for entry in object_list %}
 	<li><h3><a href="{{ entry.get_absolute_url }}">{{ entry.title }} - {{ entry.pub_date }}</a></h3><p>{{ entry.body_html|truncatewords_html:"50"|safe }}</p></li>

@@ -26,4 +26,15 @@ def tag_detail(request, slug):
         'slug':tag,
         'object_list' : tagged_entries
     })    
+    return HttpResponse(t.render(c))
+    
+def tag_liat(request):
+    unslug = slug.replace('-', ' ')
+    tag = Tag.objects.get(name=unslug)
+    tagged_entries = TaggedItem.objects.get_by_model(Entry, tag)
+    t = loader.get_template('tags/list.html')
+    c = Context({
+        'slug':tag,
+        'object_list' : tagged_entries
+    })    
     return HttpResponse(t.render(c)) 

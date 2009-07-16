@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
-{% block pagetitle %}Archive for: {{ year }}{% endblock %}
-{% block title_primary %}Archive for: {{ year }} {% endblock %}
-{% block primary %}
+{% block title %}Archive for: {{ year }}{% endblock %}
+{% block contentTitle %}Archive for: {{ year }} {% endblock %}
+{% block content %}
 <ul>
 {% for entry in object_list|dictsort:"pub_date" %}
 {% ifchanged %}<h3><a href="{{ entry.pub_date|date:"b" }}">{{ entry.pub_date|date:"F" }}</a></h3>{% endifchanged %}

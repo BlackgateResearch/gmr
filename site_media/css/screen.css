@@ -116,7 +116,7 @@ a:visited {
   margin-top: 15px;
   margin-bottom: 15px;
   padding-top: 15px;
-  background-image: url(http://static.dev.gamemasterradio.com/images/wrapper_top.jpg);
+  background-image: url(/site_media/images/wrapper_top.jpg);
   background-position: top;
   background-repeat: no-repeat;
 }
@@ -129,7 +129,7 @@ a:visited {
 }
 
 #designBottom {
-  background-image: url(http://static.dev.gamemasterradio.com/images/wrapper_bottom.jpg);
+  background-image: url(/site_media/images/wrapper_bottom.jpg);
   background-position: bottom;
   background-repeat: no-repeat;
   height: 15px;
@@ -153,7 +153,7 @@ a:visited {
   width: 100px;
   margin: 0px 10px 10px 0px;
   float: left;
-  background-image: url(http://static.dev.gamemasterradio.com/images/gmr-100-161.png);
+  background-image: url(/site_media/images/gmr-100-161.png);
 }
 
 .siteName {
@@ -203,7 +203,7 @@ a:visited {
 
 #loginStatus {
   float: right;
-  background-image: url(http://static.dev.gamemasterradio.com/images/login-box-top.jpg);
+  background-image: url(/site_media/images/login-box-top.jpg);
   background-position: left top;
   background-repeat: no-repeat;
   width: 260px;
@@ -211,7 +211,7 @@ a:visited {
 
 #loginStatus form,
 #loginStatus div {
-  background-image: url(http://static.dev.gamemasterradio.com/images/login-box-bottom.jpg);
+  background-image: url(/site_media/images/login-box-bottom.jpg);
   background-position: left bottom;
   background-repeat: no-repeat;
   width: 260px;
