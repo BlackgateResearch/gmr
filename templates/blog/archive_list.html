@@ -3,7 +3,7 @@
 {% block contentTitle %}Blog{% endblock %}
 {% block content %}
 {% for entry in latest %}
-	<h2>{{ entry.title }}</h2>
+	<h2><a href="{{entry.get_absolute_url}}">{{ entry.title }}</a></h2>
 	<p>{{ entry.pub_date }}</p>
 	 {{ entry.body_html|truncatewords_html:"20"|safe }}
 	<p>tags: {% for tag in entry.get_tags%}<a href="/blog/tags/{{tag.name|slugify}}/">{{tag}}</a>, {% endfor %}</p>

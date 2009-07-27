@@ -5,6 +5,8 @@
 {% block contentTitle %}Welcome to GMR{% endblock %}
 
 {% block content %}
-Welcome to the Beta version of Game Master Radio.
-<br>Click Login to start.
+<p>Welcome to the Beta version of Game Master Radio.</p>
+{% if not user.is_authenticated %}
+<p>Please <a href="/accounts/login">Login</a> to start.</p>
+{% endif %}
 {% endblock %}

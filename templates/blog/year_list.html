@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-{% block title %}Archive for: {{ year }}{% endblock %}
+{% block title %}Archive for: {{ year }} | Blog | Game Master Radio{% endblock %}
 {% block contentTitle %}Archive for: {{ year }} {% endblock %}
 {% block content %}
 <ul>
 {% for entry in object_list|dictsort:"pub_date" %}
-{% ifchanged %}<h3><a href="{{ entry.pub_date|date:"b" }}">{{ entry.pub_date|date:"F" }}</a></h3>{% endifchanged %}
+{% ifchanged %}<h2><a href="{{ entry.pub_date|date:"b" }}">{{ entry.pub_date|date:"F" }}</a></h2>{% endifchanged %}
 	<li><b>{{ entry.title }} - {{ entry.pub_date }} - </b><a href="{{ entry.get_absolute_url }}">{{ entry.body_html|truncatewords_html:"10"|safe }}</a></li>
 {% endfor %}
 </ul>

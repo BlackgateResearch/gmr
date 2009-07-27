@@ -1,22 +1,12 @@
 {% extends 'base.html' %}
-{% block title %}Detail View:{{ object.title }}{% endblock %}
-{% block contentTitle %}Detail View:{{ object.title }}{% endblock %}
+{% block title %}{{ object.title }} | Blog | Game Master Radio{% endblock %}
+{% block contentTitle %}{{ object.title }}{% endblock %}
 {% block content %}
-	<ul class="page-nav">
-		{% if object.get_previous_published%}
-		<li>
-			<a href="{{ object.get_previous_published.get_absolute_url }}" title=" {{object.get_previous_published.title}}">« previous</a>
-		</li>
-		{%endif%}
-		{% if object.get_next_published%}
-			<li>
-				<a href="{{ object.get_next_published.get_absolute_url }}" title=" {{object.get_next_published.title}}">next »</a>
-			</li>
-		{%endif%}
-    </ul>
-	<h2>{{ object.title }}</h2>
+  {% include "blog/paging.html" %}  
 	<p>{{ object.pub_date }}</p>
 	 {{ object.body_html|safe }}
 	<p>tags: {% for tag in object.get_tags%}<a href="/blog/tags/{{tag.name|slugify}}/">{{tag}}</a>, {% endfor %}</p>
+  {% include "blog/paging.html" %}  
+  <a id="back" href="/blog">back to blog</a>
 {% endblock %}
 

@@ -83,6 +83,7 @@ h1 {
 
 h2 {
   font-size: 1.4em;
+  line-height: 1.6em;
 }
 
 .box {
@@ -304,4 +305,15 @@ a:visited {
   height: 232px;
   margin: 10px;
   border: solid 2px #383838;
+}
+
+/* ---- Blog ---- */
+
+.pageNav {
+  float: right;
+}
+
+.pageNav li {
+  float: left;
+  margin-left: 7px;
 }

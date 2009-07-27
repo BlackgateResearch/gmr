@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-{% block title %}Archive for: {{ month|date:"F Y" }}{% endblock %}
+{% block title %}Archive for: {{ month|date:"F Y" }} | Blog | Game Master Radio{% endblock %}
 {% block contentTitle %}Archive for: {{ month|date:"F Y" }} {% endblock %}
 {% block content %}
 <ul>
 {% for entry in object_list %}
-	<li><h3><a href="{{ entry.get_absolute_url }}">{{ entry.title }} - {{ entry.pub_date }}</a></h3><p>{{ entry.body_html|truncatewords_html:"50"|safe }}</p></li>
+	<li><h2><a href="{{ entry.get_absolute_url }}">{{ entry.title }} - {{ entry.pub_date }}</a></h2><p>{{ entry.body_html|truncatewords_html:"50"|safe }}</p></li>
 {% endfor %}
 </ul>
 {% endblock %}
