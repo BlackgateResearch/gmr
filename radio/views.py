@@ -22,26 +22,31 @@ def logout_view(request):
     return http.HttpResponseRedirect('/')
 
 @login_required
-def radio(request, genre="None"):
-    if (genre != "None"):
-        request.session['genre'] = genre
-        genreName = Genre.objects.get(id=genre)
-        #user has selected genre 
+def radio(request, gSpeed = False, gCombat = False, gSuspense = False, gPositive = False):
+    if (gSpeed) and (gCombat) and (gSuspense) and (gPositive):
+        #user has selected genre
+        request.session['gSpeed'] = gSpeed
+        request.session['gCombat'] = gCombat
+        request.session['gSuspense'] = gSuspense
+        request.session['gPositive'] = gPositive
+        
+        #genreName = Genre.objects.get(id=genre)
+         
         t = loader.get_template('radio/radio.html')
         c = RequestContext(request, {
-            'genreName' : genreName,
-            'genre' : genre
+            'gSpeed' : gSpeed,
+            'gCombat' : gCombat,
+            'gSuspense' : gSuspense,
+            'gPositive' : gPositive
         })  
         return render_to_response("radio/radio.html", c)  
         #return HttpResponse(t.render(c))
     else:
         #user has yet to select genre
-        genre_list = Genre.objects.all()
+        #genre_list = Genre.objects.all()
         t = loader.get_template('radio/select.html')
         c = RequestContext(request, {
-        'genre' : genre,
-        'genre_list' : genre_list
-        })    
+        })
         return render_to_response("radio/select.html", c) 
 
 

@@ -4,6 +4,8 @@ import settings
 
 urlpatterns = patterns('gamemasterradio.radio.views',
     (r'^$', 'index'),
-    (r'^radio/playlist.xspf$', 'playlist'),
+    (r'^playlist.xspf$', 'playlist'),
+    (r'^(\d{1}-\d{1}-\d{1}-\d{1})$', 'radio'),
     (r'^crossdomain.xml$', 'crossdomain'),
+    
 )
