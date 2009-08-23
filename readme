@@ -1,1 +1,20 @@
-GMR is open source, baby!
+	GMR release X <http://www.gamemasterradio.com>
+
+These are the release notes for GMR read them carefully,
+as they tell you what this is all about.
+
+WHAT IS GMR?
+  
+  GMR (Gmr Music Radio) is the framework powering GameMasterRadio.com,
+  a tabletop-gaming-themed radio which the mood of the music can be changed
+  to what is happening in the game.
+
+WHAT ENVIRONMENT DOES IT REQUIRE?
+
+  GMR runs on Django (0.96 and upward). The tagging plugin is in the source tree
+  at the moment, but that may change to a more independant method in the future.
+
+DOCUMENTATION
+  
+  The wiki is avalable at <http://wiki.github.com/oatman/gmr> this will contain
+  more up-do-date information than this file.
