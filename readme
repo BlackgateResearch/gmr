@@ -17,9 +17,9 @@ WHAT IS GMR?
 WHAT ENVIRONMENT DOES IT REQUIRE?
 
   GMR runs on Django (0.96 and upward). The tagging plugin is in the source tree
-  at the moment, but that may change to a more independant method in the future.
+  at the moment, but that may change to a more independent method in the future.
 
 DOCUMENTATION
   
-  The wiki is avalable at <http://wiki.github.com/oatman/gmr> this will contain
+  The wiki is avalable at <http://wiki.github.com/oatman/gmr> this may contain
   more up-do-date information than this file.
