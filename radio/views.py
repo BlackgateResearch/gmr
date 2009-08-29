@@ -22,7 +22,30 @@ def logout_view(request):
     return http.HttpResponseRedirect('/')
 
 @login_required
-def radio(request, genre = False):
+def radio(request):
+    def errorHandle(error):
+        form = RadioForm()
+        return render_to_response('radio', {
+                                  'error' : error,
+                                  'form' : form,
+         })
+    if request.method == 'POST': # If the form has been submitted...
+        form = RadioForm(request.POST) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+              speed = request.POST['speed']
+              combat = request.POST['combat']
+              suspense = request.POST['suspense']
+              positive = request.POST['positive']
+        return HttpResponseRedirect('/thanks/') # Redirect after POST
+    else:
+        form = RadioForm() # An unbound form
+
+    return render_to_response('radio/radio.html', {
+        'form': form,
+    })
+
+@login_required
+def listen(request, genre = False):
 
     '''
     #if (gSpeed) and (gCombat) and (gSuspense) and (gPositive):
@@ -41,13 +64,13 @@ def radio(request, genre = False):
 
     genreName = gSpeed + "-" + gCombat + "-" + gSuspense + "-" + gPositive
     '''
+    
     request.session['genre'] = genre
-    t = loader.get_template('radio/radio.html')
+    t = loader.get_template('radio/listen.html')
     c = RequestContext(request, {
         'genreName' : genre,
     })  
-    return render_to_response("radio/radio.html", c)  
-
+    return render_to_response("radio/listen.html", c)
 
 def playlist(request):
     #track_list = ['http://namtao.com/gmr/travel-demo.mp3','http://namtao.com/gmr/travel-demo.mp3']
@@ -115,25 +138,4 @@ def contact(request):
         'form': form,
     })
 
-def radio(request):
-    def errorHandle(error):
-		    form = RadioForm()
-		    return render_to_response('radio', {
-				                          'error' : error,
-				                          'form' : form,
-		     })
-    if request.method == 'POST': # If the form has been submitted...
-        form = RadioForm(request.POST) # A form bound to the POST data
-        if form.is_valid(): # All validation rules pass
-			        speed = request.POST['speed']
-			        combat = request.POST['combat']
-			        suspense = request.POST['suspense']
-			        positive = request.POST['positive']
-        return HttpResponseRedirect('/thanks/') # Redirect after POST
-    else:
-        form = RadioForm() # An unbound form
-
-    return render_to_response('radio', {
-        'form': form,
-    })
 
