@@ -17,9 +17,15 @@ class Track(models.Model):
     def getGenre(self):
         return str(self.gSpeed) + str(self.gCombat) + str(self.gSuspense) + str(self.gPositive)
     
-    def getDeviation(self,gSpeed,gCombat,gSuspense,gPositive):
-        deviation = 1 # replace this with deviation calculating code
-        return devation
+    def getDeviation(self,Speed,Combat,Suspense,Positive):
+        deviationSpeed = int(Speed) - self.gSpeed
+        deviationCombat = int(Combat) - self.gCombat
+        deviationSuspense = int(Suspense) - self.gSuspense
+        deviationPositive = int(Positive) - self.gPositive
+        
+        deviation = deviationSpeed + deviationCombat + deviationSuspense + deviationPositive
+        
+        return deviation
 
 #------------------------------
 # demo data
