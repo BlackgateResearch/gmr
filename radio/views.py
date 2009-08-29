@@ -94,4 +94,46 @@ def crossdomain(request):
     c = Context({
     })    
     return HttpResponse(t.render(c), mimetype='application/xml')
+    
+def crossdomain(request):
+    t = loader.get_template('radio/crossdomain.xml')
+    c = Context({
+    })    
+    return HttpResponse(t.render(c), mimetype='application/xml')
+
+def contact(request):
+    if request.method == 'POST': # If the form has been submitted...
+        form = ContactForm(request.POST) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+            # Process the data in form.cleaned_data
+            # ...
+            return HttpResponseRedirect('/thanks/') # Redirect after POST
+    else:
+        form = ContactForm() # An unbound form
+
+    return render_to_response('contact.html', {
+        'form': form,
+    })
+
+def radio(request):
+    def errorHandle(error):
+		    form = RadioForm()
+		    return render_to_response('radio', {
+				                          'error' : error,
+				                          'form' : form,
+		     })
+    if request.method == 'POST': # If the form has been submitted...
+        form = RadioForm(request.POST) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+			        speed = request.POST['speed']
+			        combat = request.POST['combat']
+			        suspense = request.POST['suspense']
+			        positive = request.POST['positive']
+        return HttpResponseRedirect('/thanks/') # Redirect after POST
+    else:
+        form = RadioForm() # An unbound form
+
+    return render_to_response('radio', {
+        'form': form,
+    })
 

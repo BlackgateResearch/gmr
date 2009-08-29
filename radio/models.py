@@ -1,4 +1,5 @@
-from django.db import models   
+from django.db import models
+from django import forms
 
 class Track(models.Model):
     name = models.CharField(max_length=200)
@@ -32,6 +33,21 @@ class Track(models.Model):
         deviation = self.ensurePositive(deviationSpeed) + self.ensurePositive(deviationCombat) + self.ensurePositive(deviationSuspense) + self.ensurePositive(deviationPositive)
         
         return deviation
+        
+
+
+
+class ContactForm(forms.Form):
+    subject = forms.CharField(max_length=100)
+    message = forms.CharField()
+    sender = forms.EmailField()
+    cc_myself = forms.BooleanField(required=False)
+
+class RadioForm(forms.Form):
+    speed = forms.CharField(max_length=1)
+    combat = forms.CharField(max_length=1)
+    suspense = forms.CharField(max_length=1)
+    positive = forms.CharField(max_length=1)
 
 # demo data
 
