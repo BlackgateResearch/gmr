@@ -71,9 +71,10 @@ def listen(request, genre = False):
     return render_to_response("radio/listen.html", c)
 
 def playlist(request):
-    #track_list = ['http://namtao.com/gmr/travel-demo.mp3','http://namtao.com/gmr/travel-demo.mp3']
     
-    #track_list = Track.objects.all()
+    genreDict = {}
+    track_list_sorted = []
+    
     genre = request.session['genre']
     track_list = Track.objects.all()
     
@@ -81,8 +82,7 @@ def playlist(request):
     gCombat = genre.split("-")[1]
     gSuspense = genre.split("-")[2]
     gPositive = genre.split("-")[3]
-    
-    genreDict = {}
+
     
     #Add all tracks to a dictionary with the track as the key, deviation as value
     for track in track_list:
@@ -90,18 +90,10 @@ def playlist(request):
         
     #sort the dictionary by value, convert to a list of tuples
     genreList = sorted(genreDict.items(), key=operator.itemgetter(1))
-    
-    track_list_sorted = []
 
-    #strip
+    #discard the deviation values to get back to a track list
     for item in genreList:
         track_list_sorted.append(item[0])
-    
-    '''
-    li=[[2,6],[1,3],[5,4]]
-    li.sort(lambda x, y: cmp(x[1],y[1]))
-    print li; # prints [[1, 3], [5, 4], [2, 6]]
-    '''
     
     t = loader.get_template('radio/playlist.xml')
     c = Context({
@@ -109,12 +101,6 @@ def playlist(request):
         'genre' : genre
     })    
     return HttpResponse(t.render(c), mimetype='application/xml') 
-    
-def crossdomain(request):
-    t = loader.get_template('radio/crossdomain.xml')
-    c = Context({
-    })    
-    return HttpResponse(t.render(c), mimetype='application/xml')
     
 def crossdomain(request):
     t = loader.get_template('radio/crossdomain.xml')
