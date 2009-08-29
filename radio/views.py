@@ -10,7 +10,7 @@ from django import http
 
 from gamemasterradio.radio.models import Track
 
-from array import array
+import operator
 
 def index(request):
     t = loader.get_template('radio/select.html') 
@@ -61,18 +61,20 @@ def playlist(request):
     gSuspense = genre.split("-")[2]
     gPositive = genre.split("-")[3]
     
-    genreMatrix = []
+    genreDict = {}
     
-    #Add all tracks to a 2-element matrix with their deviation value as the first of the pair
+    #Add all tracks to a dictionary with the track as the key, deviation as value
     for track in track_list:
-        genreMatrix = genreMatrix + [ [track.getDeviation(gSpeed,gCombat,gSuspense,gPositive),track] ]
-    
-    #genreMatrix.sort(lambda x, y:cmp(x[1],y[1])
+        genreDict[track] = track.getDeviation(gSpeed,gCombat,gSuspense,gPositive)
+        
+    #sort the dictionary by value, convert to a list of tuples
+    genreList = sorted(genreDict.items(), key=operator.itemgetter(1))
     
     track_list_sorted = []
-    
-    for dev,track in genreMatrix:
-        track_list_sorted.append(track)
+
+    #strip
+    for item in genreList:
+        track_list_sorted.append(item[0])
     
     '''
     li=[[2,6],[1,3],[5,4]]

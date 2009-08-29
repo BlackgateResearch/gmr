@@ -17,17 +17,22 @@ class Track(models.Model):
     def getGenre(self):
         return str(self.gSpeed) + str(self.gCombat) + str(self.gSuspense) + str(self.gPositive)
     
+    def ensurePositive(self,val):
+        if val < 0:
+            return val * -1
+        else:
+            return val
+    
     def getDeviation(self,Speed,Combat,Suspense,Positive):
         deviationSpeed = int(Speed) - self.gSpeed
         deviationCombat = int(Combat) - self.gCombat
         deviationSuspense = int(Suspense) - self.gSuspense
         deviationPositive = int(Positive) - self.gPositive
         
-        deviation = deviationSpeed + deviationCombat + deviationSuspense + deviationPositive
+        deviation = self.ensurePositive(deviationSpeed) + self.ensurePositive(deviationCombat) + self.ensurePositive(deviationSuspense) + self.ensurePositive(deviationPositive)
         
         return deviation
 
-#------------------------------
 # demo data
 
 #class Choice(models.Model):
