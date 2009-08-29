@@ -43,7 +43,7 @@ class ContactForm(forms.Form):
     sender = forms.EmailField()
     cc_myself = forms.BooleanField(required=False)
 
-class RadioForm(forms.Form):
+class GenreForm(forms.Form):
     speed = forms.CharField(max_length=1)
     combat = forms.CharField(max_length=1)
     suspense = forms.CharField(max_length=1)

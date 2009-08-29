@@ -8,21 +8,12 @@ from django.contrib.auth import logout
 from django.shortcuts import render_to_response
 from django import http
 
-from gamemasterradio.radio.models import Track
+from gamemasterradio.radio.models import Track, GenreForm
 
 import operator
 
-def index(request):
-    t = loader.get_template('radio/select.html') 
-    c = RequestContext(request)     
-    return HttpResponse(t.render(c))
-
-def logout_view(request):
-    logout(request)
-    return http.HttpResponseRedirect('/')
-
 @login_required
-def radio(request):
+def index(request):
     def errorHandle(error):
         form = RadioForm()
         return render_to_response('radio', {
@@ -30,19 +21,26 @@ def radio(request):
                                   'form' : form,
          })
     if request.method == 'POST': # If the form has been submitted...
-        form = RadioForm(request.POST) # A form bound to the POST data
+        form = GenreForm(request.POST) # A form bound to the POST data
         if form.is_valid(): # All validation rules pass
               speed = request.POST['speed']
               combat = request.POST['combat']
               suspense = request.POST['suspense']
               positive = request.POST['positive']
-        return HttpResponseRedirect('/thanks/') # Redirect after POST
+        return http.HttpResponseRedirect('/radio/listen/' + speed + '-' + combat + '-' + suspense + '-' + positive) # Redirect after POST
     else:
-        form = RadioForm() # An unbound form
+        form = GenreForm() # An unbound form
+    
+        t = loader.get_template('radio/selectGenre.html')
+        c = RequestContext(request, {
+            'form': form,
+        })  
+        return render_to_response("radio/selectGenre.html", c)
+   
 
-    return render_to_response('radio/radio.html', {
-        'form': form,
-    })
+def logout_view(request):
+    logout(request)
+    return http.HttpResponseRedirect('/')
 
 @login_required
 def listen(request, genre = False):
