@@ -1,5 +1,6 @@
 from django.db import models
 from django import forms
+from django.contrib.auth.models import User
 
 class Track(models.Model):
     name = models.CharField(max_length=200)
@@ -34,9 +35,15 @@ class Track(models.Model):
         
         return deviation
         
-
-
-
+class Feedback(models.Model):
+    user = models.ForeignKey(User, unique=True)
+    url = models.CharField(max_length=100)
+    subject = models.CharField(max_length=20)
+    description = models.TextField()
+    
+    def __unicode__(self):
+        return self.subject    
+    
 class ContactForm(forms.Form):
     subject = forms.CharField(max_length=100)
     message = forms.CharField()
