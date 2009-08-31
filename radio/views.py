@@ -193,9 +193,11 @@ def nudge(request):
         return http.HttpResponseRedirect('/') #bounce that sucker back home
         
 def track(request,trackID):
-
-    track = Track.objects.get(id=trackID)
     
+    try:
+        track = Track.objects.get(id=trackID)
+    except:
+        return http.HttpResponseNotFound('Track not found!')
     c = RequestContext(request, {
         'track' : track,
     })  
