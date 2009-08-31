@@ -191,3 +191,12 @@ def nudge(request):
     else:
         #This is an AJAX view, it should always be sent POST data
         return http.HttpResponseRedirect('/') #bounce that sucker back home
+        
+def track(request,trackID):
+
+    track = Track.objects.get(id=trackID)
+    
+    c = RequestContext(request, {
+        'track' : track,
+    })  
+    return render_to_response("radio/track.html", c)

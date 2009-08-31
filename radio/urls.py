@@ -8,5 +8,5 @@ urlpatterns = patterns('gamemasterradio.radio.views',
     (r'listen/(\d{1}-\d{1}-\d{1}-\d{1})$', 'listen'),
     (r'^crossdomain.xml$', 'crossdomain'),
     (r'contact/', 'contact'),
-    
+    (r'^(?P<trackID>\w+)/*$', 'track'),
 )
