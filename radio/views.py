@@ -108,31 +108,33 @@ def crossdomain(request):
     })    
     return HttpResponse(t.render(c), mimetype='application/xml')
 
+from gamemasterradio.radio.models import Feedback
+@login_required
 def contact(request):
     if request.method == 'POST': # If the form has been submitted...
-        form = ContactForm(request.POST) # A form bound to the POST data
-        if form.is_valid(): # All validation rules pass
-        
-            #Gather data from form & request
-            user = form.cleaned_data['user']
-            url = request.path
-            subject = form.cleaned_data['url']
-            description = form.cleaned_data['description']
+        #form = ContactForm(request.POST) # A form bound to the POST data
+
+        if True: #form.is_valid(): # All validation rules pass
+
             
             #Create a new feedback item with data
             newFeedback = Feedback()
             newFeedback.user = request.user
-            newFeedback.url = url
-            newFeedback.subject = subject
-            newFeedback.description = description
+            newFeedback.url = request.path #TODO: Use a URL from the POST and allow for this in the JS in base.html
+            newFeedback.subject = request.POST['subject']
+            newFeedback.description = request.POST['description']
             newFeedback.save()
             
-            return HttpResponseRedirect(request.url) # Redirect after POST
-    else:
-        form = ContactForm() # An unbound form
+            #Validaton passed
+            html = "PASS"
+            return HttpResponse(html)
 
-    return render_to_response('contact.html', {
-        'form': form,
-    })
+        else:
+            #Validaton failed
+            html = "FAIL"
+            return HttpResponse(html)
+    else:
+        #This is an AJAX view, it should always be sent POST data
+        return http.HttpResponseRedirect('/')
 
 

@@ -7,5 +7,6 @@ urlpatterns = patterns('gamemasterradio.radio.views',
     (r'listen/playlist.xspf$', 'playlist'),
     (r'listen/(\d{1}-\d{1}-\d{1}-\d{1})$', 'listen'),
     (r'^crossdomain.xml$', 'crossdomain'),
+    (r'contact/', 'contact'),
     
 )

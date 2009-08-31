@@ -36,19 +36,13 @@ class Track(models.Model):
         return deviation
         
 class Feedback(models.Model):
-    user = models.ForeignKey(User, unique=True)
+    user = models.ForeignKey(User)
     url = models.CharField(max_length=100)
     subject = models.CharField(max_length=20)
     description = models.TextField()
     
     def __unicode__(self):
         return self.subject    
-    
-class ContactForm(forms.Form):
-    subject = forms.CharField(max_length=100)
-    message = forms.CharField()
-    sender = forms.EmailField()
-    cc_myself = forms.BooleanField(required=False)
 
 class GenreForm(forms.Form):
     speed = forms.CharField(max_length=1)
