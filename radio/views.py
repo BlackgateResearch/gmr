@@ -120,7 +120,7 @@ def contact(request):
             #Create a new feedback item with data
             newFeedback = Feedback()
             newFeedback.user = request.user
-            newFeedback.url = request.path #TODO: Use a URL from the POST and allow for this in the JS in base.html
+            newFeedback.url = request.POST['url'] #TODO: Use a URL from the POST and allow for this in the JS in base.html
             newFeedback.subject = request.POST['subject']
             newFeedback.description = request.POST['description']
             newFeedback.save()
@@ -135,6 +135,59 @@ def contact(request):
             return HttpResponse(html)
     else:
         #This is an AJAX view, it should always be sent POST data
-        return http.HttpResponseRedirect('/')
+        return http.HttpResponseRedirect('/') #bounce that sucker back home
+
+def nudge(request):
+    if request.method == 'POST': # If the form has been submitted...
+
+        if True: #form.is_valid(): # All validation rules pass
 
 
+            #grab vars from request
+            request.id = trackID
+            request.var = genreVar
+            request.up = up
+            
+            #Tweak current track
+            track = Blog.objects.get(id__exact=trackID) # <- TODO ID goes here!
+            
+            # TODO I bet there's a better way of doing this...
+            if genreVar == "gSpeed":  
+                if up:
+                    track.gSpeed = track.gSpeed + 1
+                else:
+                    track.gSpeed = track.gSpeed - 1
+                
+            elif genreVar == "gCombat":
+                if up:
+                    track.gCombat = track.gCombat + 1
+                else:
+                    track.gCombat = track.gCombat - 1
+                
+            elif genreVar == "gSuspense": 
+                if up:
+                    track.gSuspense = track.gSuspense + 1
+                else:
+                    track.gSuspense = track.gSuspense - 1
+                
+            elif genreVar == "gPositive": 
+                if up:
+                    track.gPositive = track.gPositive + 1
+                else:
+                    track.gPositive = track.gPositive - 1
+                 
+            else: # bad data, bounce those suckers
+                html = "FAIL"
+                return HttpResponse(html)
+            
+            #Validaton passed
+            html = "PASS"
+            return HttpResponse(html)
+
+        else:
+            #Validaton failed
+            html = "FAIL"
+            return HttpResponse(html)
+    else:
+        #This is an AJAX view, it should always be sent POST data
+        return http.HttpResponseRedirect('/') #bounce that sucker back home

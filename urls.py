@@ -15,6 +15,7 @@ urlpatterns = patterns('',
 urlpatterns += patterns('gamemasterradio.radio.views',
     (r'^$', 'index'),
     (r'^crossdomain.xml$', 'crossdomain'),
+
 )
 
 if settings.DEBUG:
