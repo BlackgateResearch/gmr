@@ -70,6 +70,7 @@ def listen(request, genre = False):
     })  
     return render_to_response("radio/listen.html", c)
 
+@login_required
 def playlist(request):
     
     genreDict = {}
@@ -191,7 +192,8 @@ def nudge(request):
     else:
         #This is an AJAX view, it should always be sent POST data
         return http.HttpResponseRedirect('/') #bounce that sucker back home
-        
+      
+@login_required  
 def track(request,trackID):
     
     try:

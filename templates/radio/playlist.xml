@@ -6,7 +6,7 @@
             <location>{{ track.url }}</location>
             <image>{{ track.art }}</image>
             <annotation>{{ track.name }}</annotation>
-            <info>http://www.gamemasterradio.com</info>
+            <info>http://localhost:8000/radio/{{track.id}}</info>
         </track>
 {% endfor %}
     </trackList>
