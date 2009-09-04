@@ -412,6 +412,11 @@ a:visited {
 }
 
 /* ---- Track Info ---- */
+.trackinfo {
+  width: 200px; 
+  float: left;
+}
+
 .album-art {
   float: left;
   margin-right: 20px;
