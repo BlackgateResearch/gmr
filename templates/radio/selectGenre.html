@@ -15,6 +15,10 @@
 
 {% block documentready %}
 
+  $('#id_speed').val('4');
+  $('#id_combat').val('4');
+  $('#id_suspense').val('4');
+  $('#id_positive').val('4');
   
   $("#genreForm").hide();
   $("#jsGenreForm").show();
@@ -57,7 +61,6 @@
   });
   
   $("#jsGenreFormSubmit").click(function(){
-    $("#id_suspense").val("3");
       $("#genreForm input[type='submit']").trigger('click');
   });
 {% endblock %}

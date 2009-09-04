@@ -121,7 +121,7 @@ def contact(request):
             #Create a new feedback item with data
             newFeedback = Feedback()
             newFeedback.user = request.user
-            newFeedback.url = request.POST['url'] #TODO: Use a URL from the POST and allow for this in the JS in base.html
+            newFeedback.url = request.POST['url']
             newFeedback.subject = request.POST['subject']
             newFeedback.description = request.POST['description']
             newFeedback.save()
@@ -138,6 +138,7 @@ def contact(request):
         #This is an AJAX view, it should always be sent POST data
         return http.HttpResponseRedirect('/') #bounce that sucker back home
 
+@login_required  
 def nudge(request):
     if request.method == 'POST': # If the form has been submitted...
 
@@ -145,50 +146,61 @@ def nudge(request):
 
 
             #grab vars from request
-            request.id = trackID
-            request.var = genreVar
-            request.up = up
+            trackID = request.POST['id']
+            genreVar = request.POST['genreVar']
+            up = request.POST['up']
             
             #Tweak current track
-            track = Blog.objects.get(id__exact=trackID) # <- TODO ID goes here!
+            track = Track.objects.get(id__exact=trackID) # <- TODO ID goes here!
             
+            returnGenreValue = "FAIL" #TODO: we should replace this with a check to see if the variable is initialised before the return
             # TODO I bet there's a better way of doing this...
             if genreVar == "gSpeed":  
-                if up:
-                    track.gSpeed = track.gSpeed + 1
-                else:
+                if up == "True":
+                    if track.gSpeed < 9:
+                        track.gSpeed = track.gSpeed + 1
+                        returnGenreValue = track.gSpeed
+                elif track.gSpeed > 0:
                     track.gSpeed = track.gSpeed - 1
+                    returnGenreValue = track.gSpeed
                 
             elif genreVar == "gCombat":
-                if up:
-                    track.gCombat = track.gCombat + 1
-                else:
+                if up == "True":
+                    if track.gCombat < 9:
+                        track.gCombat = track.gCombat + 1
+                        returnGenreValue = track.gCombat
+                elif track.gCombat > 0:
                     track.gCombat = track.gCombat - 1
+                    returnGenreValue = track.gCombat
                 
             elif genreVar == "gSuspense": 
-                if up:
-                    track.gSuspense = track.gSuspense + 1
-                else:
+                if up == "True":
+                    if track.gSuspense < 9:
+                        track.gSuspense = track.gSuspense + 1
+                        returnGenreValue = track.gSuspense
+                elif track.gSuspense > 0:
                     track.gSuspense = track.gSuspense - 1
+                    returnGenreValue = track.gSuspense
                 
             elif genreVar == "gPositive": 
-                if up:
-                    track.gPositive = track.gPositive + 1
-                else:
+                if up == "True":
+                    if track.gPositive < 9:
+                        track.gPositive = track.gPositive + 1
+                        returnGenreValue = track.gPositive
+                elif track.gPositive > 0:
                     track.gPositive = track.gPositive - 1
+                    returnGenreValue = track.gPositive
                  
             else: # bad data, bounce those suckers
-                html = "FAIL"
-                return HttpResponse(html)
+                return HttpResponse(returnGenreValue)
             
             #Validaton passed
-            html = "PASS"
-            return HttpResponse(html)
+            track.save()
+            return HttpResponse(returnGenreValue)
 
         else:
             #Validaton failed
-            html = "FAIL"
-            return HttpResponse(html)
+            return HttpResponse(returnGenreValue)
     else:
         #This is an AJAX view, it should always be sent POST data
         return http.HttpResponseRedirect('/') #bounce that sucker back home
@@ -198,9 +210,59 @@ def track(request,trackID):
     
     try:
         track = Track.objects.get(id=trackID)
+        
+        #TODO: There's a lot of ifs here, there's probably a more elegant solution
+        if track.gSpeed == 0:
+            speedIsMin = True
+        else:
+            speedIsMin = False
+        
+        if track.gSpeed == 9:
+            speedIsMax = True
+        else:
+            speedIsMax = False
+        
+        if track.gCombat == 0:
+            combatIsMin = True
+        else:
+            combatIsMin = False
+            
+        if track.gCombat == 9:
+            combatIsMax = True
+        else:
+            combatIsMax = False
+        
+        if track.gSuspense == 0:
+            suspenseIsMin = True
+        else:
+            suspenseIsMin = False
+            
+        if track.gSuspense == 9:
+            suspenseIsMax = True
+        else:
+            suspenseIsMax = False
+        
+        if track.gPositive == 0:
+            positiveIsMin = True
+        else:
+            positiveIsMin = False
+            
+        if track.gPositive == 9:
+            positiveIsMax = True
+        else:
+            positiveIsMax = False
+                        
     except:
         return http.HttpResponseNotFound('Track not found!')
     c = RequestContext(request, {
         'track' : track,
+        'speedIsMin' : speedIsMin,
+        'speedIsMax' : speedIsMax,
+        'combatIsMin' : combatIsMin,
+        'combatIsMax' : combatIsMax,
+        'suspenseIsMin' : suspenseIsMin,
+        'suspenseIsMax' : suspenseIsMax,
+        'positiveIsMin' : positiveIsMin,
+        'positiveIsMax' : positiveIsMax
     })  
     return render_to_response("radio/track.html", c)
