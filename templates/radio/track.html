@@ -28,6 +28,7 @@
           );
         }
     </script>
+    <div id="trackinfo">
     <span class="genreLabel">Speed:</span><span id="gSpeed" class="genreScore">{{ track.gSpeed }}</span>
     {% if not speedIsMin %}<a class="genreButton btndown" id="speedDown" onClick="nudge('gSpeed', 'False', '{{ track.id }}');" href="#">DOWN</a>{% endif %}
     {% if not speedIsMax %}<a class="genreButton btnup" id="speedUp" onClick="nudge('gSpeed', 'True', '{{ track.id }}');" href="#">UP</a>{% endif %}<br>
@@ -45,4 +46,5 @@
     {% if not positiveIsMax %}<a class="genreButton btnup" id="positiveUp" onClick="nudge('gPositive', 'True', '{{ track.id }}');"  href="#">UP</a>{% endif %}
     
     <div class="clearfix"></div>
+    </div>
 {% endblock %}
