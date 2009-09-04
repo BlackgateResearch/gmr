@@ -412,7 +412,7 @@ a:visited {
 }
 
 /* ---- Track Info ---- */
-.trackinfo {
+#trackinfo {
   width: 200px; 
   float: left;
 }

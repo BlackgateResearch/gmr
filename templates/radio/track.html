@@ -44,7 +44,7 @@
     <span class="genreLabel">Positive:</span><span id="gPositive" class="genreScore">{{ track.gPositive }}</span>
     {% if not positiveIsMin %}<a class="genreButton btndown" id="positiveDown" onClick="nudge('gPositive', 'False', '{{ track.id }}');"  href="#">DOWN</a>{% endif %}
     {% if not positiveIsMax %}<a class="genreButton btnup" id="positiveUp" onClick="nudge('gPositive', 'True', '{{ track.id }}');"  href="#">UP</a>{% endif %}
-    
+
+    </div>    
     <div class="clearfix"></div>
-    </div>
 {% endblock %}
