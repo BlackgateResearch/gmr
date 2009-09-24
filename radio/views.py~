@@ -14,7 +14,6 @@ This file is part of GMR.
     You should have received a copy of the GNU General Public License
     along with GMR.  If not, see <http://www.gnu.org/licenses/>.
 '''
-
 # Change the address from localhost for production
 # Previous line unnessisary as of revision 14ish
 

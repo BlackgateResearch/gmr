@@ -14,7 +14,6 @@ This file is part of GMR.
     You should have received a copy of the GNU General Public License
     along with GMR.  If not, see <http://www.gnu.org/licenses/>.
 '''
-
 from django.views.generic.list_detail import object_detail
 from tagging.models import Tag,TaggedItem
 from blog.models import Entry

@@ -14,14 +14,16 @@ This file is part of GMR.
     You should have received a copy of the GNU General Public License
     along with GMR.  If not, see <http://www.gnu.org/licenses/>.
 '''
+from django.conf.urls.defaults import *
+from gamemasterradio.radio.views import *
+import settings
 
-from django.template import Context, RequestContext, loader
-from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
-from django.shortcuts import render_to_response
-from django import http
-
-def logout_view(request):
-    logout(request)
-    return http.HttpResponseRedirect('/')
+urlpatterns = patterns('gamemasterradio.radio.views',
+    (r'^$', 'index'),
+    (r'listen/playlist.xspf$', 'playlist'),
+    (r'listen/(\d{1}-\d{1}-\d{1}-\d{1})$', 'listen'),
+    (r'^crossdomain.xml$', 'crossdomain'),
+    (r'contact/', 'contact'),
+    (r'nudge/', 'nudge'),
+    (r'^(?P<trackID>\w+)/*$', 'track'),
+)

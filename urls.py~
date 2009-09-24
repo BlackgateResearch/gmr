@@ -1,4 +1,3 @@
-''''
 This file is part of GMR.
 
     GMR is free software: you can redistribute it and/or modify
@@ -13,21 +12,29 @@ This file is part of GMR.
 
     You should have received a copy of the GNU General Public License
     along with GMR.  If not, see <http://www.gnu.org/licenses/>.
-'''
 
 from django.conf.urls.defaults import *
-from django.contrib.auth.views import *
-
-from gamemasterradio.radio.views import *
 
 import settings
 
-urlpatterns = patterns('gamemasterradio.radio.views',
-    (r'^logout/$', 'logout_view'),
-    (r'^profile/$', 'index'),
+from django.contrib import admin
+admin.autodiscover()
+
+urlpatterns = patterns('',
+    (r'^admin/(.*)', admin.site.root),
+    (r'^blog/', include('gamemasterradio.blog.urls')),
+    (r'^accounts/', include('gamemasterradio.account.urls')), 
+    (r'^radio/', include('gamemasterradio.radio.urls')),
 )
 
-urlpatterns += patterns('django.contrib.auth.views',
-    (r'^login/$', 'login'),
+urlpatterns += patterns('gamemasterradio.radio.views',
+    (r'^$', 'index'),
+    (r'^crossdomain.xml$', 'crossdomain'),
+
 )
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_DOC_ROOT}),
+    )
 

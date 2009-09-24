@@ -14,7 +14,6 @@ This file is part of GMR.
     You should have received a copy of the GNU General Public License
     along with GMR.  If not, see <http://www.gnu.org/licenses/>.
 '''
-
 from django.db import models
 from django.contrib.syndication.feeds import Feed
 from django.contrib.sitemaps import Sitemap

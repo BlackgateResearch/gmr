@@ -14,14 +14,20 @@ This file is part of GMR.
     You should have received a copy of the GNU General Public License
     along with GMR.  If not, see <http://www.gnu.org/licenses/>.
 '''
+from django.contrib import admin
 
-from django.template import Context, RequestContext, loader
-from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
-from django.shortcuts import render_to_response
-from django import http
+from gamemasterradio.radio.models import Track, Feedback
 
-def logout_view(request):
-    logout(request)
-    return http.HttpResponseRedirect('/')
+class TrackAdmin(admin.ModelAdmin):
+    list_display = ('artist', 'name')           
+    search_fields = ['artist', 'name']
+    list_filter = ('artist', 'name')
+
+class FeedbackAdmin(admin.ModelAdmin):
+    list_display = ('user','url', 'subject','description')           
+    search_fields = ['url', 'subject','description']
+    list_filter = ('user','url', 'subject','description')  
+
+
+admin.site.register(Track, TrackAdmin)
+admin.site.register(Feedback, FeedbackAdmin)

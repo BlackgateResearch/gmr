@@ -1,4 +1,3 @@
-''''
 This file is part of GMR.
 
     GMR is free software: you can redistribute it and/or modify
@@ -13,15 +12,18 @@ This file is part of GMR.
 
     You should have received a copy of the GNU General Public License
     along with GMR.  If not, see <http://www.gnu.org/licenses/>.
-'''
 
-from django.template import Context, RequestContext, loader
-from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
-from django.shortcuts import render_to_response
-from django import http
+from django.contrib import admin
 
-def logout_view(request):
-    logout(request)
-    return http.HttpResponseRedirect('/')
+from gamemasterradio.blog.models import Entry
+
+class EntryAdmin(admin.ModelAdmin):
+    list_display = ('title', 'pub_date', 'status', 'author')           
+    search_fields = ['title', 'body_html', 'tags', 'author']
+    list_filter = ('pub_date', 'status', 'author')
+    prepopulated_fields = {"slug" : ('title',)}
+    fieldsets = (
+		(None, {'fields': (('title', 'status', 'author'), 'body_html', ('pub_date'), 'tags', 'slug')}),
+    )
+
+admin.site.register(Entry, EntryAdmin)

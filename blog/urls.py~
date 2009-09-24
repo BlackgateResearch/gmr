@@ -14,7 +14,6 @@ This file is part of GMR.
     You should have received a copy of the GNU General Public License
     along with GMR.  If not, see <http://www.gnu.org/licenses/>.
 '''
-
 from django.conf.urls.defaults import *
 from gamemasterradio.blog.models import Entry
 from tagging.views import tagged_object_list
