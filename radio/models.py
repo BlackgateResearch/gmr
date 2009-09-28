@@ -1,4 +1,4 @@
-''''
+'''
 This file is part of GMR.
 
     GMR is free software: you can redistribute it and/or modify
@@ -19,11 +19,18 @@ from django.db import models
 from django import forms
 from django.contrib.auth.models import User
 
+class Artist(models.Model):
+    name = models.CharField(max_length=200)
+    
+    def __unicode__(self):
+        return self.name  
+
 class Track(models.Model):
     name = models.CharField(max_length=200)
-    artist = models.CharField(max_length=200)
+    artist = models.ForeignKey(Artist)
     url = models.CharField(max_length=200)
     art = models.CharField(max_length=200)
+    description = models.CharField(max_length=100000)
     #Genre params
     gSpeed = models.IntegerField()
     gCombat = models.IntegerField()
@@ -67,13 +74,3 @@ class GenreForm(forms.Form):
     suspense = forms.CharField(max_length=1)
     positive = forms.CharField(max_length=1)
 
-# demo data
-
-#class Choice(models.Model):
-#    poll = models.ForeignKey(Poll)
-#    choice = models.CharField(max_length=200)
-#    votes = models.IntegerField()
-
-#class Poll(models.Model):
-#    question = models.CharField(max_length=200)
-#    pub_date = models.DateTimeField('date published')
