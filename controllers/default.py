@@ -8,6 +8,7 @@
 ## - call exposes all registered services (none by default)
 #########################################################################  
 
+@auth.requires_login()
 def index():
     "generates rss feed form the wiki pages"
     import gluon.contrib.markdown as md
@@ -22,6 +23,10 @@ def index():
             description = track.description,
             ) for track in tracks]
         )
+
+def artist():
+    if request.args(0) != None:
+        return(request.args(0))
 
 def user():
     """
