@@ -1,5 +1,7 @@
 # coding: utf8
 
+import operator
+
 #########################################################################
 ## This is a samples controller
 ## - index is the default action of any application
@@ -7,6 +9,9 @@
 ## - download is for downloading files uploaded in the db (does streaming)
 ## - call exposes all registered services (none by default)
 #########################################################################  
+
+def getDeviation(track,positivity,aggression,speed,suspense):
+    return 1
 
 @auth.requires_login()
 def index():
@@ -23,6 +28,27 @@ def index():
             description = track.description,
             ) for track in tracks]
         )
+
+def getTracks():
+    
+    genreDict = {}
+    track_list_sorted = []
+    tracks = db().select(db.track.ALL)
+
+    #Add all tracks to a dictionary with the track as the key, deviation as value
+    for track in tracks:
+        genreDict[getDeviation(track,request.args(0),request.args(1),request.args(2),request.args(3))] = track
+
+    #sort the dictionary by value, convert to a list of tuples
+    genreList = sorted(genreDict.keys()) 
+
+    #discard the deviation values to get back to a track list
+    for key in genreList:
+        track_list_sorted.append(genreDict[key])
+      
+    return(
+        track_list_sorted[0]
+    )
 
 def artist():
     if request.args(0) != None:
