@@ -10,8 +10,30 @@ import operator
 ## - call exposes all registered services (none by default)
 #########################################################################  
 
-def getDeviation(track,positivity,aggression,speed,suspense):
-    return 1
+def ensurePositive(val):
+    if val < 0:
+        return val * -1
+    else:
+        return val
+
+def getDeviation(positivity,aggression,speed,suspense,track):
+    deviationSpeed = int(positivity) - int(track.positivity)
+    deviationCombat = int(aggression) - int(track.aggression)
+    deviationSuspense = int(speed) - int(track.speed)
+    deviationPositive = int(suspense) - int(track.suspense)
+
+    deviation = ensurePositive(deviationSpeed) \
+        + ensurePositive(deviationCombat) \
+        + ensurePositive(deviationSuspense) \
+        + ensurePositive(deviationPositive)
+
+    return deviation
+
+def artistsDict(artists):
+    artistDict = {}
+    for artist in artists:
+        artistDict[artist.id] = artist.name
+    return artistDict
 
 @auth.requires_login()
 def index():
@@ -30,24 +52,35 @@ def index():
         )
 
 def getTracks():
-    
-    genreDict = {}
-    track_list_sorted = []
-    tracks = db().select(db.track.ALL)
 
+    genreDict = {}
+    sortedTrackList = []
+    artistsDictionary = {}
+    tracks = db().select(db.track.ALL)
+    artists = db().select(db.artist.ALL)
+    artistsDictionary = artistsDict(artists)
+
+    p = request.args(0) #positivity
+    a = request.args(1) #aggression
+    s = request.args(2) #speed
+    s = request.args(3) #suspense
+    
     #Add all tracks to a dictionary with the track as the key, deviation as value
     for track in tracks:
-        genreDict[getDeviation(track,request.args(0),request.args(1),request.args(2),request.args(3))] = track
+        genreDict[getDeviation(p,a,s,s,track)] = track
 
     #sort the dictionary by value, convert to a list of tuples
-    genreList = sorted(genreDict.keys()) 
+    sortedGenreDict = sorted(genreDict.keys()) 
 
-    #discard the deviation values to get back to a track list
-    for key in genreList:
-        track_list_sorted.append(genreDict[key])
-      
+    #discard the deviation values to get back a sorted track list
+    for key in sortedGenreDict:
+        sortedTrackList.append(genreDict[key])
+
     return(
-        track_list_sorted[0]
+        dict(
+            sortedTrackList = sortedTrackList,
+            artistsDictionary = artistsDictionary
+        )
     )
 
 def artist():

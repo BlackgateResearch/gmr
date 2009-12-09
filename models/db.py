@@ -62,14 +62,15 @@ service=Service(globals())                   # for json, xml, jsonrpc, xmlrpc, a
 ## >>> for row in rows: print row.id, row.myfield
 #########################################################################
 
-db.define_table('artistInfo',
+db.define_table('artist',
     Field('user_id',db.auth_user),
+    Field('name'),
     Field('description'),
     Field('image', 'upload')
 )
 
 db.define_table('track',
-    Field('artist_id',db.artistInfo),
+    Field('artist_id',db.artist),
     Field('name'),
     Field('description'),
     Field('mp3', 'upload'),
