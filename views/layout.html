@@ -2,16 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{=T.accepted_language or 'en'}}">
   <head>
     <title>{{=response.title or request.application}}</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />     
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="keywords" content="{{=response.keywords}}" />
+    <meta name="description" content="{{=response.description}}" />
+    <meta name="author" content="{{=response.author}}" />
     {{response.files.append(URL(request.application,'static','base.css'))}}
     {{include 'web2py_ajax.html'}}
   </head>
   <body>
     <div id="wrapper">
         <div id="header">
-            <h1>{{=A(response.title or request.application, _href=URL(request.application,'default','index'))}}</h1>
-            <span class="subtitle">{{=response.subtitle or ''}}</span>
-{{='/'.join(['',request.application,request.controller,request.function]+request.args)}}
+            <div id="headerInner">
+                <h1>{{=A(response.title or request.application, _href=URL(request.application,'default','index'))}}</h1>
+                <span class="subtitle">{{=response.subtitle or ''}}</span>
+                {{='/'.join(['',request.application,request.controller,request.function]+request.args)}}
+            </div>
         </div>
 
         <div id="mainContent">

@@ -134,7 +134,56 @@ select {
 
 /* <LAYOUT> */
 
+body {
+    text-align: center;
+}
+
+#header {
+    width: 100%;
+}
+
+#headerInner {
+    text-align: left;
+    margin: 0 auto;
+    width: 990px;
+}
+
+#mainContent {
+    text-align: left;
+    margin: 10px auto;
+    width: 990px;
+}
+
+#footer {
+    width: 990px;
+    margin: 10px auto;
+}
+
 /* </LAYOUT> */
+
+
+
+/* <TEXT> */
+
+body {
+    font-family: arial, helvetica, sans-serif;
+}
+
+/* </TEXT> */
+
+
+
+/* <DECORATION> */
+
+#header {
+    background-color: #dddddd;
+}
+
+#footer {
+    background-color: #dddddd;
+}
+
+/* </DECORATION> */
 
 
 
