@@ -1,7 +1,10 @@
 {{extend 'radio.html'}}
 {{=H1('This is the default/getTracks.html template')}}
 
-{{=BEAUTIFY(sortedTrackList[0].artist_id)}}
+{{=artistsDictionary[sortedTrackList[0].artist_id]}}
+ - 
+{{=sortedTrackList[0].name}}
 
+
+{{=H2('Artists')}}
 {{=BEAUTIFY(artistsDictionary)}}
-

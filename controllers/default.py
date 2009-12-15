@@ -11,12 +11,30 @@ import operator
 #########################################################################  
 
 def ensurePositive(val):
+    """
+    TODO: There must be a better way of doing this!
+    >>> ensurePositive(-45)
+    45
+    >>> ensurePositive(54)
+    54
+    >>> ensurePositive(0)
+    0
+    >>> ensurePositive(1)
+    1
+    >>> ensurePositive(-1)
+    1
+    """
     if val < 0:
         return val * -1
     else:
         return val
 
 def getDeviation(positivity,aggression,speed,suspense,track):
+    """
+    Compare the searched-for parameters with a track, return the deviation
+    from the track
+    TODO: use the sum of the squares
+    """
     deviationSpeed = int(positivity) - int(track.positivity)
     deviationCombat = int(aggression) - int(track.aggression)
     deviationSuspense = int(speed) - int(track.speed)
@@ -30,6 +48,10 @@ def getDeviation(positivity,aggression,speed,suspense,track):
     return deviation
 
 def artistsDict(artists):
+    """
+    Creates a dictionary containing the artist [id -> name]
+    Input is an artist db object
+    """
     artistDict = {}
     for artist in artists:
         artistDict[artist.id] = artist.name
@@ -51,6 +73,7 @@ def index():
             ) for track in tracks]
         )
 
+@auth.requires_login()
 def getTracks():
 
     genreDict = {}
