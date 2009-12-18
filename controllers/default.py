@@ -57,21 +57,19 @@ def artistsDict(artists):
         artistDict[artist.id] = artist.name
     return artistDict
 
-@auth.requires_login()
+#@auth.requires_login()
 def index():
-    "generates rss feed form the wiki pages"
-    import gluon.contrib.markdown as md
-    tracks = db().select(db.track.ALL)
-    return dict(
-        title = 'mywiki rss feed',
-        link = 'http://127.0.0.1:8000/mywiki/default/index',
-        description = 'mywiki news',
-        created_on = request.now,
-        items = [
-            dict(title = track.name,
-            description = track.description,
-            ) for track in tracks]
-        )
+    """
+    Home page for GMR
+    """
+    response.title = "Game Master Radio"
+    response.subtitle = "Music for your worlds"
+
+    return dict(message='Welcome to GMR!')
+
+
+def echo():
+    return request.vars.name
 
 @auth.requires_login()
 def getTracks():
@@ -107,8 +105,7 @@ def getTracks():
     )
 
 def artist():
-    if request.args(0) != None:
-        return(request.args(0))
+    return artistsDict(artists = db().select(db.artist.ALL))
 
 def user():
     """
