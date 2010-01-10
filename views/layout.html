@@ -8,6 +8,7 @@
     <meta name="author" content="{{=response.author}}" />
     {{response.files.append(URL(request.application,'static','base.css'))}}
     {{include 'web2py_ajax.html'}}
+
   </head>
   <body>
     <div id="wrapper">
@@ -21,9 +22,18 @@
 
         <div id="mainContent">
             <div class="flash">{{=response.flash or ''}}</div>
+         
+            <div id="content1" class="layout33 column">
+                kjhgfsdlsdgjfsdhfskjfksdfjksdkjfsd
+            </div>
 
-            {{include}}
+            <div id="content2" class="layout33 column">
+                {{include}}
+            </div>
 
+            <div id="content3" class="layout33 column">
+                bfsdmfjsvjfvwejfvjwefjewvjfvjwekfvjwvejfvjwe
+            </div>
         </div>
 
         <div id="footer">
