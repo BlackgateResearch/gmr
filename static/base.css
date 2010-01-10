@@ -191,17 +191,11 @@ body {
 }
 
 #mainContent {
-    height:auto !important; /* real browsers */
-	height:100%; /* IE6: treaded as min-height*/
 
-	min-height:100%; /* real browsers */
 }
 
 .column {
-    height:auto !important; /* real browsers */
-	height:100%; /* IE6: treaded as min-height*/
 
-	min-height:100%; /* real browsers */
 }
 
 #footer {
@@ -251,7 +245,7 @@ body {
 }
 
 #nav ul li a:hover {
-    background-color: blue;
+    background-color: #dddddd;
 }
 
 .column {
@@ -300,10 +294,10 @@ p {
 }
 
 #nav {
-    background-color: red;
+    background-color: #cccccc;
 }
 
 #nav ul li {
-    background-color: yellow;
+    background-color: #333333;
 }
 /* </TEST> */
