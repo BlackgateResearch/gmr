@@ -13,7 +13,7 @@
     <div id="wrapper">
         <div id="header">
             <div id="headerInner">
-                <img id="logo" src="" alt="" title="GMR - Music for your worlds" />
+                <img id="logo" src="{{=URL(request.application,'static','gmr.png')}}" alt="" title="GMR - Music for your worlds" />
                 <h1>{{=A(response.title or request.application, _href=URL(request.application,'default','index'))}}</h1>
                 <span class="subtitle">{{=response.subtitle or ''}}</span>
             </div>

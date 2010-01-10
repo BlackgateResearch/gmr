@@ -166,7 +166,7 @@ body {
 
 #header {
     width: 100%;
-    height: 100px;
+    height: 120px;
     position: relative;
 }
 
@@ -228,6 +228,11 @@ body {
     border-bottom : 3px solid #333333;
 }
 
+#header img {
+    float: left;
+    margin: 1em;
+}
+
 .subtitle {
     font-size: 1.4em;
     font-style: italic;
@@ -258,6 +263,7 @@ body {
 }
 
 h1 {
+    padding-top: 1em;
     font-size: 2.5em;
 }
 
