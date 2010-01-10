@@ -13,10 +13,6 @@ import operator
 def ensurePositive(val):
     """
     TODO: There must be a better way of doing this!
-    >>> ensurePositive(-45)
-    45
-    >>> ensurePositive(54)
-    54
     >>> ensurePositive(0)
     0
     >>> ensurePositive(1)
@@ -28,6 +24,7 @@ def ensurePositive(val):
         return val * -1
     else:
         return val
+
 
 def getDeviation(positivity,aggression,speed,suspense,track):
     """
@@ -47,6 +44,7 @@ def getDeviation(positivity,aggression,speed,suspense,track):
 
     return deviation
 
+
 def artistsDict(artists):
     """
     Creates a dictionary containing the artist [id -> name]
@@ -56,6 +54,7 @@ def artistsDict(artists):
     for artist in artists:
         artistDict[artist.id] = artist.name
     return artistDict
+
 
 #@auth.requires_login()
 def index():
@@ -71,20 +70,20 @@ def index():
 def echo():
     return request.vars.name
 
+
 @auth.requires_login()
 def getTracks():
-
-    genreDict = {}
-    sortedTrackList = []
-    artistsDictionary = {}
-    tracks = db().select(db.track.ALL)
-    artists = db().select(db.artist.ALL)
-    artistsDictionary = artistsDict(artists)
-
+    #args
     p = request.args(0) #positivity
     a = request.args(1) #aggression
     s = request.args(2) #speed
     s = request.args(3) #suspense
+    
+    genreDict = {}
+    sortedTrackList = []
+    artistsDictionary = {}
+    tracks = db().select(db.track.ALL)
+    artistsDictionary = artistsDict(db().select(db.artist.ALL))
     
     #Add all tracks to a dictionary with the track as the key, deviation as value
     for track in tracks:
@@ -104,8 +103,10 @@ def getTracks():
         )
     )
 
+
 def artist():
     return artistsDict(artists = db().select(db.artist.ALL))
+
 
 def user():
     """
@@ -131,7 +132,7 @@ def download():
     """
     return response.download(request,db)
 
-
+#don't think we need this
 def call():
     """
     exposes services. for example:
