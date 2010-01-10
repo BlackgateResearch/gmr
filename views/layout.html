@@ -13,9 +13,18 @@
     <div id="wrapper">
         <div id="header">
             <div id="headerInner">
+                <img id="logo" src="" alt="" title="GMR - Music for your worlds" />
                 <h1>{{=A(response.title or request.application, _href=URL(request.application,'default','index'))}}</h1>
                 <span class="subtitle">{{=response.subtitle or ''}}</span>
-                {{='/'.join(['',request.application,request.controller,request.function]+request.args)}}
+            </div>
+            <div id="nav">
+                <ul>
+                    <li><a href="#">OH</a></li>
+                    <li><a href="#">HAI</a></li>
+                    <li><a href="#">IS</a></li>
+                    <li><a href="#">NAVIGATION</a></li>
+                    <li><a href="#">KTHXBAI</a></li>
+                </ul>
             </div>
         </div>
 
@@ -23,21 +32,23 @@
             <div class="flash">{{=response.flash or ''}}</div>
          
             <div id="content1" class="layout33 column">
-                dsa
+                --PASS SLIDERS--
             </div>
 
             <div id="content2" class="layout33 column">
+                --MAIN TABBED CONTENT--                
                 {{include}}
             </div>
                 
             <div id="content3" class="layout33 column">
-                das
+                --PLAYER--
             </div>
         </div>
 
         <div id="footer">
             <p>{{=T('Copyright')}} &copy; Game Master Radio 2009</p>
             <p><a href="http://nefariousapparatus.com/" target="_blank">Nefarious Apparatus</a></p>
+            <p>Debug Info: {{='/'.join(['',request.application,request.controller,request.function]+request.args)}}</p>
         </div>
     </div>
 </html>

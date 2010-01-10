@@ -128,6 +128,10 @@ select {
 	*font-size: 100%;
 }
 
+html {
+    font-size: 10px; /* reset for easy EM calculation */
+}
+
 /* </RESET> */
 
 /* <CONSTANTS> */
@@ -146,6 +150,8 @@ html, body {
 }
 
 #wrapper {
+    min-width: 900px;
+
     position:relative;
 
     height:auto !important; /* real browsers */
@@ -160,11 +166,28 @@ body {
 
 #header {
     width: 100%;
-    height: 120px;
+    height: 100px;
+    position: relative;
 }
 
 #headerInner {
 
+}
+
+#nav {
+    height: 40px;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+
+#nav ul {
+    
+}
+
+#nav ul li {
+    width: 10em;
+    float: left;
 }
 
 #mainContent {
@@ -211,9 +234,41 @@ body {
     border-bottom : 3px solid #333333;
 }
 
+.subtitle {
+    font-size: 1.4em;
+    font-style: italic;
+}
+
+#nav ul li {
+    height: 40px;
+}
+
+#nav ul li a {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    font-size: 1.5em;
+}
+
+#nav ul li a:hover {
+    background-color: blue;
+}
+
+.column {
+
+}
+
 #footer {
     border-top: 3px solid #333333;
     background-color: #dddddd;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+p {
+    font-size: 1.6em;
 }
 
 /* </DECORATION> */
@@ -242,5 +297,13 @@ body {
 
 #wrapper {
     background-color: green;
+}
+
+#nav {
+    background-color: red;
+}
+
+#nav ul li {
+    background-color: yellow;
 }
 /* </TEST> */
