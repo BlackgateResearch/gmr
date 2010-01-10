@@ -8,7 +8,6 @@
     <meta name="author" content="{{=response.author}}" />
     {{response.files.append(URL(request.application,'static','base.css'))}}
     {{include 'web2py_ajax.html'}}
-
   </head>
   <body>
     <div id="wrapper">
@@ -24,20 +23,21 @@
             <div class="flash">{{=response.flash or ''}}</div>
          
             <div id="content1" class="layout33 column">
-                kjhgfsdlsdgjfsdhfskjfksdfjksdkjfsd
+                dsa
             </div>
 
             <div id="content2" class="layout33 column">
                 {{include}}
             </div>
-
+                
             <div id="content3" class="layout33 column">
-                bfsdmfjsvjfvwejfvjwefjewvjfvjwekfvjwvejfvjwe
+                das
             </div>
         </div>
 
         <div id="footer">
-            {{=T('Copyright')}} &copy; 2009
+            <p>{{=T('Copyright')}} &copy; Game Master Radio 2009</p>
+            <p><a href="http://nefariousapparatus.com/" target="_blank">Nefarious Apparatus</a></p>
         </div>
     </div>
 </html>
