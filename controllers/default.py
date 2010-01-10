@@ -103,7 +103,24 @@ def getTracks():
         )
     )
 
-
+@auth.requires_login()
+def createPreset():
+    name = request.vars.name
+    positivity = request.vars.positivity
+    aggression = request.vars.aggression
+    speed = request.vars.speed
+    suspense = request.vars.suspense
+    
+    db.preset.insert(
+        name=name,
+        positivity = positivity,
+        aggression = aggression,
+        speed = speed,
+        suspense = suspense,
+        user_id = auth.user.id
+    )
+    return name
+    
 def artist():
     return artistsDict(artists = db().select(db.artist.ALL))
 

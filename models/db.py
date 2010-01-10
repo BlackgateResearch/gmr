@@ -50,9 +50,9 @@ service=Service(globals())                   # for json, xml, jsonrpc, xmlrpc, a
 ##
 ## >>> db.define_table('mytable',Field('myfield','string'))
 ##
-## Fields can be 'string','text','password','integer','double','boolean'
+## Fields can be 'string','text','password',''integer'','double','boolean'
 ##       'date','time','datetime','blob','upload', 'reference TABLENAME'
-## There is an implicit 'id integer autoincrement' field
+## There is an implicit 'id 'integer' autoincrement' field
 ## Consult manual for more options, validators, etc.
 ##
 ## More API examples for controllers:
@@ -75,10 +75,19 @@ db.define_table('track',
     Field('description'),
     Field('mp3', 'upload'),
 #   PASS
-    Field('positivity'),
-    Field('aggression'),
-    Field('speed'),
-    Field('suspense')
+    Field('positivity', 'integer'),
+    Field('aggression', 'integer'),
+    Field('speed', 'integer'),
+    Field('suspense', 'integer')
+)
+
+db.define_table('preset',
+    Field('name'),
+    Field('positivity', 'integer'),
+    Field('aggression', 'integer'),
+    Field('speed', 'integer'),
+    Field('suspense', 'integer'),
+    Field('user_id', db.auth_user)
 )
 
 db.define_table('playlist',
