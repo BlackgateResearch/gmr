@@ -151,17 +151,9 @@ html, body {
 
 #wrapper {
     min-width: 900px;
-
     position:relative;
 
-    height:auto !important; /* real browsers */
-	height:100%; /* IE6: treaded as min-height*/
-
-	min-height:100%; /* real browsers */
-}   
-
-body {
-
+	height: 100%;
 }
 
 #header {
@@ -191,11 +183,11 @@ body {
 }
 
 #mainContent {
-
+    height: 100%;
 }
 
 .column {
-
+    height: 100%;
 }
 
 #footer {
@@ -293,10 +285,6 @@ p {
 
 #content3 {
     background-color: #eeeeee;
-}
-
-#wrapper {
-    background-color: green;
 }
 
 #nav {
