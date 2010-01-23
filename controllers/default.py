@@ -65,6 +65,16 @@ def index():
     response.subtitle = "Music for your worlds"
     return dict(message='Welcome to GMR!')
 
+def echo():
+    return request.vars.name
+
+def flash():
+    return dict(message='flash')
+
+def artistLookup(id):
+    artistsDictionary = artistsDict(db().select(db.artist.ALL))
+    return artistsDictionary[id]
+
 @auth.requires_login()
 def nextTrack():
     if (len(session.currentPlaylist) > 0):
@@ -74,12 +84,6 @@ def nextTrack():
         )
     else:
         return dict(end=True)
-
-def echo():
-    return request.vars.name
-
-def flash():
-    return dict(message='flash')
 
 @auth.requires_login()
 def getTracks():
