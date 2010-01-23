@@ -1,3 +1,25 @@
+{{def additionalJS():}}
+<!-- additionalJS not defined -->
+{{return}}
+
+{{def bodyOnload():}}
+/* bodyOnload not defined */
+{{return}}
+
+{{def content1():}}
+<!-- content1 not defined -->
+{{return}}
+
+{{def content2():}}
+<!-- content2 not defined -->
+{{return}}
+
+{{def content3():}}
+<!-- content3 not defined -->
+{{return}}
+
+{{include}}
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{=T.accepted_language or 'en'}}">
   <head>
@@ -6,10 +28,11 @@
     <meta name="keywords" content="{{=response.keywords}}" />
     <meta name="description" content="{{=response.description}}" />
     <meta name="author" content="{{=response.author}}" />
+    {{additionalJS()}}
     {{response.files.append(URL(request.application,'static','base.css'))}}
     {{include 'web2py_ajax.html'}}
   </head>
-  <body>
+  <body onload="{{bodyOnload()}}">
     <div id="wrapper">
         <div id="header">
             <div id="headerInner">
@@ -17,31 +40,22 @@
                 <h1>{{=A(response.title or request.application, _href=URL(request.application,'default','index'))}}</h1>
                 <span class="subtitle">{{=response.subtitle or ''}}</span>
             </div>
-            <div id="nav">
-                <ul>
-                    <li><a href="#">OH</a></li>
-                    <li><a href="#">HAI</a></li>
-                    <li><a href="#">IS</a></li>
-                    <li><a href="#">NAVIGATION</a></li>
-                    <li><a href="#">KTHXBAI</a></li>
-                </ul>
-            </div>
+        {{include "navigation.html"}}
         </div>
 
         <div id="mainContent">
             <div class="flash">{{=response.flash or ''}}</div>
          
             <div id="content1" class="layout33 column">
-                --PASS SLIDERS--
+                {{content1()}}
             </div>
 
             <div id="content2" class="layout33 column">
-                --MAIN TABBED CONTENT--                
-                {{include}}
+                {{content2()}}               
             </div>
                 
             <div id="content3" class="layout33 column">
-                --PLAYER--
+                {{content3()}}
             </div>
         </div>
 
