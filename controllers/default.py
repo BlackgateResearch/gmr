@@ -70,6 +70,8 @@ def index():
 def echo():
     return request.vars.name
 
+def flash():
+    return dict(message='flash')
 
 @auth.requires_login()
 def getTracks():
@@ -111,7 +113,7 @@ def createPreset():
     speed = request.vars.speed
     suspense = request.vars.suspense
     
-    db.preset.insert(
+    preset = db.preset.insert(
         name=name,
         positivity = positivity,
         aggression = aggression,
@@ -119,7 +121,7 @@ def createPreset():
         suspense = suspense,
         user_id = auth.user.id
     )
-    return name
+    return(dict(preset = preset))
     
 def artist():
     return artistsDict(artists = db().select(db.artist.ALL))
