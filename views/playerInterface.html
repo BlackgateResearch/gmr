@@ -18,20 +18,19 @@
      }
 
     /* JS -> Flash */
-     function play(url) {
-         thisMovie("GMRPlayer").play(url);
-     }
-     function stop() {
-         thisMovie("GMRPlayer").stop();
-     }
-     function pause() {
-         thisMovie("GMRPlayer").pause();
-     }
+    function play(url) {
+        thisMovie("GMRPlayer").play(url);
+    }
+    function stop() {
+        thisMovie("GMRPlayer").stop();
+    }
+    function pause() {
+        thisMovie("GMRPlayer").pause();
+    }
 
     /* Flash -> JS */
     function progress(currentTime) {
-        document.getElementById('seconds').innerHTML = currentTime;
-        document.getElementById('seconds').style.textIndent = currentTime + "px";
+        $('.trackSeconds').text(currentTime);
         console.log(currentTime);
     }
     function soundComplete() {
@@ -47,4 +46,14 @@
     function sendToJavaScript(value) {
      document.forms["form1"].output.value += "ActionScript says: " + value + "\n";
     }
+
+    /* Ajax */
+    function next() {
+        $.getJSON('/gmr/default/nextTrack.json', function(data) {
+            play('{{=URL(r=request, f='download')}}' + '/' + data.track.mp3);
+            $('.trackName').text(data.track.name);
+            $('.trackArtist').text(data.track.artist_id);
+        });
+    }   
+
 </script>

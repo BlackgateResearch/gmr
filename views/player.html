@@ -1,23 +1,25 @@
-<div id="alternativeContent">
-	<a href="http://www.adobe.com/go/getflashplayer">
-    	<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
-	</a>
+<div id="player">
+    <h2>GMR Player <span class="trackName">-</span></h2>
+    <div id="alternativeContent">
+	    <a href="http://www.adobe.com/go/getflashplayer">
+        	<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+	    </a>
+    </div>
+
+    {{= A('Stop', _href='#', _class='button', _id='playerStop', _onclick='stop();')}}
+    {{= A('Pause', _href='#', _class='button', _id='playerPause', _onclick='pause();')}}      
+    {{= A('Next >>', _href='#', _class='button', _id='playerNext', _onclick='next();')}} 
+
+    <p style="clear: both;">Track: <span class="trackName">-</span></p>
+    <p>Elapsed Time: <span class="trackSeconds">-</span>s</p>
+    <p>Artist: <span class="trackArtist">-</span></p>
 </div>
 
-<p>
-    <input type="submit" onclick="play('http://namtao.com/tracks/The_Staunton_Lick.mp3');" value="The Staunton Lick" />
-    <input type="submit" onclick="play('http://namtao.com/tracks/6s.mp3');" value="Six Seconds" />
-</p>
-<p>
-    <input type="submit" onclick="stop();" value="Stop" />
-    <input type="submit" onclick="pause();" value="Pause" />        
-</p>
 
-<p id="seconds">-</p>
-
-
+<br /><br />
 <p>HAX:</p>
 <p>
     <input type="submit" onclick="play('http://namtao.com/tracks/The_Staunton_Lick.mp3');" value="The Staunton Lick" />
     <input type="submit" onclick="play('http://namtao.com/tracks/6s.mp3');" value="Six Seconds" />
+    <input type="submit" onclick="$('.idontcare').load('/gmr/default/getTracks/1/2/3/4');" value="Refresh Playlist" />
 </p>

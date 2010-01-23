@@ -9,10 +9,6 @@
     pageInit();
 {{return}}
 
-{{def content2():}}
-    {{try:}}{{=H2(message)}}{{except:}}{{=BEAUTIFY(response._vars)}}{{pass}}
-{{return}}
-
 {{def content3():}}
     {{include "player.html"}}
 {{return}}
