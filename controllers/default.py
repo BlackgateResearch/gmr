@@ -63,9 +63,17 @@ def index():
     """
     response.title = "Game Master Radio"
     response.subtitle = "Music for your worlds"
-
     return dict(message='Welcome to GMR!')
 
+@auth.requires_login()
+def nextTrack():
+    if (len(session.currentPlaylist) > 0):
+        return dict(
+            track = session.currentPlaylist.pop(0),
+            end = False
+        )
+    else:
+        return dict(end=True)
 
 def echo():
     return request.vars.name
@@ -97,7 +105,9 @@ def getTracks():
     #discard the deviation values to get back a sorted track list
     for key in sortedGenreDict:
         sortedTrackList.append(genreDict[key])
-
+    
+    session.currentPlaylist = sortedTrackList
+    
     return(
         dict(
             sortedTrackList = sortedTrackList,
