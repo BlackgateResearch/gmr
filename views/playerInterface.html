@@ -1,0 +1,50 @@
+<script language="JavaScript">
+  
+     var jsReady = false;
+     function flashIsReady() {
+        //alert('flashIsReady');
+        return jsReady;
+     }
+     function pageInit() {
+         jsReady = true;
+         //document.forms["form1"].output.value += "\n" + "JavaScript is ready.\n";
+     }
+     function thisMovie(movieName) {
+         if (navigator.appName.indexOf("Microsoft") != -1) {
+             return window[movieName];
+         } else {
+             return document[movieName];
+         }
+     }
+
+    /* JS -> Flash */
+     function play(url) {
+         thisMovie("GMRPlayer").play(url);
+     }
+     function stop() {
+         thisMovie("GMRPlayer").stop();
+     }
+     function pause() {
+         thisMovie("GMRPlayer").pause();
+     }
+
+    /* Flash -> JS */
+    function progress(currentTime) {
+        document.getElementById('seconds').innerHTML = currentTime;
+        document.getElementById('seconds').style.textIndent = currentTime + "px";
+        console.log(currentTime);
+    }
+    function soundComplete() {
+        console.log('Sound Complete');
+    }
+    function loadComplete() {
+        console.log('Load Complete');
+    }
+    function playabckStart() {
+        console.log('Playback Started');
+    }
+
+    function sendToJavaScript(value) {
+     document.forms["form1"].output.value += "ActionScript says: " + value + "\n";
+    }
+</script>
