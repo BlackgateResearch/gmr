@@ -68,6 +68,9 @@ def index():
 def echo():
     return request.vars.name
 
+def jsArtistLookup():
+    return artistLookup(int(request.args(0)))
+
 def flash():
     return dict(message='flash')
 
