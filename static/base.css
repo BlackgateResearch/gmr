@@ -259,8 +259,28 @@ h1 {
     font-size: 2.5em;
 }
 
+h2 {
+    font-size: 2em;
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #000000;
+}
+
 p {
     font-size: 1.6em;
+}
+
+.button {
+    display: block;
+    width: 75px;
+    height: 25px;
+    line-height: 25px;
+    padding: 0px 5px;
+    font-size: 1.8em;
+    text-decoration: none;
+    text-align: center;
+    float: left;
+    margin: 5px;
 }
 
 /* </DECORATION> */
