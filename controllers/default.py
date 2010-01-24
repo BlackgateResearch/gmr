@@ -56,7 +56,7 @@ def artistsDict(artists):
     return artistDict
 
 
-#@auth.requires_login()
+@auth.requires_login()
 def index():
     """
     Home page for GMR
