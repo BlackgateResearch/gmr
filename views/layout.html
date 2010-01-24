@@ -2,6 +2,10 @@
 <!-- additionalJS not defined -->
 {{return}}
 
+{{def docReadyJS():}}
+/* docReadyJS not defined */
+{{return}}
+
 {{def bodyOnload():}}
 /* bodyOnload not defined */
 {{return}}
@@ -28,9 +32,20 @@
     <meta name="keywords" content="{{=response.keywords}}" />
     <meta name="description" content="{{=response.description}}" />
     <meta name="author" content="{{=response.author}}" />
-    {{additionalJS()}}
-    {{response.files.append(URL(request.application,'static','base.css'))}}
+
     {{include 'web2py_ajax.html'}}
+
+    {{additionalHead()}}
+
+    <link href="{{=URL(r=request, c='static/css', f='base.css')}}" rel="stylesheet" type="text/css"/>
+    
+    <script language="JavaScript"> <!--
+    $(document).ready(function()
+        {
+            {{docReadyJS()}}
+        });
+    //--> </script>
+    
   </head>
   <body onload="{{bodyOnload()}}">
     <div id="wrapper">

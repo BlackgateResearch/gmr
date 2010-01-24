@@ -1,5 +1,6 @@
 <script language="JavaScript">
-  
+
+     var state = "stopped";
      var jsReady = false;
      function flashIsReady() {
         //alert('flashIsReady');
@@ -17,24 +18,76 @@
          }
      }
 
-    /* JS -> Flash */
+    /* JS */
+    function setState(newState) {
+        state = newState;
+        console.log('Current State: ' + newState);
+        switch (newState) {
+            case 'paused':
+                $('#playerPause').text('Play');
+                break;
+            case 'playing':
+                $('#playerPause').text('Pause');
+                break;
+            case 'stopped':
+                $('#playerPause').text('Play');
+                break;
+        }
+    }
+
+    function lastTrack() {
+        $('.trackName').text('End of playlist');
+    }
+
     function play(url) {
+        setState('playing');
         thisMovie("GMRPlayer").play(url);
     }
     function stop() {
+        setState('stopped');
         thisMovie("GMRPlayer").stop();
     }
-    function pause() {
-        thisMovie("GMRPlayer").pause();
+
+    function next() {
+        $.getJSON('/gmr/default/nextTrack.json', function(data) {
+            if (!data.end) {
+                //Play and display the retrieved track
+                play('{{=URL(r=request, f='download')}}' + '/' + data.track.mp3);
+                $('.trackName').text(data.track.name);
+                $('.trackArtist').load('{{=URL(r=request, f='jsArtistLookup')}}' + '/' + data.track.artist_id);
+            } else {
+                //No more tracks to play
+                stop();
+                lastTrack();
+            }
+        });
+    }   
+
+
+
+    function playPause() {
+        switch(state) {
+            case 'paused':
+                setState('playing');
+                thisMovie("GMRPlayer").pause();
+                break;
+            case 'playing':
+                setState('paused');
+                thisMovie("GMRPlayer").pause();
+                break;
+            case 'stopped':
+                next();
+                break;
+        }
     }
 
-    /* Flash -> JS */
     function progress(currentTime) {
         $('.trackSeconds').text(currentTime);
         console.log(currentTime);
     }
     function soundComplete() {
         console.log('Sound Complete');
+        next();
     }
     function loadComplete() {
         console.log('Load Complete');
@@ -46,14 +99,4 @@
     function sendToJavaScript(value) {
      document.forms["form1"].output.value += "ActionScript says: " + value + "\n";
     }
-
-    /* Ajax */
-    function next() {
-        $.getJSON('/gmr/default/nextTrack.json', function(data) {
-            play('{{=URL(r=request, f='download')}}' + '/' + data.track.mp3);
-            $('.trackName').text(data.track.name);
-            $('.trackArtist').text(data.track.artist_id);
-        });
-    }   
-
 </script>

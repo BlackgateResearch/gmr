@@ -1,12 +1,21 @@
 {{extend 'layout.html'}}
 
-{{def additionalJS():}}
+{{def docReadyJS():}}
+    {{include "passSetup.html"}}
+{{return}}
+
+{{def additionalHead():}}
     {{include "playerSetup.html"}} 
     {{include "playerInterface.html"}}
+    {{include "passInterface.html"}}
 {{return}}
 
 {{def bodyOnload():}}
     pageInit();
+{{return}}
+
+{{def content1():}}
+    {{include "passForm.html"}}
 {{return}}
 
 {{def content3():}}
