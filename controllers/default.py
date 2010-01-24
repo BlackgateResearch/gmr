@@ -89,6 +89,10 @@ def nextTrack():
         return dict(end=True)
 
 @auth.requires_login()
+def getPlaylist():
+    return returnsession.currentPlaylist
+
+@auth.requires_login()
 def getTracks():
     #args
     p = request.args(0) #positivity
