@@ -1,34 +1,45 @@
     <form action="." method="post" id="genreForm"> 
     <label for="id_speed">Speed:</label> <input id="id_speed" type="text" name="speed" maxlength="1" />
-    <label for="id_combat">Combat:</label> <input id="id_combat" type="text" name="combat" maxlength="1" />
+    <label for="id_aggression">Aggression:</label> <input id="id_aggression" type="text" name="aggression" maxlength="1" />
     <label for="id_suspense">Suspense:</label> <input id="id_suspense" type="text" name="suspense" maxlength="1" />
-    <label for="id_positive">Positive:</label> <input id="id_positive" type="text" name="positive" maxlength="1" />
+    <label for="id_positivity">Positive:</label> <input id="id_positivity" type="text" name="positivity" maxlength="1" />
     <input type="submit" value="Listen..." /> 
     </form> 
  
-    <form id="jsGenreForm" style="display: hidden;"> 
-      <span class="jsGenreFormLabel">Slow</span> 
-      <div id="sliderSpeedContainer"> 
-        <div id="sliderSpeed"></div> 
-      </div> 
-      <span class="jsGenreFormLabel">Fast</span><br /><br /> 
-      
-      <span class="jsGenreFormLabel">Peace</span> 
-      <div id="sliderCombatContainer"> 
-        <div id="sliderCombat"></div> 
-      </div> 
-      <span class="jsGenreFormLabel">Combat</span><br /><br /> 
-      
-      <span class="jsGenreFormLabel">Relaxed</span> 
-      <div id="sliderSuspenseContainer"> 
-        <div id="sliderSuspense"></div> 
-      </div> 
-      <span class="jsGenreFormLabel">Suspense</span><br /><br /> 
-      
-      <span class="jsGenreFormLabel">Negative</span> 
-      <div id="sliderPositiveContainer"> 
-        <div id="sliderPositive"></div> 
-      </div> 
-      <span class="jsGenreFormLabel">Positive</span><br /><br /> 
-      <input type="button" id="jsGenreFormSubmit" value="Listen..." /> 
+    <form id="jsGenreForm" style="display: hidden;">
+      <span class="label">Positivity</span>
+      <span class="jsGenreFormLabel">Negative</span>
+      <div id="sliderPositivityContainer">
+        <div id="sliderPositivity"></div>
+      </div>
+      <span class="jsGenreFormLabel">Positive</span><br /><br />
+
+      <span class="label">Aggression</span>
+      <span class="jsGenreFormLabel">Peace</span>
+      <div id="sliderAggressionContainer">
+        <div id="sliderAggression"></div>
+      </div>
+      <span class="jsGenreFormLabel">Combat</span><br /><br />
+
+      <span class="label">Positivity</span>
+      <span class="jsGenreFormLabel">Relaxed</span>
+      <div id="sliderSuspenseContainer">
+        <div id="sliderSuspense"></div>
+      </div>
+      <span class="jsGenreFormLabel">Suspense</span><br /><br />
+
+      <span class="label">Speed</span>
+      <span class="jsGenreFormLabel">Slow</span>
+      <div id="sliderSpeedContainer">
+        <div id="sliderSpeed"></div>
+      </div>
+      <span class="jsGenreFormLabel">Fast</span><br /><br />
+
+      <input type="button" id="jsGenreFormPreview" value="Preview" onclick="previewPlaylist($('#id_positivity').val(), $('#id_aggression').val(), $('#id_speed').val(), $('#id_suspense').val(), 'previewPlaylist' );" />
+
+      <input type="button" id="jsGenreFormListen" value="Listen" onclick="playPlaylist($('#id_positivity').val(), $('#id_aggression').val(), $('#id_speed').val(), $('#id_suspense').val() );" />
+
     </form> 
+
+<div id="previewPlaylist">
+</div>

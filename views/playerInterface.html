@@ -21,7 +21,9 @@
     /* JS */
     function setState(newState) {
         state = newState;
+        {{ if DEBUG: }}
         console.log('Current State: ' + newState);
+        {{ pass }}
         switch (newState) {
             case 'paused':
                 $('#playerPause').text('Play');
@@ -63,6 +65,20 @@
         });
     }   
 
+    function getPlaylist(playlistElement) {
+        $.getJSON('/gmr/default/nextTrack.json', function(data) {
+            if (!data.end) {
+                //Play and display the retrieved track
+                play('{{=URL(r=request, f='download')}}' + '/' + data.track.mp3);
+                $('.trackName').text(data.track.name);
+                $('.trackArtist').load('{{=URL(r=request, f='jsArtistLookup')}}' + '/' + data.track.artist_id);
+            } else {
+                //No more tracks to play
+                stop();
+                lastTrack();
+            }
+        });
+    }   
 
 
     function playPause() {
@@ -83,17 +99,25 @@
 
     function progress(currentTime) {
         $('.trackSeconds').text(currentTime);
+        {{ if DEBUG: }}
         console.log(currentTime);
+        {{ pass }}
     }
     function soundComplete() {
+        {{ if DEBUG: }}
         console.log('Sound Complete');
+        {{ pass }}
         next();
     }
     function loadComplete() {
+        {{ if DEBUG: }}
         console.log('Load Complete');
+        {{ pass }}
     }
     function playabckStart() {
+        {{ if DEBUG: }}
         console.log('Playback Started');
+        {{ pass }}
     }
 
     function sendToJavaScript(value) {

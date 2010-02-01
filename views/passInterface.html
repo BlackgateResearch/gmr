@@ -3,5 +3,34 @@
 <script type="text/JavaScript" src="{{=URL(r=request,c='static/js',f='ui.slider.js')}}"></script>
 
 <script type="text/JavaScript">
-    
+
+    function playPlaylist(positivity, aggression, speed, suspense ) {
+        {{ if DEBUG: }}
+            console.log('PASS Ajax request made: ' + 'P - ' + positivity + ', A - ' + aggression + ', S - ' + speed + ', S - ' + suspense);
+        {{ pass }}
+        $.ajax({
+          type: "GET",
+          url: "/gmr/default/queuePlaylist/" + positivity + "/" + aggression + "/" + speed + "/" + suspense + "/"
+        });
+        {{ if DEBUG: }}
+            console.log('Response recieved, triggering autoplay of next track');
+        {{ pass }}
+        next();
+    }
+
+    function previewPlaylist( positivity, aggression, speed, suspense, element ) {
+        {{ if DEBUG: }}
+            console.log('PASS Ajax request made: ' + 'P - ' + positivity + ', A - ' + aggression + ', S - ' + speed + ', S - ' + suspense);
+        {{ pass }}
+        
+        $('#' + element).load(
+            "/gmr/default/previewPlaylist/" + positivity + "/" + aggression + "/" + speed + "/" + suspense + "/",
+            function() {
+                {{ if DEBUG: }}
+                    console.log('Preview playlist loaded');
+                {{ pass }}
+            }
+        );
+    }
+
 </script>
