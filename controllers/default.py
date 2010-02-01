@@ -50,7 +50,7 @@ def getArtists():
 def artistsDict(artists):
     """
     Creates a dictionary containing the artist [id -> name]
-    Input is an artist db object
+    Input is a list of artist db objects
     """
     artistDict = {}
     for artist in artists:
@@ -112,7 +112,7 @@ def queuePlaylist():
 def previewPlaylist():
     return dict(
     playlist = createPlaylist(),
-    lookupArtist = artistsDict(getArtists())
+    lookupArtist = getArtists()
     )
 
 @auth.requires_login()
