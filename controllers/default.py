@@ -101,7 +101,7 @@ def getPlaylist():
     """
     Returns the current playlist (List of Track objects)
     """
-    return returnsession.currentPlaylist
+    return session.currentPlaylist
 
 @auth.requires_login()
 def queuePlaylist():
