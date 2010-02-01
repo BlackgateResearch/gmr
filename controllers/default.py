@@ -44,6 +44,8 @@ def getDeviation(positivity,aggression,speed,suspense,track):
 
     return deviation
 
+def getArtists():
+    return artistsDict(db().select(db.artist.ALL))
 
 def artistsDict(artists):
     """
@@ -72,16 +74,12 @@ def jsArtistLookup():
     artistID = int(request.args(0))
     return artistLookup(artistsID)
 
-#Example code?
-#def flash():
-#    return dict(message='flash')
 
 def artistLookup(id):
     """
     Method for converting artist ID (int) to artist name (String)
     """
-    artistsDictionary = artistsDict(db().select(db.artist.ALL))
-    return artistsDictionary[id]
+    return getArtists()[id]
 
 @auth.requires_login()
 def nextTrack():
@@ -108,23 +106,17 @@ def queuePlaylist():
     """
     Queues new playlist into session, given PASS query
     """
-    #args
-    p = request.args(0) #positivity
-    a = request.args(1) #aggression
-    s = request.args(2) #speed
-    s = request.args(3) #suspense
-    
-    genreDict = {}
-    tracks = db().select(db.track.ALL)
-
-    #Add all tracks to a dictionary with the track as the key, deviation as value
-    for track in tracks:
-        genreDict[getDeviation(p,a,s,s,track)] = track
-
-    session.currentPlaylist = sortTracks(genreDict)
+    session.currentPlaylist = createPlaylist()
 
 @auth.requires_login()
 def previewPlaylist():
+    return dict(
+    playlist = createPlaylist(),
+    lookupArtist = artistsDict(getArtists())
+    )
+
+@auth.requires_login()
+def createPlaylist():
     """
     Returns playlist, given PASS query
     """
@@ -135,15 +127,19 @@ def previewPlaylist():
     s = request.args(3) #suspense
     
     genreDict = {}
-    tracks = db().select(db.track.ALL)
+    playlist = db().select(db.track.ALL)
 
     #Add all tracks to a dictionary with the track as the key, deviation as value
-    for track in tracks:
+    for track in playlist:
         genreDict[getDeviation(p,a,s,s,track)] = track
 
     return sortTracks(genreDict)
 
+
 def sortTracks(genreDict):
+    """
+    Takes a dictionary of deviation:track, sorts it by deviation, and returns the ordered list of tracks
+    """
     sortedTrackList = []    
     #sort the dictionary by value, convert to a list of tuples
     sortedGenreDict = sorted(genreDict.keys()) 
