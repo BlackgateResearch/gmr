@@ -65,21 +65,29 @@ def index():
     response.subtitle = "Music for your worlds"
     return dict(message='Welcome to GMR!')
 
-def echo():
-    return request.vars.name
-
 def jsArtistLookup():
-    return artistLookup(int(request.args(0)))
+    """
+    Ajax method for converting artist ID (int) to artist name (String)
+    """
+    artistID = int(request.args(0))
+    return artistLookup(artistsID)
 
-def flash():
-    return dict(message='flash')
+#Example code?
+#def flash():
+#    return dict(message='flash')
 
 def artistLookup(id):
+    """
+    Method for converting artist ID (int) to artist name (String)
+    """
     artistsDictionary = artistsDict(db().select(db.artist.ALL))
     return artistsDictionary[id]
 
 @auth.requires_login()
 def nextTrack():
+    """
+    Gets the next track object, while simultaniously removing it from the playlist
+    """
     if (len(session.currentPlaylist) > 0):
         return dict(
             track = session.currentPlaylist.pop(0),
@@ -90,10 +98,16 @@ def nextTrack():
 
 @auth.requires_login()
 def getPlaylist():
+    """
+    Returns the current playlist (List of Track objects)
+    """
     return returnsession.currentPlaylist
 
 @auth.requires_login()
-def getTracks():
+def queuePlaylist():
+    """
+    Queues new playlist into session, given PASS query
+    """
     #args
     p = request.args(0) #positivity
     a = request.args(1) #aggression
@@ -101,30 +115,44 @@ def getTracks():
     s = request.args(3) #suspense
     
     genreDict = {}
-    sortedTrackList = []
-    artistsDictionary = {}
     tracks = db().select(db.track.ALL)
-    artistsDictionary = artistsDict(db().select(db.artist.ALL))
-    
+
     #Add all tracks to a dictionary with the track as the key, deviation as value
     for track in tracks:
         genreDict[getDeviation(p,a,s,s,track)] = track
 
+    session.currentPlaylist = sortTracks(genreDict)
+
+@auth.requires_login()
+def previewPlaylist():
+    """
+    Returns playlist, given PASS query
+    """
+    #args
+    p = request.args(0) #positivity
+    a = request.args(1) #aggression
+    s = request.args(2) #speed
+    s = request.args(3) #suspense
+    
+    genreDict = {}
+    tracks = db().select(db.track.ALL)
+
+    #Add all tracks to a dictionary with the track as the key, deviation as value
+    for track in tracks:
+        genreDict[getDeviation(p,a,s,s,track)] = track
+
+    return sortTracks(genreDict)
+
+def sortTracks(genreDict):
+    sortedTrackList = []    
     #sort the dictionary by value, convert to a list of tuples
     sortedGenreDict = sorted(genreDict.keys()) 
 
     #discard the deviation values to get back a sorted track list
     for key in sortedGenreDict:
         sortedTrackList.append(genreDict[key])
-    
-    session.currentPlaylist = sortedTrackList
-    
-    return(
-        dict(
-            sortedTrackList = sortedTrackList,
-            artistsDictionary = artistsDictionary
-        )
-    )
+        
+    return sortedTrackList
 
 @auth.requires_login()
 def createPreset():
