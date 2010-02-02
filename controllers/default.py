@@ -172,7 +172,7 @@ def getPresets():
     """
     Returns an alphabetical list of the currently logged-in user's presets
     """
-    return db().select(db.preset.ALL,orderby=db.preset.name)
+    return(dict(presets = db().select(db.preset.ALL,orderby=db.preset.name)))
     
 
 def artist():

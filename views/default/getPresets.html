@@ -1,0 +1,13 @@
+<div id="presets">
+    {{ for preset in presets: }}
+        <a href="#" class="preset" onclick="">
+            <span class="presetName">{{=preset.name}}</span>
+            <div class="histogram">
+                <span class="barPositivity bar{{=preset.positivity}}">{{=preset.positivity}}</span>
+                <span class="barAggression bar{{=preset.aggression}}">{{=preset.aggression}}</span>
+                <span class="barSpeed bar{{=preset.speed}}">{{=preset.speed}}</span>
+                <span class="barSuspense bar{{=preset.suspense}}">{{=preset.suspense}}</span>
+            </div>
+        </a>
+    {{ pass }}
+</div>

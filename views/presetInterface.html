@@ -1,0 +1,23 @@
+<script>
+    function savePreset( positivity, aggression, speed, suspense, presetName ) {
+        {{ if DEBUG: }}
+            console.log('Save Preset Ajax request made: ' + 'P - ' + positivity + ', A - ' + aggression + ', S - ' + speed + ', S - ' + suspense + ', Name - ' + presetName);
+        {{ pass }}
+
+        $.ajax({
+            type: 'POST',
+            url: '/gmr/default/createPreset/',
+            data: ('name=' + presetName + '&positivity=' + positivity + '&aggression=' + aggression + '&speed=' + speed + '&suspense=' + suspense),
+            success: function() {
+                {{ if DEBUG: }}
+                    console.log('Preset Save Success');
+                {{ pass }}
+            },
+            error: function() {
+                {{ if DEBUG: }}
+                    console.log('Preset Save Error');
+                {{ pass }}
+            }
+        });
+    }
+</script>

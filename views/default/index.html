@@ -1,13 +1,15 @@
 {{extend 'layout.html'}}
 
 {{def docReadyJS():}}
-    {{include "passSetup.html"}}
+    {{include 'passSetup.html'}}
+    {{include 'presetSetup.html'}}
 {{return}}
 
 {{def additionalHead():}}
-    {{include "playerSetup.html"}} 
-    {{include "playerInterface.html"}}
-    {{include "passInterface.html"}}
+    {{include 'playerSetup.html'}} 
+    {{include 'playerInterface.html'}}
+    {{include 'passInterface.html'}}
+    {{include 'presetInterface.html'}}
 {{return}}
 
 {{def bodyOnload():}}
@@ -15,9 +17,9 @@
 {{return}}
 
 {{def content1():}}
-    {{include "passForm.html"}}
+    {{include 'passForm.html'}}
 {{return}}
 
 {{def content3():}}
-    {{include "player.html"}}
+    {{include 'player.html'}}
 {{return}}

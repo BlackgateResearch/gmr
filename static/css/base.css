@@ -283,6 +283,35 @@ p {
     margin: 5px;
 }
 
+.label {
+    float: left;
+    font-size: 1.6em;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.labelHigh {
+    float: left;
+    width: 15%;
+    font-size: 1.4em;
+}
+
+.labelLow {
+    float: left;
+    width: 15%;
+    font-size: 1.4em;
+}
+
+.slider {
+    width: 69.9%;
+    float: left;
+}
+
+.buttons {
+    clear: both;
+}
+
+
 /* </DECORATION> */
 
 
