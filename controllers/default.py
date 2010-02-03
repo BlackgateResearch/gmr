@@ -178,6 +178,39 @@ def getPresets():
 def artist():
     return artistsDict(artists = db().select(db.artist.ALL))
 
+def updatePlaylist():
+    return "Saved"
+
+def updatePlaylist_test():
+    """
+    list of postition->IDs
+    flip it to IDs->position
+    foreach track in list:
+        playListTrack.update(where track_id=track.id,position=track.position).save()
+    """
+
+def getPlaylist():
+    return dict(tracks = db().select(db.track.ALL))
+
+def getPlaylist_test():
+    """
+    
+    """
+    tracks = []
+    playlistID = request.vars.playlist
+    
+    playlist = db(db.playlist.id==playlistID).select()[0]
+    playlistTrack = playlist.playlist_track.select(orderby=db.playlist_track.position)
+
+    
+    for track in playlistTrack:
+        tracks.append(track.track_id)
+    
+    return(
+        dict(
+            tracks = tracks
+        )
+    )
 
 def user():
     """
@@ -202,14 +235,3 @@ def download():
     http://..../[app]/default/download/[filename]
     """
     return response.download(request,db)
-
-#don't think we need this
-def call():
-    """
-    exposes services. for example:
-    http://..../[app]/default/call/jsonrpc
-    decorate with @services.jsonrpc the functions to expose
-    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv
-    """
-    session.forget()
-    return service()
