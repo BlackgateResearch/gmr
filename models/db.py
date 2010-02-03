@@ -97,7 +97,8 @@ db.define_table('playlist',
 
 db.define_table('playlist_track',
     Field('playlist_id',db.playlist),
-    Field('track_id',db.track)
+    Field('track_id',db.track),
+    Field('position','integer')
 )
 
 db.define_table('nudge',
