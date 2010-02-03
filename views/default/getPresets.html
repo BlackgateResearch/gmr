@@ -1,6 +1,6 @@
 <div id="presets">
     {{ for preset in presets: }}
-        <a href="#" class="preset" onclick="">
+        <a href="#" class="preset" onclick="playPlaylist('{{=preset.positivity}}', '{{=preset.aggression}}', '{{=preset.speed}}', '{{=preset.suspense}}' );">
             <span class="presetName">{{=preset.name}}</span>
             <div class="histogram">
                 <span class="barPositivity bar{{=preset.positivity}}">{{=preset.positivity}}</span>
