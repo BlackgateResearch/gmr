@@ -190,6 +190,12 @@ html, body {
     height: 100%;
 }
 
+.preset {
+    float: left;
+    width: 175px;
+    height: 25px;
+}
+
 #footer {
     clear: both;
     height: 100px;
@@ -311,6 +317,18 @@ p {
     clear: both;
 }
 
+.preset {
+    color: #ffffff;
+    font-weight: bold;
+    line-height: 25px;
+    border: 2px solid #333333;
+    background-color: #777777;
+    margin: 15px;
+}
+
+.preset .histogram {
+    float: right;
+}
 
 /* </DECORATION> */
 
