@@ -1,6 +1,6 @@
 # coding: utf8
 
-import operator
+import operator, datetime
 
 #########################################################################
 ## This is a samples controller
@@ -10,6 +10,7 @@ import operator
 ## - call exposes all registered services (none by default)
 #########################################################################  
 
+@auth.requires_login()
 def ensurePositive(val):
     """
     TODO: There must be a better way of doing this!
@@ -26,6 +27,7 @@ def ensurePositive(val):
         return val
 
 
+@auth.requires_login()
 def getDeviation(positivity,aggression,speed,suspense,track):
     """
     Compare the searched-for parameters with a track, return the deviation
@@ -44,9 +46,12 @@ def getDeviation(positivity,aggression,speed,suspense,track):
 
     return deviation
 
+
+@auth.requires_login()
 def getArtists():
     return artistsDict(db().select(db.artist.ALL))
 
+@auth.requires_login()
 def artistsDict(artists):
     """
     Creates a dictionary containing the artist [id -> name]
@@ -67,6 +72,8 @@ def index():
     response.subtitle = "Music for your worlds"
     return dict(message='Welcome to GMR!')
 
+
+@auth.requires_login()
 def jsArtistLookup():
     """
     Ajax method for converting artist ID (int) to artist name (String)
@@ -74,11 +81,13 @@ def jsArtistLookup():
     return artistLookup(int(request.args(0)))
 
 
+@auth.requires_login()
 def artistLookup(id):
     """
     Method for converting artist ID (int) to artist name (String)
     """
     return getArtists()[id]
+
 
 @auth.requires_login()
 def nextTrack():
@@ -93,12 +102,14 @@ def nextTrack():
     else:
         return dict(end=True)
 
+
 @auth.requires_login()
 def getPlaylist():
     """
     Returns the current playlist (List of Track objects)
     """
     return session.currentPlaylist
+
 
 @auth.requires_login()
 def queuePlaylist():
@@ -107,12 +118,17 @@ def queuePlaylist():
     """
     session.currentPlaylist = createPlaylist()
 
+
 @auth.requires_login()
 def previewPlaylist():
+    """
+    Returns a playlist to user, given PASS query, with arists dictionary for looking up
+    """
     return dict(
     playlist = createPlaylist(),
     lookupArtist = getArtists()
     )
+
 
 @auth.requires_login()
 def createPlaylist():
@@ -135,6 +151,7 @@ def createPlaylist():
     return sortTracks(genreDict)
 
 
+@auth.requires_login()
 def sortTracks(genreDict):
     """
     Takes a dictionary of deviation:track, sorts it by deviation, and returns the ordered list of tracks
@@ -149,8 +166,12 @@ def sortTracks(genreDict):
         
     return sortedTrackList
 
+
 @auth.requires_login()
 def createPreset():
+    """
+    Creates a preset for the currently logged-in user
+    """
     name = request.vars.name
     positivity = request.vars.positivity
     aggression = request.vars.aggression
@@ -167,49 +188,81 @@ def createPreset():
     )
     return(dict(preset = preset))
     
+    
+@auth.requires_login()
 def getPresets():
     """
     Returns an alphabetical list of the currently logged-in user's presets
     """
-    return(dict(presets = db().select(db.preset.ALL,orderby=db.preset.name)))
+    return(
+        dict(presets = db().select(db.preset.ALL,orderby=db.preset.name))
+    )
     
-
+    
+""" TODO: This code does nothing?
 def artist():
     return artistsDict(artists = db().select(db.artist.ALL))
+"""
 
+
+@auth.requires_login()
 def updatePlaylist():
+    """
+    Stub code
+    """
     return "Saved"
 
+
+@auth.requires_login()
 def updatePlaylist_test():
-    """
+    """ TODO: un-psudo this code:
     list of postition->IDs
     flip it to IDs->position
     foreach track in list:
         playListTrack.update(where track_id=track.id,position=track.position).save()
     """
 
-def getPlaylist():
-    return dict(tracks = db().select(db.track.ALL))
 
-def getPlaylist_test():
+@auth.requires_login()
+def getPlaylist():
     """
-    
+    Returns a list of tracks for a given playlist ID
     """
     tracks = []
     playlistID = request.vars.playlist
     
     playlist = db(db.playlist.id==playlistID).select()[0]
     playlistTrack = playlist.playlist_track.select(orderby=db.playlist_track.position)
-
     
     for track in playlistTrack:
         tracks.append(track.track_id)
-    
     return(
-        dict(
-            tracks = tracks
-        )
+        dict(tracks = tracks)
     )
+
+
+def trackPlayed():
+    """
+    Logs when a track starts to play, and which user played it
+    """
+    checkin = db.played.insert(
+        track_id=request.vars.track,
+        playedTime=datetime.datetime.now(),
+        user_id = auth.user.id
+    )
+    return dict(checkin = checkin)
+
+
+def trackPlayedToEnd():
+    """
+    Logs when a track has played all the way through, and which user played it
+    """
+    checkin = db.played_to_end.insert(
+        track_id=request.vars.track,
+        playedTime=datetime.datetime.now(),
+        user_id = auth.user.id
+    )
+    return dict(checkin = checkin)
 
 def user():
     """
@@ -228,6 +281,7 @@ def user():
     return dict(form=auth())
 
 
+@auth.requires_login()
 def download():
     """
     allows downloading of uploaded files
