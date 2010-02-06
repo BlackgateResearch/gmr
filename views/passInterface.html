@@ -40,12 +40,12 @@
     function savePlaylist(elementID) {
         postDataPlaylist = '';
 
-        console.log($('#playlist .id')[0].value);
         for ( var counter = 0; counter < $('#playlist .id').length; counter++ ) {
             postDataPlaylist += '&' + counter + '=' + $('#playlist .id')[counter].value;
         }
-
-        console.log(postDataPlaylist);
+        {{ if DEBUG: }}
+            console.log('Playlist order to save: ' + postDataPlaylist);
+        {{ pass }}
 
         $.ajax({
            type: 'POST',

@@ -4,6 +4,7 @@
     {{include 'passSetup.html'}}
     {{include 'presetSetup.html'}}
     {{include 'sortableSetup.html'}}
+    $("#tabset").tabs();
 {{return}}
 
 {{def additionalHead():}}
@@ -19,6 +20,11 @@
 
 {{def content1():}}
     {{include 'passForm.html'}}
+{{return}}
+
+{{def content2():}}
+    {{ #TODO : Build a generalised tabset generator }}
+    {{include 'tabset.html'}}
 {{return}}
 
 {{def content3():}}

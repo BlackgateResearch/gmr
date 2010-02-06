@@ -10,11 +10,9 @@
             <span class="barSpeed bar{{=track.speed}}">{{=track.speed}}</span>
             <span class="barSuspense bar{{=track.suspense}}">{{=track.suspense}}</span>
         </div>
+        <a href="#" class="delete" onclick="$(this).parent().remove();">Delete</a>
     </li>
 {{pass}}
 </ul>
 
 <input type="button" id="savePlaylist" value="Save Playlist" onclick="savePlaylist('playlist');" />
-
-
-<input type="button" id="test" value="LOG?" onclick="console.log($('#playlist').sortable('serialize'));" />

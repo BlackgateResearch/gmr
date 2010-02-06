@@ -331,8 +331,79 @@ p {
 }
 
 .histogram {
-
+    margin: 2px;
+    border: 1px solid #000000;
+    display: block;
+    width: 20px;
+    height: 20px;
 }
+
+.histogram .barPositivity,
+.histogram .barAggression,
+.histogram .barSpeed,
+.histogram .barSuspense {
+    display: block;
+    height: 5px;
+    text-indent: -99999px;
+}
+
+.histogram .barPositivity {
+    background-color: #40DE2F;
+}
+
+.histogram .barAggression {
+    background-color: #FF3838;
+}
+
+.histogram .barSpeed {
+    background-color: #ffa200;
+}
+
+.histogram .barSuspense {
+    background-color: #3845FF;
+}
+
+.bar0 {
+    width: 0px;
+}
+
+.bar1 {
+    width: 1px;
+}
+
+.bar2 {
+    width: 2px;
+}
+
+.bar3 {
+    width: 3px;
+}
+
+.bar4 {
+    width: 4px;
+}
+
+.bar5 {
+    width: 5px;
+}
+
+.bar6 {
+    width: 6px;
+}
+
+.bar7 {
+    width: 7px;
+}
+
+.bar8 {
+    width: 8px;
+}
+
+.bar9 {
+    width: 9px;
+}
+
+
 
 /* </DECORATION> */
 
