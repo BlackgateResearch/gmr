@@ -71,8 +71,7 @@ def jsArtistLookup():
     """
     Ajax method for converting artist ID (int) to artist name (String)
     """
-    artistID = int(request.args(0))
-    return artistLookup(artistsID)
+    return artistLookup(int(request.args(0)))
 
 
 def artistLookup(id):
