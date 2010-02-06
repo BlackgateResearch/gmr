@@ -49,6 +49,9 @@ def getDeviation(positivity,aggression,speed,suspense,track):
 
 @auth.requires_login()
 def getArtists():
+    """
+    Return all artists
+    """
     return artistsDict(db().select(db.artist.ALL))
 
 @auth.requires_login()
@@ -144,7 +147,7 @@ def createPlaylist():
     genreDict = {}
     playlist = db().select(db.track.ALL)
 
-    #Add all tracks to a dictionary with the track as the key, deviation as value
+    #Add all tracks to a dictionary with the track as the key deviation as value
     for track in playlist:
         genreDict[getDeviation(p,a,s,s,track)] = track
 
@@ -197,12 +200,6 @@ def getPresets():
     return(
         dict(presets = db().select(db.preset.ALL,orderby=db.preset.name))
     )
-    
-    
-""" TODO: This code does nothing?
-def artist():
-    return artistsDict(artists = db().select(db.artist.ALL))
-"""
 
 
 @auth.requires_login()
@@ -215,14 +212,36 @@ def updatePlaylist():
 
 @auth.requires_login()
 def updatePlaylist_test():
-    """ TODO: un-psudo this code:
-    list of postition->IDs
-    flip it to IDs->position
-    foreach track in list:
-        playListTrack.update(where track_id=track.id,position=track.position).save()
     """
+    Creates new playlist, or updates existing
+    """
+    trackCount = 0
+    for item in request['vars']:
+        trackCount = trackCount + 1
+    trackCount = trackCount - 2
+    
+    if request.vars.playlistID==0:
+        playlist = db.playlist.insert(
+            name = request.vars.name,
+            user_id = auth.user.id
+        )
+        playlistID = playlist.id
+    else:
+        playlistID = request.vars.playlistID
+        db(db.playlist_track.playlist_id==playlistID).delete()
+    
+    dict = {}
+    for position in range(trackCount):
+        dict[position]=request.vars.position # TODO: broken
 
-
+    for position in range(trackCount):
+        playListTrack = db.playlist_track.insert(
+            playlist_id = playlistID,
+            track_id = dict[position],
+            position = position
+        )
+    return("OK")    
+        
 @auth.requires_login()
 def getPlaylist():
     """
@@ -232,7 +251,9 @@ def getPlaylist():
     playlistID = request.vars.playlist
     
     playlist = db(db.playlist.id==playlistID).select()[0]
-    playlistTrack = playlist.playlist_track.select(orderby=db.playlist_track.position)
+    playlistTrack = playlist.playlist_track.select(
+        orderby=db.playlist_track.position
+    )
     
     for track in playlistTrack:
         tracks.append(track.track_id)
