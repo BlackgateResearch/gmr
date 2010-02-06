@@ -29,8 +29,35 @@
                 {{ if DEBUG: }}
                     console.log('Preview playlist loaded');
                 {{ pass }}
+                $("#playlist").sortable({
+                handle : '.handle',
+                update : function () {}
+        });
             }
         );
+    }
+
+    function savePlaylist(elementID) {
+        postDataPlaylist = '';
+
+        console.log($('#playlist .id')[0].value);
+        for ( var counter = 0; counter < $('#playlist .id').length; counter++ ) {
+            postDataPlaylist += '&' + counter + '=' + $('#playlist .id')[counter].value;
+        }
+
+        console.log(postDataPlaylist);
+
+        $.ajax({
+           type: 'POST',
+           url: '/gmr/default/updatePlaylist/',
+           data: postDataPlaylist,
+           success: function(){
+                {{ if DEBUG: }}
+                    console.log('Ordered playlist sent');
+                {{ pass }}
+           }
+         });
+        
     }
 
 </script>

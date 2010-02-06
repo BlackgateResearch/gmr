@@ -1,23 +1,20 @@
-<table class="playlist">
-    <tr>
-        <th>Track Name</th>
-        <th>Artist</th>
-        <th>Description</th>
-        <th>PASS</th>
-    </tr>
-    {{for track in playlist:}}
-        <tr>
-            <td>{{=track.name}}</td>
-            <td>{{=lookupArtist[track.artist_id]}}</td>
-            <td>{{=track.description}}</td>
-            <td>
-                <div class="histogram">
-                    <span class="barPositivity bar{{=track.positivity}}">{{=track.positivity}}</span>
-                    <span class="barAggression bar{{=track.aggression}}">{{=track.aggression}}</span>
-                    <span class="barSpeed bar{{=track.speed}}">{{=track.speed}}</span>
-                    <span class="barSuspense bar{{=track.suspense}}">{{=track.suspense}}</span>
-                </div>
-            </td>
-        </tr>
-    {{pass}}
-</table>
+<ul id="playlist">
+{{for track in playlist:}}
+    <li>
+        <input class="id" type="hidden" value="{{=track.id}}" />
+        <img src="http://www.wil-linssen.com/demo/jquery-sortable-ajax/arrow.png" alt="move" width="16" height="16" class="handle" /> 
+        {{=track.name}} {{=lookupArtist[track.artist_id]}} {{=track.description}}
+        <div class="histogram">
+            <span class="barPositivity bar{{=track.positivity}}">{{=track.positivity}}</span>
+            <span class="barAggression bar{{=track.aggression}}">{{=track.aggression}}</span>
+            <span class="barSpeed bar{{=track.speed}}">{{=track.speed}}</span>
+            <span class="barSuspense bar{{=track.suspense}}">{{=track.suspense}}</span>
+        </div>
+    </li>
+{{pass}}
+</ul>
+
+<input type="button" id="savePlaylist" value="Save Playlist" onclick="savePlaylist('playlist');" />
+
+
+<input type="button" id="test" value="LOG?" onclick="console.log($('#playlist').sortable('serialize'));" />
