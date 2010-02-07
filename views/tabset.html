@@ -6,6 +6,7 @@
         <li><a class="tab" href="#haxTab">Hax</a></li>
         <li><a class="tab" href="#responseTab">Response</a></li>
         <li><a class="tab" href="#requestTab">Request</a></li>
+        <li><a class="tab" href="#sessionTab">Session</a></li>
         {{ pass }}
     </ul>
     <div id="presetTab">
@@ -26,6 +27,9 @@
     </div>
     <div id="requestTab">
         {{=BEAUTIFY(request)}}
+    </div>
+    <div id="sessionTab">
+        {{=BEAUTIFY(session)}}
     </div>
     {{ pass }}
 </div>
