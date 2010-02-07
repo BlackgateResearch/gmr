@@ -260,11 +260,17 @@ def getPlaylist(): #TODO: authenticate this
 
 
 def deletePreset(): #TODO: authenticate this
+    """
+    Delete a preset
+    """
     presetID = request.args(0)
     db(db.preset.id==presetID).delete()
 
 
 def deletePlaylist(): #TODO: authenticate this
+    """
+    Delete a playlist
+    """
     playlistID = request.args(0)
     db(db.playlist_track.playlist_id==playlistID).delete()
     db(db.playlist.id==playlistID).delete()
