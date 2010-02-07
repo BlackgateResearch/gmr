@@ -203,7 +203,7 @@ def getPresets():
 
 
 @auth.requires_login()
-def updatePlaylist():
+def updatePlaylist(): #TODO: authenticate this
     """
     Creates new playlist, or updates existing
     p = request.args(0) #positivity
@@ -229,7 +229,7 @@ def updatePlaylist():
     dict = {}
     for position in range(trackCount):
         pos = position + 2
-        dict[position]=request.args(pos) # TODO: broken
+        dict[position]=request.args(pos)
 
     for position in range(trackCount-2):
         playListTrack = db.playlist_track.insert(
@@ -240,7 +240,7 @@ def updatePlaylist():
     return(dict)   
 
 @auth.requires_login()
-def getPlaylist():
+def getPlaylist(): #TODO: authenticate this
     """
     Returns a list of tracks for a given playlist ID
     """
@@ -258,6 +258,11 @@ def getPlaylist():
         dict(tracks = tracks)
     )
 
+
+def deletePlaylist(): #TODO: authenticate this
+    playlistID = request.args(0)
+    db(db.playlist_track.playlist_id==playlistID).delete()
+    db(db.playlist.id==playlistID).delete()
 
 def trackPlayed():
     """
