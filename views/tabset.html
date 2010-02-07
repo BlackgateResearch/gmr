@@ -4,6 +4,8 @@
         <li><a class="tab" href="#playlistTab">Playlists</a></li>
         {{ if DEBUG: }}
         <li><a class="tab" href="#haxTab">Hax</a></li>
+        <li><a class="tab" href="#responseTab">Response</a></li>
+        <li><a class="tab" href="#requestTab">Request</a></li>
         {{ pass }}
     </ul>
     <div id="presetTab">
@@ -18,6 +20,12 @@
             <input type="submit" onclick="play('http://namtao.com/tracks/6s.mp3');" value="Six Seconds" />
             <input type="submit" onclick="$('.idontcare').load('/gmr/default/getTracks/1/2/3/4');" value="Refresh Playlist" />
         </p>
+    </div>
+    <div id="responseTab">
+        {{=BEAUTIFY(response)}}
+    </div>
+    <div id="requestTab">
+        {{=BEAUTIFY(request)}}
     </div>
     {{ pass }}
 </div>
