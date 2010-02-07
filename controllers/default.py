@@ -234,7 +234,7 @@ def updatePlaylist(): #TODO: authenticate this
         pos = position + 2
         dict[position]=request.args(pos)
 
-    for position in range(trackCount):
+    for position in range(trackCount-1):
         playListTrack = db.playlist_track.insert(
             playlist_id = playlistID,
             track_id = dict[position],
