@@ -211,19 +211,22 @@ def updatePlaylist(): #TODO: authenticate this
     s = request.args(2) #speed
     s = request.args(3) #suspense    
     """
+    playlistID = int(request.args(0))
+    playlistName = request.args(1) 
+    
     trackCount = 0
     for item in request['args']:
         trackCount = trackCount + 1
     trackCount = trackCount - 2
     
-    if request.args(0)==0:
+    if playlistID==0:
         playlist = db.playlist.insert(
-            name = request.vars.name,
+            name = playlistName,
             user_id = auth.user.id
         )
         playlistID = playlist.id
     else:
-        playlistID = request.args(0)
+        playlistID = playlistID
         db(db.playlist_track.playlist_id==playlistID).delete()
     
     dict = {}
@@ -231,7 +234,7 @@ def updatePlaylist(): #TODO: authenticate this
         pos = position + 2
         dict[position]=request.args(pos)
 
-    for position in range(trackCount-2):
+    for position in range(trackCount):
         playListTrack = db.playlist_track.insert(
             playlist_id = playlistID,
             track_id = dict[position],
