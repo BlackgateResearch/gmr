@@ -205,43 +205,40 @@ def getPresets():
 @auth.requires_login()
 def updatePlaylist():
     """
-    Stub code
-    """
-    return "Saved"
-
-
-@auth.requires_login()
-def updatePlaylist_test():
-    """
     Creates new playlist, or updates existing
+    p = request.args(0) #positivity
+    a = request.args(1) #aggression
+    s = request.args(2) #speed
+    s = request.args(3) #suspense    
     """
     trackCount = 0
-    for item in request['vars']:
+    for item in request['args']:
         trackCount = trackCount + 1
     trackCount = trackCount - 2
     
-    if request.vars.playlistID==0:
+    if request.args(0)==0:
         playlist = db.playlist.insert(
             name = request.vars.name,
             user_id = auth.user.id
         )
         playlistID = playlist.id
     else:
-        playlistID = request.vars.playlistID
+        playlistID = request.args(0)
         db(db.playlist_track.playlist_id==playlistID).delete()
     
     dict = {}
     for position in range(trackCount):
-        dict[position]=request.vars.position # TODO: broken
+        pos = position + 2
+        dict[position]=request.args(pos) # TODO: broken
 
-    for position in range(trackCount):
+    for position in range(trackCount-2):
         playListTrack = db.playlist_track.insert(
             playlist_id = playlistID,
             track_id = dict[position],
             position = position
         )
-    return("OK")    
-        
+    return(dict)   
+
 @auth.requires_login()
 def getPlaylist():
     """
