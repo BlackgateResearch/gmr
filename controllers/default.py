@@ -251,7 +251,7 @@ def getPlaylist(): #TODO: authenticate this
     playlistID = int(request.args(0))
     query = (db.track.id == db.playlist_track.track_id) &    (db.playlist_track.playlist_id == playlistID)
     
-    tracks = db(query).select(db.track.ALL)
+    tracks = db(query).select(db.track.ALL,orderby=db.playlist_track.position)
     
     return(
         dict(
