@@ -6,7 +6,7 @@
 
         $.ajax({
             type: 'POST',
-            url: '/gmr/default/createPreset/',
+            url: '/{{=request.application}}/default/createPreset/',
             data: ('name=' + presetName + '&positivity=' + positivity + '&aggression=' + aggression + '&speed=' + speed + '&suspense=' + suspense),
             success: function() {
                 {{ if DEBUG: }}
@@ -19,5 +19,24 @@
                 {{ pass }}
             }
         });
+        $('#presetTab').load('/{{=request.application}}/default/getPresets.html');
+    }
+
+    function deletePreset(presetID) {
+        $.ajax({
+            type: 'POST',
+            url: '/{{=request.application}}/default/deletePreset/' + presetID,
+            success: function() {
+                {{ if DEBUG: }}
+                    console.log('Preset Delete Success');
+                {{ pass }}
+            },
+            error: function() {
+                {{ if DEBUG: }}
+                    console.log('Preset Delete Error');
+                {{ pass }}
+            }
+        });
+        $('#presetTab').load('/{{=request.application}}/default/getPresets.html');
     }
 </script>

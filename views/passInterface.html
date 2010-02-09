@@ -10,7 +10,7 @@
         {{ pass }}
         $.ajax({
           type: "GET",
-          url: "/gmr/default/queuePlaylist/" + positivity + "/" + aggression + "/" + speed + "/" + suspense + "/"
+          url: "/{{=request.application}}/default/queuePlaylist/" + positivity + "/" + aggression + "/" + speed + "/" + suspense + "/"
         });
         {{ if DEBUG: }}
             console.log('Response recieved, triggering autoplay of next track');
@@ -24,7 +24,7 @@
         {{ pass }}
         
         $('#' + element).load(
-            "/gmr/default/previewPlaylist/" + positivity + "/" + aggression + "/" + speed + "/" + suspense + "/",
+            "/{{=request.application}}/default/previewPlaylist/" + positivity + "/" + aggression + "/" + speed + "/" + suspense + "/",
             function() {
                 {{ if DEBUG: }}
                     console.log('Preview playlist loaded');
@@ -37,20 +37,19 @@
         );
     }
 
-    function savePlaylist(elementID) {
-        postDataPlaylist = '';
+    function savePlaylist(elementID, playlistName) {
+        url = '/{{=request.application}}/default/updatePlaylist/0/' + playlistName + '/';
 
         for ( var counter = 0; counter < $('#playlist .id').length; counter++ ) {
-            postDataPlaylist += '&' + counter + '=' + $('#playlist .id')[counter].value;
+             url += $('#playlist .id')[counter].value + '/';
         }
         {{ if DEBUG: }}
-            console.log('Playlist order to save: ' + postDataPlaylist);
+            console.log('Playlist order to save: ' + url);
         {{ pass }}
 
         $.ajax({
            type: 'POST',
-           url: '/gmr/default/updatePlaylist/',
-           data: postDataPlaylist,
+           url: url,
            success: function(){
                 {{ if DEBUG: }}
                     console.log('Ordered playlist sent');
@@ -58,6 +57,13 @@
            }
          });
         
+    }
+
+    function randmisePASS() {
+       $("#sliderPositivity").slider('value', Math.floor(Math.random()*10));
+       $("#sliderAggression").slider('value', Math.floor(Math.random()*10));
+       $("#sliderSpeed").slider('value', Math.floor(Math.random()*10));
+       $("#sliderSuspense").slider('value', Math.floor(Math.random()*10));
     }
 
 </script>

@@ -1,13 +1,16 @@
 <div id="presets">
     {{ for preset in presets: }}
-        <a href="#" class="preset" onclick="playPlaylist('{{=preset.positivity}}', '{{=preset.aggression}}', '{{=preset.speed}}', '{{=preset.suspense}}' );">
+        <div class="preset">
+            <a href="#"  onclick="playPlaylist('{{=preset.positivity}}', '{{=preset.aggression}}', '{{=preset.speed}}', '{{=preset.suspense}}' );">
             <span class="presetName">{{=preset.name}}</span>
+            </a>
             <div class="histogram">
                 <span class="barPositivity bar{{=preset.positivity}}">{{=preset.positivity}}</span>
                 <span class="barAggression bar{{=preset.aggression}}">{{=preset.aggression}}</span>
                 <span class="barSpeed bar{{=preset.speed}}">{{=preset.speed}}</span>
                 <span class="barSuspense bar{{=preset.suspense}}">{{=preset.suspense}}</span>
             </div>
-        </a>
+            <a href="#" class="delete" onclick="deletePreset({{=preset.id}});">Delete</a>
+        </div>
     {{ pass }}
 </div>
