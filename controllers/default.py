@@ -209,20 +209,16 @@ def getPlaylists():
     TODO:make it logged-in user specific
     """
     #user_id = auth.user.id
-    playlist = db(db.playlist.user_id==auth.user.id).select(
+    playlists = db(db.playlist.user_id==auth.user.id).select(
             db.playlist.ALL,orderby=db.playlist.name)
     return(
-        dict(playlist = playlist)
+        dict(playlists = playlists)
     )
 
 @auth.requires_login()
 def updatePlaylist(): #TODO: authenticate this
     """
     Creates new playlist, or updates existing
-    p = request.args(0) #positivity
-    a = request.args(1) #aggression
-    s = request.args(2) #speed
-    s = request.args(3) #suspense    
     """
     playlistID = int(request.args(0))
     playlistName = request.args(1) 
