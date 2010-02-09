@@ -196,6 +196,7 @@ def createPreset():
 def getPresets():
     """
     Returns an alphabetical list of the currently logged-in user's presets
+    TODO:make it logged-in user specific
     """
     return(
         dict(presets = db().select(db.preset.ALL,orderby=db.preset.name))
@@ -247,20 +248,11 @@ def getPlaylist(): #TODO: authenticate this
     """
     Returns a list of tracks for a given playlist ID
     """
-    playlistID = request.args(0)
+    playlistID = int(request.args(0))
+    query = (db.track.id == db.playlist_track.track_id) &    (db.playlist_track.playlist_id == playlistID)
     
-    tracks = db(db.playlist_track.playlist_id==playlistID).select(
-        db.track.id,
-        db.track.mp3,
-        db.track.name,
-        db.track.artist_id,
-        db.track.positivity,
-        db.track.aggression,
-        db.track.speed,
-        db.track.suspense,
-        db.track.description
-    )
-        
+    tracks = db(query).select(left=db.playlist_track.on(query))
+    
     return(
         dict(
         tracks = tracks,
