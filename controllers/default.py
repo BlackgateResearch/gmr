@@ -248,15 +248,10 @@ def getPlaylist(): #TODO: authenticate this
     Returns a list of tracks for a given playlist ID
     """
     tracks = []
-    playlistID = request.vars.playlist
+    playlistID = request.args(0)
     
-    playlist = db(db.playlist.id==playlistID).select()[0]
-    playlistTrack = playlist.playlist_track.select(
-        orderby=db.playlist_track.position
-    )
-    
-    for track in playlistTrack:
-        tracks.append(track.track_id)
+    tracks = db(db.playlist_track.playlist_id==playlistID).select()
+
     return(
         dict(tracks = tracks)
     )
