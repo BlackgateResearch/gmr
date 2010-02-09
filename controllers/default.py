@@ -259,11 +259,15 @@ def getPlaylist(): #TODO: authenticate this
         db.track.positivity,
         db.track.aggression,
         db.track.speed,
-        db.track.suspense
+        db.track.suspense,
+        db.track.description
     )
         
     return(
-        dict(tracks = tracks)
+        dict(
+        tracks = tracks,
+        lookupArtist = getArtists()
+        )
     )
 
 
