@@ -14,5 +14,5 @@
     </li>
 {{pass}}
 </ul>
-
-<input type="button" id="savePlaylist" value="Save Playlist" onclick="savePlaylist('playlist');" />
+<input type="text" id="playlistName" />
+<input type="button" id="savePlaylist" value="Save Playlist" onclick="savePlaylist('playlist', $('#playlistName').val());" />
