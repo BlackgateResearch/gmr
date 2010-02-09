@@ -441,10 +441,29 @@ p {
 
 
 
-/* <> */
+/* <ADMIN> */
+.admin table {
+    font-size: 1.6em;
+}
 
-/* </> */
+.admin .odd {
+    background-color: #cccccc;
+}
 
+.admin td,
+.admin th {
+    padding: 3px 10px;
+    border-left: 1px dotted #000000;
+    border-right: 1px dotted #000000;
+}
+
+.admin th, .admin th a {
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #333333;
+}
+
+/* </ADMIN> */
 
 
 
