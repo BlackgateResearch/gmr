@@ -247,8 +247,6 @@ def getPlaylist(): #TODO: authenticate this
     """
     Returns a list of tracks for a given playlist ID
     """
-    tracks = []
-    tracklist = 0
     playlistID = request.args(0)
     
     tracks = db(db.playlist_track.playlist_id==playlistID).select(
