@@ -202,6 +202,18 @@ def getPresets():
         dict(presets = db().select(db.preset.ALL,orderby=db.preset.name))
     )
 
+@auth.requires_login()
+def getPlaylists():
+    """
+    Returns an alphabetical list of the currently logged-in user's playlists
+    TODO:make it logged-in user specific
+    """
+    #user_id = auth.user.id
+    playlist = db(db.playlist.user_id==auth.user.id).select(
+            db.playlist.ALL,orderby=db.playlist.name)
+    return(
+        dict(playlist = playlist)
+    )
 
 @auth.requires_login()
 def updatePlaylist(): #TODO: authenticate this
@@ -244,7 +256,7 @@ def updatePlaylist(): #TODO: authenticate this
     return(dict)   
 
 @auth.requires_login()
-def getPlaylist(): #TODO: authenticate this
+def getPlaylistTracks(): #TODO: authenticate this
     """
     Returns a list of tracks for a given playlist ID
     """
