@@ -73,7 +73,12 @@ def index():
     """
     response.title = "Game Master Radio"
     response.subtitle = "Music for your worlds"
-    return dict(message='Welcome to GMR!')
+    return dict(
+        message='Welcome to GMR!',
+        playlists = getPlaylists()['playlists'],
+        presets = getPresets()['presets']
+        
+    )
 
 
 @auth.requires_login()
