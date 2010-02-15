@@ -107,8 +107,14 @@ db.define_table('nudge',
     Field('nudgeTime','datetime')
 )
 
-db.define_table('plays',
+db.define_table('played',
     Field('user_id',db.auth_user),
     Field('track_id',db.track),
     Field('playedTime','datetime')
+)
+
+db.define_table('played_to_end',
+    Field('user_id',db.auth_user),
+    Field('track_id',db.track),
+    Field('finishedTime','datetime')
 )
