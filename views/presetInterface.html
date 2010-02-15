@@ -6,7 +6,7 @@
 
         $.ajax({
             type: 'POST',
-            url: '/{{=request.application}}/default/createPreset/',
+            url: '/{{=request.application}}/radio/createPreset/',
             data: ('name=' + presetName + '&positivity=' + positivity + '&aggression=' + aggression + '&speed=' + speed + '&suspense=' + suspense),
             success: function() {
                 {{ if DEBUG: }}
@@ -19,13 +19,13 @@
                 {{ pass }}
             }
         });
-        $('#presetTab').load('/{{=request.application}}/default/getPresets.html');
+        $('#presetTab').load('/{{=request.application}}/radio/getPresets.html');
     }
 
     function deletePreset(presetID) {
         $.ajax({
             type: 'POST',
-            url: '/{{=request.application}}/default/deletePreset/' + presetID,
+            url: '/{{=request.application}}/radio/deletePreset/' + presetID,
             success: function() {
                 {{ if DEBUG: }}
                     console.log('Preset Delete Success');
@@ -37,6 +37,6 @@
                 {{ pass }}
             }
         });
-        $('#presetTab').load('/{{=request.application}}/default/getPresets.html');
+        $('#presetTab').load('/{{=request.application}}/radio/getPresets.html');
     }
 </script>

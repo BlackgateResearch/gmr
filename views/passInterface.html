@@ -10,7 +10,7 @@
         {{ pass }}
         $.ajax({
           type: "GET",
-          url: "/{{=request.application}}/default/queuePlaylist/" + positivity + "/" + aggression + "/" + speed + "/" + suspense + "/"
+          url: "/{{=request.application}}/radio/queuePlaylist/" + positivity + "/" + aggression + "/" + speed + "/" + suspense + "/"
         });
         {{ if DEBUG: }}
             console.log('Response recieved, triggering autoplay of next track');
@@ -24,7 +24,7 @@
         {{ pass }}
         
         $('#' + element).load(
-            "/{{=request.application}}/default/previewPlaylist/" + positivity + "/" + aggression + "/" + speed + "/" + suspense + "/",
+            "/{{=request.application}}/radio/previewPlaylist/" + positivity + "/" + aggression + "/" + speed + "/" + suspense + "/",
             function() {
                 {{ if DEBUG: }}
                     console.log('Preview playlist loaded');
@@ -38,7 +38,7 @@
     }
 
     function savePlaylist(elementID, playlistName) {
-        url = '/{{=request.application}}/default/updatePlaylist/0/' + playlistName + '/';
+        url = '/{{=request.application}}/radio/updatePlaylist/0/' + playlistName + '/';
 
         for ( var counter = 0; counter < $('#playlist .id').length; counter++ ) {
              url += $('#playlist .id')[counter].value + '/';
