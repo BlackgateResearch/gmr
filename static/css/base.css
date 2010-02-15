@@ -403,21 +403,27 @@ p {
     width: 20px;
 }
 
-#playlist li {
+.playlist li {
     display: block;
     width: 300px;
-    height: 50px;
+    height: 30px;
     background-color: #878787;
     margin-top: 3px;
     border: 1px solid #000000;
 }
 
-#playlist li .histogram {
+.playlist li p {
+    font-size: 1.2em;
+    float: left;
+    width: 220px;
+}
+
+.playlist li .histogram {
     float: right;
 }
 
-#playlist .handle {
-    height: 50px;
+.playlist .handle {
+    height: 20px;
     float: left;
     margin-right: 5px;
 }

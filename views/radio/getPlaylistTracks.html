@@ -1,9 +1,9 @@
-<ul id="playlist">
-{{for track in playlist:}}
+<ul id="editPlaylist" class="playlist">
+{{for track in tracks:}}
     <li>
         <input class="id" type="hidden" value="{{=track.id}}" />
         <img src="http://www.wil-linssen.com/demo/jquery-sortable-ajax/arrow.png" alt="move" width="16" height="16" class="handle" /> 
-        {{=track.name}} {{=lookupArtist[track.artist_id]}} {{=track.description}}
+        <p>{{=track.name}} - {{=lookupArtist[track.artist_id]}}</p>
         <div class="histogram">
             <span class="barPositivity bar{{=track.positivity}}">{{=track.positivity}}</span>
             <span class="barAggression bar{{=track.aggression}}">{{=track.aggression}}</span>
