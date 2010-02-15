@@ -142,6 +142,7 @@ def previewPlaylist():
 def createPlaylist():
     """
     Returns playlist, given PASS query
+    TODO: Make this work more than accidentally!
     """
     #args
     p = request.args(0) #positivity
@@ -153,9 +154,16 @@ def createPlaylist():
     playlist = db().select(db.track.ALL)
 
     #Add all tracks to a dictionary with the track as the key deviation as value
+    count = 0.1 #FLOAT'd'd!!!
     for track in playlist:
-        genreDict[getDeviation(p,a,s,s,track)] = track
-
+        count = count + 1
+        deviation = int(getDeviation(p,a,s,s,track))
+        
+        try:
+            genreDict[deviation]
+            genreDict[deviation + count/100] = track
+        except KeyError:
+            genreDict[deviation] = track
     return sortTracks(genreDict)
 
 
