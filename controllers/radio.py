@@ -147,8 +147,8 @@ def createPlaylist():
     #args
     p = request.args(0) #positivity
     a = request.args(1) #aggression
-    s = request.args(2) #speed
-    s = request.args(3) #suspense
+    sp = request.args(2) #speed
+    su = request.args(3) #suspense
     
     genreDict = {}
     playlist = db().select(db.track.ALL)
@@ -157,7 +157,7 @@ def createPlaylist():
     count = 0.1 #FLOAT'd'd!!!
     for track in playlist:
         count = count + 1
-        deviation = int(getDeviation(p,a,s,s,track))
+        deviation = int(getDeviation(p,a,sp,su,track))
         
         try:
             genreDict[deviation]
