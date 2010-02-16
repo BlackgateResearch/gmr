@@ -322,6 +322,45 @@ def trackPlayedToEnd():
     )
     return dict(checkin = checkin)
 
+def nudge():
+    """
+    
+    """
+    trackID = request.args(0)
+    passVar = int(request.args(1))
+    upDown = str(request.args(2))
+
+    if upDown == "u":
+        nudgeValue = 1
+    else:
+        nudgeValue = -1
+
+    track = db(db.track.id==trackID).select()[0]
+
+    if passVar == 0:
+        track.update_record(positivity = track.positivity + nudgeValue)
+    if passVar == 1:
+        track.update_record(aggression = track.aggression + nudgeValue)
+    if passVar == 2:
+        track.update_record(speed = track.speed + nudgeValue)
+    if passVar == 3:
+        track.update_record(suspense = track.suspense + nudgeValue)
+    else:
+        pass
+
+    '''
+    nudge = db.nudge.insert(
+        track_id=request.vars.track,
+        nudgeTime=datetime.datetime.now(),
+        user_id = auth.user.id
+    )
+    '''
+    return dict(
+        track = track,
+        upDown = upDown
+    )
+    
+
 def user():
     """
     exposes:
