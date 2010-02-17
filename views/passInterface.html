@@ -24,15 +24,15 @@
         {{ pass }}
         
         $('#' + element).load(
-            "/{{=request.application}}/radio/previewPlaylist/" + positivity + "/" + aggression + "/" + speed + "/" + suspense + "/",
+            '/{{=request.application}}/radio/previewPlaylist/' + positivity + '/' + aggression + '/' + speed + '/' + suspense + '/',
             function() {
                 {{ if DEBUG: }}
                     console.log('Preview playlist loaded');
                 {{ pass }}
-                $("#previewPlaylist").sortable({
-                handle : '.handle',
-                update : function () {}
-        });
+                $('#previewPlaylist').sortable({
+                    handle : '.handle',
+                    update : function () {}
+                });
             }
         );
     }
@@ -40,8 +40,8 @@
     function savePlaylist(elementID, playlistName) {
         url = '/{{=request.application}}/radio/updatePlaylist/0/' + playlistName + '/';
 
-        for ( var counter = 0; counter < $('#playlist .id').length; counter++ ) {
-             url += $('#playlist .id')[counter].value + '/';
+        for ( var counter = 0; counter < $('#previewPlaylist .id').length; counter++ ) {
+             url += $('#previewPlaylist .id')[counter].value + '/';
         }
         {{ if DEBUG: }}
             console.log('Playlist order to save: ' + url);

@@ -5,7 +5,7 @@ You should not modify this file.
 It is used as default when a view is not provided for your controllers
 
 """}}
-
+<div id="generic">
 {{=BEAUTIFY(response._vars)}}
 
 <button onclick="document.location='{{=URL("admin","default","design",args=request.application)}}'">admin</button>
@@ -16,3 +16,4 @@ It is used as default when a view is not provided for your controllers
 <button onclick="jQuery('#response').slideToggle()">response</button>
 <div class="hidden" id="response"><h2>response</h2>{{=BEAUTIFY(response)}}</div>
 <script>jQuery('.hidden').hide();</script>
+</div>
