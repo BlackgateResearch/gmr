@@ -44,6 +44,7 @@
     function play(url) {
         setState('playing');
         thisMovie("GMRPlayer").play(url);
+        $('#currentPlaylistContainer').load('/{{=request.application}}/radio/getPlaylist.html');
     }
     function stop() {
         setState('stopped');
