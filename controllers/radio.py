@@ -3,11 +3,10 @@
 import operator, datetime
 
 #########################################################################
-## This is a samples controller
+## This is a radio controller
 ## - index is the default action of any application
 ## - user is required for authentication and authorization
 ## - download is for downloading files uploaded in the db (does streaming)
-## - call exposes all registered services (none by default)
 #########################################################################  
 
 @auth.requires_login()
@@ -30,8 +29,8 @@ def ensurePositive(val):
 @auth.requires_login()
 def getDeviation(positivity,aggression,speed,suspense,track):
     """
-    Compare the searched-for parameters with a track, return the deviation
-    from the track
+    Compare the searched-for parameters with a track,
+    return the deviation from the track
     TODO: use the sum of the squares
     """
     deviationSpeed = int(positivity) - int(track.positivity)
@@ -100,7 +99,8 @@ def artistLookup(id):
 @auth.requires_login()
 def nextTrack():
     """
-    Gets the next track object, while simultaniously removing it from the playlist
+    Gets the next track object,
+    while simultaniously removing it from the playlist
     """
     if (len(session.currentPlaylist) > 0):
         return dict(
@@ -117,7 +117,7 @@ def getPlaylist():
     Returns the current playlist (List of Track objects)
     """
     return dict(
-        currentPlaylist =session.currentPlaylist
+        currentPlaylist = session.currentPlaylist
     )
 
 
@@ -172,7 +172,8 @@ def createPlaylist():
 @auth.requires_login()
 def sortTracks(genreDict):
     """
-    Takes a dictionary of deviation:track, sorts it by deviation, and returns the ordered list of tracks
+    Takes a dictionary of deviation:track, sorts it by deviation,
+    and returns the ordered list of tracks
     """
     sortedTrackList = []    
     #sort the dictionary by value, convert to a list of tuples
@@ -272,7 +273,8 @@ def getPlaylistTracks(): #TODO: authenticate this
     Returns a list of tracks for a given playlist ID
     """
     playlistID = int(request.args(0))
-    query = (db.track.id == db.playlist_track.track_id) &    (db.playlist_track.playlist_id == playlistID)
+    query = (db.track.id == db.playlist_track.track_id) & \
+        (db.playlist_track.playlist_id == playlistID)
     
     tracks = db(query).select(db.track.ALL,orderby=db.playlist_track.position)
     
@@ -319,7 +321,8 @@ def trackPlayed():
 @auth.requires_login()
 def trackPlayedToEnd():
     """
-    Logs when a track has played all the way through, and which user played it
+    Logs when a track has played all the way through,
+    and which user played it
     """
     checkin = db.played_to_end.insert(
         track_id=request.vars.track,
