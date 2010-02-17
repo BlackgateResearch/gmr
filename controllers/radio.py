@@ -117,7 +117,8 @@ def getPlaylist():
     Returns the current playlist (List of Track objects)
     """
     return dict(
-        currentPlaylist = session.currentPlaylist
+        currentPlaylist = session.currentPlaylist,
+        lookupArtist = getArtists()
     )
 
 
