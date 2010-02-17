@@ -403,6 +403,12 @@ p {
     width: 20px;
 }
 
+.wrapper {
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid #000000;
+}
+
 .playlist li {
     display: block;
     width: 300px;
@@ -471,6 +477,12 @@ p {
 
 /* </ADMIN> */
 
+
+/* <GENERIC> */
+
+
+
+/* </GENERIC> */
 
 
 /* <TEST> */
