@@ -116,7 +116,9 @@ def getPlaylist():
     """
     Returns the current playlist (List of Track objects)
     """
-    return session.currentPlaylist
+    return dict(
+        currentPlaylist =session.currentPlaylist
+    )
 
 
 @auth.requires_login()
@@ -282,6 +284,7 @@ def getPlaylistTracks(): #TODO: authenticate this
     )
 
 
+@auth.requires_login()
 def deletePreset(): #TODO: authenticate this
     """
     Delete a preset
@@ -290,6 +293,7 @@ def deletePreset(): #TODO: authenticate this
     db(db.preset.id==presetID).delete()
 
 
+@auth.requires_login()
 def deletePlaylist(): #TODO: authenticate this
     """
     Delete a playlist
@@ -299,6 +303,7 @@ def deletePlaylist(): #TODO: authenticate this
     db(db.playlist.id==playlistID).delete()
 
 
+@auth.requires_login()
 def trackPlayed():
     """
     Logs when a track starts to play, and which user played it
@@ -311,6 +316,7 @@ def trackPlayed():
     return dict(checkin = checkin)
 
 
+@auth.requires_login()
 def trackPlayedToEnd():
     """
     Logs when a track has played all the way through, and which user played it
@@ -322,9 +328,11 @@ def trackPlayedToEnd():
     )
     return dict(checkin = checkin)
 
+
+@auth.requires_login()
 def nudge():
     """
-    
+    nudge/trackID/0-3(pass)/u-or-d
     """
     trackID = request.args(0)
     passVar = int(request.args(1))
