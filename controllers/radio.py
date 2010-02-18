@@ -342,9 +342,9 @@ def nudge():
     """
     trackID = request.args(0)
     passVar = int(request.args(1))
-    upDown = str(request.args(2))
+    direction = str(request.args(2))
 
-    if upDown == "u":
+    if direction == "u":
         nudgeValue = 1
     else:
         nudgeValue = -1
@@ -375,7 +375,9 @@ def nudge():
         nudge = db.nudge.insert(
             track_id=trackID,
             nudgeTime=datetime.date.today(),
-            user_id = auth.user.id
+            user_id = auth.user.id,
+            pass_attribute = passVar,
+            direction = direction
         )
         
         return dict(

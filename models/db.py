@@ -104,8 +104,11 @@ db.define_table('playlist_track',
 db.define_table('nudge',
     Field('user_id',db.auth_user),
     Field('track_id',db.track),
-    Field('nudgeTime','datetime')
+    Field('nudgeTime','datetime'),
+    Field('pass_attribute','integer'),
+    Field('direction')  
 )
+#db.mytable.myfield.requires=[IS_EMAIL(error_message="invalid email")]
 
 db.define_table('played',
     Field('user_id',db.auth_user),
