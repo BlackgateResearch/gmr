@@ -58,6 +58,7 @@
                 play('{{=URL(r=request, f='download')}}' + '/' + data.track.mp3);
                 $('.trackName').text(data.track.name);
                 $('.trackArtist').load('{{=URL(r=request, f='jsArtistLookup')}}' + '/' + data.track.artist_id);
+                $('#trackID').text(data.track.id);
             } else {
                 //No more tracks to play
                 stop();
@@ -123,5 +124,12 @@
 
     function sendToJavaScript(value) {
      document.forms["form1"].output.value += "ActionScript says: " + value + "\n";
+    }
+
+    function nudge(moodComponent, direction) {
+        $.ajax({
+            type: "GET",
+            url: "/{{=request.application}}/radio/nudge/" + $('#trackID').text() + "/" + moodComponent + "/" + direction
+        });
     }
 </script>

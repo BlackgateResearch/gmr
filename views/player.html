@@ -1,5 +1,8 @@
 <div id="player">
     <h2>GMR Player <span class="trackName">-</span></h2>
+    
+    <input type="hidden" id="trackID" />
+    
     <div id="alternativeContent">
 	    <a href="http://www.adobe.com/go/getflashplayer">
         	<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
@@ -13,6 +16,12 @@
     <p style="clear: both;">Track: <span class="trackName">-</span></p>
     <p>Elapsed Time: <span class="trackSeconds">-</span>s</p>
     <p>Artist: <span class="trackArtist">-</span></p>
+    <div class="nudgeContainer">
+        <span>P: <a href="#" onclick="nudge('0', 'd'); return true;">Down</a> <a href="#" onclick="nudge('0', 'u'); return true;">Up</a></span>
+        <span>A: <a href="#" onclick="nudge('1', 'd'); return true;">Down</a> <a href="#" onclick="nudge('1', 'u'); return true;">Up</a></span>
+        <span>S: <a href="#" onclick="nudge('2', 'd'); return true;">Down</a> <a href="#" onclick="nudge('2', 'u'); return true;">Up</a></span>
+        <span>S: <a href="#" onclick="nudge('3', 'd'); return true;">Down</a> <a href="#" onclick="nudge('3', 'u'); return true;">Up</a></span>
+    </div>
 </div>
 
 <div id="currentPlaylistContainer"></div>
