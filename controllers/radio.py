@@ -336,6 +336,8 @@ def trackPlayedToEnd():
 @auth.requires_login()
 def nudge():
     """
+    Nudges the track up or down a single pass variable.
+    Not more than once per 24h
     nudge/trackID/0-3(pass)/u-or-d
     """
     trackID = request.args(0)
@@ -346,31 +348,43 @@ def nudge():
         nudgeValue = 1
     else:
         nudgeValue = -1
+    
+    today = datetime.date.today()
 
-    track = db(db.track.id==trackID).select()[0]
+    hasBeenNudged = db(
+        (db.nudge.nudgeTime==today) &
+        (db.nudge.user_id==auth.user.id) &
+        (db.nudge.track_id==trackID)
+    ).select()
+    
+    if not bool(hasBeenNudged):
+        
+        track = db(db.track.id==trackID).select()[0]
 
-    if passVar == 0:
-        track.update_record(positivity = track.positivity + nudgeValue)
-    if passVar == 1:
-        track.update_record(aggression = track.aggression + nudgeValue)
-    if passVar == 2:
-        track.update_record(speed = track.speed + nudgeValue)
-    if passVar == 3:
-        track.update_record(suspense = track.suspense + nudgeValue)
-    else:
-        pass
+        if passVar == 0:
+            track.update_record(positivity = track.positivity + nudgeValue)
+        if passVar == 1:
+            track.update_record(aggression = track.aggression + nudgeValue)
+        if passVar == 2:
+            track.update_record(speed = track.speed + nudgeValue)
+        if passVar == 3:
+            track.update_record(suspense = track.suspense + nudgeValue)
+        else:
+            pass
 
-    '''
-    nudge = db.nudge.insert(
-        track_id=request.vars.track,
-        nudgeTime=datetime.datetime.now(),
-        user_id = auth.user.id
-    )
-    '''
-    return dict(
-        track = track,
-        upDown = upDown
-    )
+        nudge = db.nudge.insert(
+            track_id=trackID,
+            nudgeTime=datetime.date.today(),
+            user_id = auth.user.id
+        )
+        
+        return dict(
+            track = track,
+            nudge = nudge,
+            hasBeenNudged = hasBeenNudged
+        )
+
+    return "guess again" #TODO:make good
     
 
 def user():
