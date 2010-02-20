@@ -10,6 +10,21 @@ import operator, datetime
 #########################################################################  
 
 @auth.requires_login()
+def index():
+    """
+    Home page for GMR
+    """
+    response.title = "Game Master Radio"
+    response.subtitle = "Music for your worlds"
+    return dict(
+        message='Welcome to GMR!',
+        playlists = getPlaylists()['playlists'],
+        presets = getPresets()['presets']
+        
+    )
+
+
+@auth.requires_login()
 def ensurePositive(val):
     """
     TODO: There must be a better way of doing this!
@@ -63,21 +78,6 @@ def artistsDict(artists):
     for artist in artists:
         artistDict[artist.id] = artist.name
     return artistDict
-
-
-@auth.requires_login()
-def index():
-    """
-    Home page for GMR
-    """
-    response.title = "Game Master Radio"
-    response.subtitle = "Music for your worlds"
-    return dict(
-        message='Welcome to GMR!',
-        playlists = getPlaylists()['playlists'],
-        presets = getPresets()['presets']
-        
-    )
 
 
 @auth.requires_login()
