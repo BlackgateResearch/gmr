@@ -29,8 +29,14 @@ from gluon.tools import *
 auth=Auth(globals(),db)                      # authentication/authorization
 auth.settings.hmac_key='sha512:50646864-d10a-4c9c-a9b8-f2ddea4712bc'
 auth.define_tables()                         # creates all needed tables
+
+from gluon.tools import Recaptcha
+auth.settings.captcha = Recaptcha(request,'6LftHgoAAAAAAB6Q96ZB4o85btJR56ApGx4NT-ia', '6LftHgoAAAAAACg6sSARkv-0sm8g4mnn8oCjwm9k')
+
+
 crud=Crud(globals(),db)                      # for CRUD helpers using auth
 service=Service(globals())                   # for json, xml, jsonrpc, xmlrpc, amfrpc
+
 
 # crud.settings.auth=auth                      # enforces authorization on crud
 # mail=Mail()                                  # mailer
