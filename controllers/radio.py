@@ -139,7 +139,7 @@ def queuePASS():
     Returns playlist, given PASS query
     """
     return dict(
-        playlist = createPASSPlaylist()
+        playlist = createPASSPlaylist(),
         lookupArtist = getArtists()
     )
 
@@ -149,7 +149,7 @@ def queuePlaylist():
     Returns playlist, given playlist ID query
     """
     return dict(
-        playlist = createPlaylist()
+        playlist = createPlaylist(),
         lookupArtist = getArtists()
     )
 
