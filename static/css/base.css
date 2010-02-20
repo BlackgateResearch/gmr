@@ -449,6 +449,117 @@ p {
     border: 2px solid #000000;
 }
 
+.nudgeContainer {
+    font-size: 1.2em;
+    height: 64px;
+}
+
+.passNudge {
+    width: 200px;
+}
+
+.nudgeUp,
+.nudgeDown {
+    float: left;
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    text-indent: -9999px;
+}
+
+.nudgeLabel {
+    clear: both;
+    float: left;
+    width: 75px;
+}
+
+.nudgeUp {
+    background-image: url(/gmr/static/images/arrow_up.png);
+}
+
+.nudgeDown {
+    background-image: url(/gmr/static/images/arrow_down.png);
+}
+
+.nudgeBar {
+    float: left;
+    width: 50px;
+    height: 16px;
+}
+
+.nudgeBar {
+    text-indent: -99999px;
+}
+
+#barPositivity {
+    background-color: #40DE2F;
+    display: block;
+    float: left;
+    height: 16px;
+}
+
+#barAggression {
+    background-color: #FF3838;
+    display: block;
+    float: left;
+    height: 16px;
+}
+
+#barSpeed {
+    background-color: #ffa200;
+    display: block;
+    float: left;
+    height: 16px;
+}
+
+#barSuspense {
+    background-color: #3845FF;
+    display: block;
+    float: left;
+    height: 16px;
+}
+
+.nudgeBar0 {
+    width: 5px;
+}
+
+.nudgeBar1 {
+    width: 10px;
+}
+
+.nudgeBar2 {
+    width: 15px;
+}
+
+.nudgeBar3 {
+    width: 20px;
+}
+
+.nudgeBar4 {
+    width: 25px;
+}
+
+.nudgeBar5 {
+    width: 30px;
+}
+
+.nudgeBar6 {
+    width: 35px;
+}
+
+.nudgeBar7 {
+    width: 40px;
+}
+
+.nudgeBar8 {
+    width: 45px;
+}
+
+.nudgeBar9 {
+    width: 50px;
+}
+
 /* </DECORATION> */
 
 
