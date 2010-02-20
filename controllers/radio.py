@@ -123,12 +123,18 @@ def getPlaylist():
 
 
 @auth.requires_login()
-def queuePlaylist():
+def queuePASS():
     """
     Queues new playlist into session, given PASS query
     """
-    session.currentPlaylist = createPlaylist()
+    session.currentPlaylist = createPASSPlaylist()
 
+@auth.requires_login()
+def queuePlaylist():
+    """
+    Queues new playlist into session, given playlist ID query
+    """
+    session.currentPlaylist = createPlaylist()
 
 @auth.requires_login()
 def previewPlaylist():
@@ -142,7 +148,7 @@ def previewPlaylist():
 
 
 @auth.requires_login()
-def createPlaylist():
+def createPASSPlaylist():
     """
     Returns playlist, given PASS query
     TODO: Make this work more than accidentally!
