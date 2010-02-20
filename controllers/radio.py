@@ -140,6 +140,7 @@ def queuePASS():
     """
     return dict(
         playlist = createPASSPlaylist()
+        lookupArtist = getArtists()
     )
 
 @auth.requires_login()
@@ -149,6 +150,7 @@ def queuePlaylist():
     """
     return dict(
         playlist = createPlaylist()
+        lookupArtist = getArtists()
     )
 
 @auth.requires_login()
