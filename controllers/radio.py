@@ -142,7 +142,7 @@ def previewPlaylist():
     Returns a playlist to user, given PASS query, with arists dictionary for looking up
     """
     return dict(
-    playlist = createPlaylist(),
+    playlist = createPASSPlaylist(),
     lookupArtist = getArtists()
     )
 
