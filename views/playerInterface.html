@@ -63,6 +63,10 @@
                 $('#barAggression').text(data.track.aggression);
                 $('#barSpeed').text(data.track.speed);
                 $('#barSuspense').text(data.track.suspense);
+                $('#barPositivity').addClass('nudgeBar' + data.track.positivity);
+                $('#barAggression').addClass('nudgeBar' + data.track.aggression);
+                $('#barSpeed').addClass('nudgeBar' + data.track.speed);
+                $('#barSuspense').addClass('nudgeBar' + data.track.suspense);
             } else {
                 //No more tracks to play
                 stop();
