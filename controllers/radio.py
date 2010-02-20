@@ -10,21 +10,6 @@ import operator, datetime
 #########################################################################  
 
 @auth.requires_login()
-def index():
-    """
-    Home page for Game Master Radio
-    """
-    response.title = "Game Master Radio"
-    response.subtitle = "Music for your worlds"
-    return dict(
-        message='Welcome to GMR!',
-        playlists = getPlaylists()['playlists'],
-        presets = getPresets()['presets']
-        
-    )
-
-
-@auth.requires_login()
 def ensurePositive(val):
     """
     TODO: There must be a better way of doing this!
@@ -81,6 +66,21 @@ def artistsDict(artists):
 
 
 @auth.requires_login()
+def index():
+    """
+    Home page for GMR
+    """
+    response.title = "Game Master Radio"
+    response.subtitle = "Music for your worlds"
+    return dict(
+        message='Welcome to GMR!',
+        playlists = getPlaylists()['playlists'],
+        presets = getPresets()['presets']
+        
+    )
+
+
+@auth.requires_login()
 def jsArtistLookup():
     """
     Ajax method for converting artist ID (int) to artist name (String)
@@ -94,6 +94,17 @@ def artistLookup(id):
     Method for converting artist ID (int) to artist name (String)
     """
     return getArtists()[id]
+
+
+
+@auth.requires_login()
+def getTrack():
+    """
+    Gets a track object, given it's ID
+    """
+    return dict(
+        track = db(db.track.id == request.args(0)).select()[0]
+    )
 
 
 @auth.requires_login()
@@ -142,7 +153,7 @@ def previewPlaylist():
     Returns a playlist to user, given PASS query, with arists dictionary for looking up
     """
     return dict(
-    playlist = createPASSPlaylist(),
+    playlist = createPlaylist(),
     lookupArtist = getArtists()
     )
 
