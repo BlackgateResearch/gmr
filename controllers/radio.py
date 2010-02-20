@@ -12,7 +12,7 @@ import operator, datetime
 @auth.requires_login()
 def index():
     """
-    Home page for GMR
+    Home page for Game Master Radio
     """
     response.title = "Game Master Radio"
     response.subtitle = "Music for your worlds"
