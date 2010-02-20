@@ -10,7 +10,7 @@
         {{ pass }}
         $.ajax({
           type: "GET",
-          url: "/{{=request.application}}/radio/queuePlaylist/" + positivity + "/" + aggression + "/" + speed + "/" + suspense + "/"
+          url: "/{{=request.application}}/radio/queuePASS/" + positivity + "/" + aggression + "/" + speed + "/" + suspense + "/"
         });
         {{ if DEBUG: }}
             console.log('Response recieved, triggering autoplay of next track');
@@ -56,6 +56,8 @@
                 {{ pass }}
            }
          });
+
+         $('playlistTab').load('/{{=request.application}}/radio/playlistTab.html');
         
     }
 
