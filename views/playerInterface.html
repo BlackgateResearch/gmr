@@ -136,8 +136,16 @@
 
     function nudge(moodComponent, direction) {
         $.ajax({
-            type: "GET",
-            url: "/{{=request.application}}/radio/nudge/" + $('#trackID').text() + "/" + moodComponent + "/" + direction
+            type: 'GET',
+            url: '/{{=request.application}}/radio/nudge/' + $('#trackID').text() + '/' + moodComponent + '/' + direction
         });
+    }
+
+    function playPlaylist(playlistID) {
+        $.ajax({
+            type: 'GET',
+            url: '/{{=request.application}}/radio/queuePlaylist/' + playlistID
+        });
+        next();
     }
 </script>

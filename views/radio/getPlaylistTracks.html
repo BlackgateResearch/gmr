@@ -16,3 +16,5 @@
 </ul>
 <input type="text" id="playlistName" />
 <input type="button" id="savePlaylist" value="Save Playlist" onclick="savePlaylist('playlist', $('#playlistName').val());" />
+
+<input type="button" id="playPlaylist" value="Play Playlist" onclick="playPlaylist($('#selectedPlaylistID').text()); return true;" />
