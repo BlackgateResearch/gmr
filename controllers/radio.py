@@ -136,16 +136,20 @@ def getPlaylist():
 @auth.requires_login()
 def queuePASS():
     """
-    Queues new playlist into session, given PASS query
+    Returns playlist, given PASS query
     """
-    session.currentPlaylist = createPASSPlaylist()
+    return dict(
+        playlist = createPASSPlaylist()
+    )
 
 @auth.requires_login()
 def queuePlaylist():
     """
-    Queues new playlist into session, given playlist ID query
+    Returns playlist, given playlist ID query
     """
-    session.currentPlaylist = createPlaylist()
+    return dict(
+        playlist = createPlaylist()
+    )
 
 @auth.requires_login()
 def previewPlaylist():
