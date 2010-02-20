@@ -59,6 +59,10 @@
                 $('.trackName').text(data.track.name);
                 $('.trackArtist').load('{{=URL(r=request, f='jsArtistLookup')}}' + '/' + data.track.artist_id);
                 $('#trackID').text(data.track.id);
+                $('#barPositivity').text(data.track.positivity);
+                $('#barAggression').text(data.track.aggression);
+                $('#barSpeed').text(data.track.speed);
+                $('#barSuspense').text(data.track.suspense);
             } else {
                 //No more tracks to play
                 stop();
