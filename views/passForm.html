@@ -40,7 +40,7 @@
       <span class="labelLow">Suspense</span><br /><br />
 
       <div class="buttons">
-          <input type="button" id="jsGenreFormPreview" value="Preview" onclick="previewPlaylist($('#id_positivity').val(), $('#id_aggression').val(), $('#id_speed').val(), $('#id_suspense').val(), 'previewPlaylistContainer' );" />
+          <input type="button" id="jsGenreFormPreview" value="Preview" onclick="previewPlaylist($('#id_positivity').val(), $('#id_aggression').val(), $('#id_speed').val(), $('#id_suspense').val() );" />
 
           <input type="button" id="jsGenreFormListen" value="Listen" onclick="playPASS($('#id_positivity').val(), $('#id_aggression').val(), $('#id_speed').val(), $('#id_suspense').val() );" />
       </div>
@@ -50,4 +50,6 @@
 </div>
 
 <div id="previewPlaylistContainer">
+    <ul id="previewPlaylist" class="playlist">
+    </ul>
 </div>

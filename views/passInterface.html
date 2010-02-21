@@ -9,7 +9,7 @@
         {{ if DEBUG: }}
             console.log('PASS Ajax request made: ' + 'P - ' + positivity + ', A - ' + aggression + ', S - ' + speed + ', S - ' + suspense);
         {{ pass }}
-        $('#currentPlaylistContainer').load(
+        $('#currentPlaylist').load(
             '/{{=request.application}}/radio/queuePASS/' + positivity + '/' + aggression + '/' + speed + '/' + suspense + '/',
             function() {
                 $('#currentPlaylist').sortable({
@@ -27,18 +27,15 @@
         next();
     }
 
-    function previewPlaylist( positivity, aggression, speed, suspense, element ) {
+    function previewPlaylist( positivity, aggression, speed, suspense ) {
     //Loads a preview PASS playlist into #previewPlaylist
         {{ if DEBUG: }}
             console.log('PASS Ajax request made: ' + 'P - ' + positivity + ', A - ' + aggression + ', S - ' + speed + ', S - ' + suspense);
         {{ pass }}
-        
-        $('#' + element).load(
-            '/{{=request.application}}/radio/previewPlaylist/' + positivity + '/' + aggression + '/' + speed + '/' + suspense + '/',
+
+        $('#previewPlaylist').load(
+            '/{{=request.application}}/radio/queuePASS/' + positivity + '/' + aggression + '/' + speed + '/' + suspense + '/',
             function() {
-                {{ if DEBUG: }}
-                    console.log('Preview playlist loaded');
-                {{ pass }}
                 $('#previewPlaylist').sortable({
                     handle : '.handle',
                     update : function () {}
