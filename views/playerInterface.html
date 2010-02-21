@@ -6,9 +6,11 @@
      function flashIsReady() {
         return jsReady;
      }
+
      function pageInit() {
          jsReady = true;
      }
+
      function thisMovie(movieName) {
          if (navigator.appName.indexOf("Microsoft") != -1) {
              return window[movieName];
@@ -17,7 +19,6 @@
          }
      }
 
-    /* JS */
     function setState(newState) {
     //Updates the current playing state
         state = newState;
@@ -89,6 +90,9 @@
 
     function next() {
     //Plays the next track in the playlist
+
+        stop();
+
         //TODO: there's a better way to do this
             if ( $('#currentPlaylist li.current').next().length != 0 ) {
             $('#currentPlaylist li.current').next().addClass('next');
@@ -105,6 +109,9 @@
 
     function previous() {
     //Plays the previous track in the playlist
+
+        stop();
+
         //TODO: there's a better way to do this
         if ( $('#currentPlaylist li.current').prev().length != 0 ) {
             $('#currentPlaylist li.current').prev().addClass('prev');
