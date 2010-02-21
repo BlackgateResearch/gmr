@@ -9,7 +9,6 @@ import operator, datetime
 ## - download is for downloading files uploaded in the db (does streaming)
 #########################################################################  
 
-@auth.requires_login()
 def ensurePositive(val):
     """
     TODO: There must be a better way of doing this!
@@ -197,7 +196,6 @@ def createPASSPlaylist():
 def createPlaylist():
     """
     Returns playlist, given playlistID
-    TODO: Make this work more than accidentally!
     """
     #args
     playlistID = int(request.args(0))
