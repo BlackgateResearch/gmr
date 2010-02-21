@@ -72,10 +72,18 @@
 
     function randmisePASS() {
     //TODO: Fix me! (Doesn't randomise values of xhtml form, just sliders)
-       $("#sliderPositivity").slider('value', Math.floor(Math.random()*10));
-       $("#sliderAggression").slider('value', Math.floor(Math.random()*10));
-       $("#sliderSpeed").slider('value', Math.floor(Math.random()*10));
-       $("#sliderSuspense").slider('value', Math.floor(Math.random()*10));
+        randomNum = Math.floor(Math.random()*10);
+        $("#sliderPositivity").slider('value', randomNum);
+        $('#id_positivity').val(randomNum);
+        randomNum = Math.floor(Math.random()*10);
+        $("#sliderAggression").slider('value', randomNum);
+        $('#id_aggression').val(randomNum);
+        randomNum = Math.floor(Math.random()*10);
+        $("#sliderSpeed").slider('value', randomNum);
+        $('#id_speed').val(randomNum);
+        randomNum = Math.floor(Math.random()*10);
+        $("#sliderSuspense").slider('value', randomNum);
+        $('#id_suspense').val(randomNum);
     }
 
 </script>

@@ -148,8 +148,8 @@
         $('.trackMins').text(Math.floor(currentTime/60));
         {{ if DEBUG: }}
         //console.log(currentTime);
-        console.log('SEC:' + (currentTime%60));
-        console.log('MIN:' + Math.floor(currentTime/60));
+        //console.log('SEC:' + (currentTime%60));
+        //console.log('MIN:' + Math.floor(currentTime/60));
         {{ pass }}
     }
 
@@ -186,11 +186,4 @@
         });
     }
 
-    function playPlaylist(playlistID) {
-        /*$.ajax({
-            type: 'GET',
-            url: '/{{=request.application}}/radio/queuePlaylist/' + playlistID
-        });
-        next();*/
-    }
 </script>
