@@ -9,14 +9,14 @@
         {{ if DEBUG: }}
             console.log('PASS Ajax request made: ' + 'P - ' + positivity + ', A - ' + aggression + ', S - ' + speed + ', S - ' + suspense);
         {{ pass }}
-        $('#currentPlaylist').load(
+        $('#currentPlaylistContainer').load(
             '/{{=request.application}}/radio/queuePASS/' + positivity + '/' + aggression + '/' + speed + '/' + suspense + '/',
             function() {
-                $('#currentPlaylist').sortable({
+                $('#currentPlaylistContainer ul.playlist').sortable({
                     handle : '.handle',
                     update : function () {}
                 });
-                $('#currentPlaylist li:first-child').addClass('current');
+                $('#currentPlaylistContainer ul.playlist li:first-child').addClass('current');
                 play();
             }
         );
@@ -33,10 +33,10 @@
             console.log('PASS Ajax request made: ' + 'P - ' + positivity + ', A - ' + aggression + ', S - ' + speed + ', S - ' + suspense);
         {{ pass }}
 
-        $('#previewPlaylist').load(
+        $('#previewPlaylistContainer').load(
             '/{{=request.application}}/radio/queuePASS/' + positivity + '/' + aggression + '/' + speed + '/' + suspense + '/',
             function() {
-                $('#previewPlaylist').sortable({
+                $('#previewPlaylistContainer ul.playlist').sortable({
                     handle : '.handle',
                     update : function () {}
                 });
