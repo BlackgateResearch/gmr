@@ -100,7 +100,6 @@ def artistLookup(id):
 def getTrack():
     """
     Gets a track object, given it's ID
-    TODO: Also returns wether it has been nudged in the pas 24h
     """
     trackID = request.args(0)
     today = datetime.date.today()    
@@ -272,9 +271,7 @@ def getPresets():
 def getPlaylists():
     """
     Returns an alphabetical list of the currently logged-in user's playlists
-    TODO:make it logged-in user specific
     """
-    #user_id = auth.user.id
     playlists = db(db.playlist.user_id==auth.user.id).select(
             db.playlist.ALL,orderby=db.playlist.name)
     return(
@@ -282,7 +279,7 @@ def getPlaylists():
     )
 
 @auth.requires_login()
-def updatePlaylist(): #TODO: authenticate this
+def updatePlaylist():
     """
     Creates new playlist, or updates existing
     """
@@ -302,27 +299,70 @@ def updatePlaylist(): #TODO: authenticate this
         playlistID = playlist.id
     else:
         playlistID = playlistID
+
+    if not playlistBelongsToUser(playlistID):
+        raise HTTP(401)
+    else:
         db(db.playlist_track.playlist_id==playlistID).delete()
     
-    dict = {}
+    dictionary = {}
     for position in range(trackCount):
         pos = position + 2
-        dict[position]=request.args(pos)
+        dictionary[position]=request.args(pos)
 
     for position in range(trackCount-1):
         playListTrack = db.playlist_track.insert(
             playlist_id = playlistID,
-            track_id = dict[position],
+            track_id = dictionary[position],
             position = position
         )
-    return(dict)   
+    return(dictionary)   
+
+def playlistBelongsToUser(playlistID):
+    """
+    Checks wether a playlist (given by id) belongs to the current user
+    """  
+    authorised = False
+    thePlaylist = db(db.playlist.id==playlistID).select()[0]
+    
+    #Can I see your papers?
+    if (thePlaylist.user_id == auth.user.id): 
+        #Move along
+        authorised = True 
+    else:
+        #Your german is very good
+        #Thank you
+        authorised = False 
+    return authorised
+
+def presetBelongsToUser(presetID):
+    """
+    Checks wether a preset (given by id) belongs to the current user
+    """  
+    authorised = False
+    thePreset = db(db.preset.id==presetID).select()[0]
+    
+    #Can I see your papers?
+    if (thePreset.user_id == auth.user.id): 
+        #Move along
+        authorised = True 
+    else:
+        #Your german is very good
+        #Thank you
+        authorised = False 
+    return authorised
 
 @auth.requires_login()
-def getPlaylistTracks(): #TODO: authenticate this
+def getPlaylistTracks():
     """
     Returns a list of tracks for a given playlist ID
-    """
-    playlistID = int(request.args(0))
+    """  
+    playlistID = int(request.args(0))  
+        
+    if not playlistBelongsToUser(playlistID):
+        raise HTTP(401)
+    else:
+        pass
     query = (db.track.id == db.playlist_track.track_id) & \
         (db.playlist_track.playlist_id == playlistID)
     
@@ -337,20 +377,34 @@ def getPlaylistTracks(): #TODO: authenticate this
 
 
 @auth.requires_login()
-def deletePreset(): #TODO: authenticate this
+def deletePreset():
     """
     Delete a preset
     """
     presetID = request.args(0)
+    
+    if not presetBelongsToUser(presetID):
+        raise HTTP(401)
+    else:
+        pass   
+    
     db(db.preset.id==presetID).delete()
+    
+    return("OK")
 
 
 @auth.requires_login()
-def deletePlaylist(): #TODO: authenticate this
+def deletePlaylist(): 
     """
     Delete a playlist
     """
     playlistID = request.args(0)
+    
+    if not playlistBelongsToUser(playlistID):
+        raise HTTP(401)
+    else:
+        pass
+            
     db(db.playlist_track.playlist_id==playlistID).delete()
     db(db.playlist.id==playlistID).delete()
 
@@ -435,7 +489,7 @@ def nudge():
             hasBeenNudged = hasBeenNudged
         )
 
-    return "guess again" #TODO:make good
+    raise HTTP(401)
     
 
 def user():
