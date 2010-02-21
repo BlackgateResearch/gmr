@@ -253,7 +253,7 @@ def getPresets():
     TODO:make it logged-in user specific
     """
     return(
-        dict(presets = db().select(db.preset.ALL,orderby=db.preset.name))
+        dict(presets = db(db.preset.user_id==auth.user.id).select(db.preset.ALL,orderby=db.preset.name))
     )
 
 @auth.requires_login()

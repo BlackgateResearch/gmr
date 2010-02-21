@@ -23,7 +23,13 @@ def download():
     """
     return response.download(request,db)
     
+  
 def index():
-    redirect(
-        URL(r=request,c='radio',f='index')
+    """
+    Home page for GMR
+    """
+    response.title = "Game Master Radio"
+    response.subtitle = "Music for your worlds"
+    return dict(
+        message='Welcome to GMR!',    
     )
