@@ -250,7 +250,6 @@ def createPreset():
 def getPresets():
     """
     Returns an alphabetical list of the currently logged-in user's presets
-    TODO:make it logged-in user specific
     """
     return(
         dict(presets = db(db.preset.user_id==auth.user.id).select(db.preset.ALL,orderby=db.preset.name))
