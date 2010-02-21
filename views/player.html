@@ -9,6 +9,7 @@
 	    </a>
     </div>
 
+    {{= A('<< Prev', _href='#', _class='button', _id='playerNext', _onclick='previous();')}} 
     {{= A('Stop', _href='#', _class='button', _id='playerStop', _onclick='stop();')}}
     {{= A('Play', _href='#', _class='button', _id='playerPause', _onclick='playPause();')}}      
     {{= A('Next >>', _href='#', _class='button', _id='playerNext', _onclick='next();')}} 

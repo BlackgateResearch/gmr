@@ -278,7 +278,7 @@ p {
 
 .button {
     display: block;
-    width: 75px;
+    width: 65px;
     height: 25px;
     line-height: 25px;
     padding: 0px 5px;
@@ -416,6 +416,10 @@ p {
     background-color: #878787;
     margin-top: 3px;
     border: 1px solid #000000;
+}
+
+.playlist li.current {
+    background-color: #AD0026;
 }
 
 .playlist li p {

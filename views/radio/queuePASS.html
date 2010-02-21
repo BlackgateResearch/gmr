@@ -1,9 +1,8 @@
-<div class="wrapper">
-    <h2>Preview Playlist</h2>
-    <ul id="previewPlaylist" class="playlist">
+    <ul id="currentPlaylist" class="playlist">
     {{for track in playlist:}}
         <li>
             <input class="id" type="hidden" value="{{=track.id}}" />
+            <input class="mp3" type="hidden" value="{{=track.mp3}}" />
             <img src="http://www.wil-linssen.com/demo/jquery-sortable-ajax/arrow.png" alt="move" width="16" height="16" class="handle" /> 
             <p>{{=track.name}} - {{=lookupArtist[track.artist_id]}}</p>
             <div class="histogram">
@@ -16,6 +15,3 @@
         </li>
     {{pass}}
     </ul>
-    <input type="text" id="playlistName" />
-    <input type="button" id="savePlaylist" value="Save Playlist" onclick="savePlaylist('previewPlaylist', $('#playlistName').val(), '0');" />
-</div>
