@@ -100,9 +100,22 @@ def artistLookup(id):
 def getTrack():
     """
     Gets a track object, given it's ID
+    TODO: Also returns wether it has been nudged in the pas 24h
     """
+    trackID = request.args(0)
+    today = datetime.date.today()    
+    
+    hasBeenNudged = bool(
+        db(
+            (db.nudge.nudgeTime==today) &
+            (db.nudge.user_id==auth.user.id) &
+            (db.nudge.track_id==trackID)
+        ).select()
+    )
+    
     return dict(
-        track = db(db.track.id == request.args(0)).select()[0]
+        track = db(db.track.id == trackID).select()[0],
+        hasBeenNudged = hasBeenNudged
     )
 
 
