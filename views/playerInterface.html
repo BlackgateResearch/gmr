@@ -144,9 +144,12 @@
 
     function progress(currentTime) {
     //Updates the track seconds counter
-        $('.trackSeconds').text(currentTime);
+        $('.trackSeconds').text(((currentTime%60) < 10 ? '0' : '') + (currentTime%60)); //seconds padded to 2 digits
+        $('.trackMins').text(Math.floor(currentTime/60));
         {{ if DEBUG: }}
-        console.log(currentTime);
+        //console.log(currentTime);
+        console.log('SEC:' + (currentTime%60));
+        console.log('MIN:' + Math.floor(currentTime/60));
         {{ pass }}
     }
 
