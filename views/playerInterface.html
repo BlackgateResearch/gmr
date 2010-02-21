@@ -59,9 +59,13 @@
                         $('#barAggression').text(data.track.aggression);
                         $('#barSpeed').text(data.track.speed);
                         $('#barSuspense').text(data.track.suspense);
+                        $('#barPositivity').removeClass();
                         $('#barPositivity').addClass('nudgeBar' + data.track.positivity);
+                        $('#barAggression').removeClass();
                         $('#barAggression').addClass('nudgeBar' + data.track.aggression);
+                        $('#barSpeed').removeClass();
                         $('#barSpeed').addClass('nudgeBar' + data.track.speed);
+                        $('#barSuspense').removeClass();
                         $('#barSuspense').addClass('nudgeBar' + data.track.suspense);
                         setState('playing');
                     } else {
