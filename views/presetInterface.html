@@ -1,5 +1,6 @@
 <script>
     function savePreset( positivity, aggression, speed, suspense, presetName ) {
+    //Saves PASS preset
         {{ if DEBUG: }}
             console.log('Save Preset Ajax request made: ' + 'P - ' + positivity + ', A - ' + aggression + ', S - ' + speed + ', S - ' + suspense + ', Name - ' + presetName);
         {{ pass }}
@@ -23,6 +24,7 @@
     }
 
     function deletePreset(presetID) {
+    //Deletes the specified preset
         $.ajax({
             type: 'POST',
             url: '/{{=request.application}}/radio/deletePreset/' + presetID,

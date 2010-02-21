@@ -1,10 +1,14 @@
 <script type="text/javascript">
     function loadPlaylists () {
-        $('#playlistWrapper').load('/{{=request.application}}/radio/getPlaylistTracks/' + $('#playlistSelection').val()); 
-        /*$('#editPlaylist').sortable({
-            handle : '.handle',
-            update : function () {}
-        });*/
+        $('#playlistWrapper').load(
+            '/{{=request.application}}/radio/getPlaylistTracks/' + $('#playlistSelection').val(),
+            function() {
+                $('#editPlaylist').sortable({
+                    handle : '.handle',
+                    update : function () {}
+                })
+            }
+        );
         $('#selectedPlaylistID').text($('#playlistSelection').val());
     }
 
