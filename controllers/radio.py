@@ -69,10 +69,7 @@ def index():
     """
     Home page for GMR
     """
-    response.title = "Game Master Radio"
-    response.subtitle = "Music for your worlds"
     return dict(
-        message='Welcome to GMR!',
         playlists = getPlaylists()['playlists'],
         presets = getPresets()['presets']
         
