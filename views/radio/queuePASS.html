@@ -1,4 +1,4 @@
-    <ul id="currentPlaylist" class="playlist">
+<ul class="playlist">
     {{for track in playlist:}}
         <li>
             <input class="id" type="hidden" value="{{=track.id}}" />
@@ -14,4 +14,9 @@
             <a href="#" class="delete" onclick="$(this).parent().remove();">Delete</a>
         </li>
     {{pass}}
-    </ul>
+</ul>
+
+
+<p>Save as Playlist</p>
+<input type="text" class="playlistName" />
+<input type="button" id="savePlaylist" value="Save Playlist" onclick="$(this).siblings('ul').attr('id', 'savePlaylist'); savePlaylist('savePlaylist', $(this).siblings('.playlistName').val(), '0');" />

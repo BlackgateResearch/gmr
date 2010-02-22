@@ -12,11 +12,11 @@
         $('#currentPlaylistContainer').load(
             '/{{=request.application}}/radio/queuePASS/' + positivity + '/' + aggression + '/' + speed + '/' + suspense + '/',
             function() {
-                $('#currentPlaylist').sortable({
+                $('#currentPlaylistContainer ul.playlist').sortable({
                     handle : '.handle',
                     update : function () {}
                 });
-                $('#currentPlaylist li:first-child').addClass('current');
+                $('#currentPlaylistContainer ul.playlist li:first-child').addClass('current');
                 play();
             }
         );
@@ -27,19 +27,16 @@
         next();
     }
 
-    function previewPlaylist( positivity, aggression, speed, suspense, element ) {
+    function previewPlaylist( positivity, aggression, speed, suspense ) {
     //Loads a preview PASS playlist into #previewPlaylist
         {{ if DEBUG: }}
             console.log('PASS Ajax request made: ' + 'P - ' + positivity + ', A - ' + aggression + ', S - ' + speed + ', S - ' + suspense);
         {{ pass }}
-        
-        $('#' + element).load(
-            '/{{=request.application}}/radio/previewPlaylist/' + positivity + '/' + aggression + '/' + speed + '/' + suspense + '/',
+
+        $('#previewPlaylistContainer').load(
+            '/{{=request.application}}/radio/queuePASS/' + positivity + '/' + aggression + '/' + speed + '/' + suspense + '/',
             function() {
-                {{ if DEBUG: }}
-                    console.log('Preview playlist loaded');
-                {{ pass }}
-                $('#previewPlaylist').sortable({
+                $('#previewPlaylistContainer ul.playlist').sortable({
                     handle : '.handle',
                     update : function () {}
                 });
@@ -75,10 +72,18 @@
 
     function randmisePASS() {
     //TODO: Fix me! (Doesn't randomise values of xhtml form, just sliders)
-       $("#sliderPositivity").slider('value', Math.floor(Math.random()*10));
-       $("#sliderAggression").slider('value', Math.floor(Math.random()*10));
-       $("#sliderSpeed").slider('value', Math.floor(Math.random()*10));
-       $("#sliderSuspense").slider('value', Math.floor(Math.random()*10));
+        randomNum = Math.floor(Math.random()*10);
+        $("#sliderPositivity").slider('value', randomNum);
+        $('#id_positivity').val(randomNum);
+        randomNum = Math.floor(Math.random()*10);
+        $("#sliderAggression").slider('value', randomNum);
+        $('#id_aggression').val(randomNum);
+        randomNum = Math.floor(Math.random()*10);
+        $("#sliderSpeed").slider('value', randomNum);
+        $('#id_speed').val(randomNum);
+        randomNum = Math.floor(Math.random()*10);
+        $("#sliderSuspense").slider('value', randomNum);
+        $('#id_suspense').val(randomNum);
     }
 
 </script>

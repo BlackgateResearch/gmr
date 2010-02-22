@@ -94,11 +94,11 @@
         stop();
 
         //TODO: there's a better way to do this
-            if ( $('#currentPlaylist li.current').next().length != 0 ) {
-            $('#currentPlaylist li.current').next().addClass('next');
-            $('#currentPlaylist li.current').removeClass('current')
-            $('#currentPlaylist li.next').addClass('current');
-            $('#currentPlaylist li.next').removeClass('next');
+            if ( $('#currentPlaylistContainer ul.playlist li.current').next().length != 0 ) {
+            $('#currentPlaylistContainer ul.playlist li.current').next().addClass('next');
+            $('#currentPlaylistContainer ul.playlist li.current').removeClass('current')
+            $('#currentPlaylistContainer ul.playlist li.next').addClass('current');
+            $('#currentPlaylistContainer ul.playlist li.next').removeClass('next');
         } else {
             //Last track!
         }
@@ -113,11 +113,11 @@
         stop();
 
         //TODO: there's a better way to do this
-        if ( $('#currentPlaylist li.current').prev().length != 0 ) {
-            $('#currentPlaylist li.current').prev().addClass('prev');
-            $('#currentPlaylist li.current').removeClass('current')
-            $('#currentPlaylist li.prev').addClass('current');
-            $('#currentPlaylist li.prev').removeClass('prev');
+        if ( $('#currentPlaylistContainer ul.playlist li.current').prev().length != 0 ) {
+            $('#currentPlaylistContainer ul.playlist li.current').prev().addClass('prev');
+            $('#currentPlaylistContainer ul.playlist li.current').removeClass('current')
+            $('#currentPlaylistContainer ul.playlist li.prev').addClass('current');
+            $('#currentPlaylistContainer ul.playlist li.prev').removeClass('prev');
         } else {
             //First track!
         }
@@ -144,9 +144,12 @@
 
     function progress(currentTime) {
     //Updates the track seconds counter
-        $('.trackSeconds').text(currentTime);
+        $('.trackSeconds').text(((currentTime%60) < 10 ? '0' : '') + (currentTime%60)); //seconds padded to 2 digits
+        $('.trackMins').text(Math.floor(currentTime/60));
         {{ if DEBUG: }}
-        console.log(currentTime);
+        //console.log(currentTime);
+        //console.log('SEC:' + (currentTime%60));
+        //console.log('MIN:' + Math.floor(currentTime/60));
         {{ pass }}
     }
 
@@ -183,11 +186,4 @@
         });
     }
 
-    function playPlaylist(playlistID) {
-        /*$.ajax({
-            type: 'GET',
-            url: '/{{=request.application}}/radio/queuePlaylist/' + playlistID
-        });
-        next();*/
-    }
 </script>
