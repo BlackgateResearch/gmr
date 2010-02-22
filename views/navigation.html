@@ -1,5 +1,6 @@
 <div id="user">
     {{ try: }}
+        {{session.auth.user}}
         You are logged in as {{=session.auth.user.first_name}} {{=session.auth.user.last_name}}
         <a href="/{{=request.application}}/default/user/logout/">Logout</a>
     {{ except AttributeError: }}
