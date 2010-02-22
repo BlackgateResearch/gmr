@@ -1,9 +1,18 @@
+<div id="user">
+    {{ try: }}
+        You are logged in as {{=session.auth.user.first_name}} {{=session.auth.user.last_name}}
+        <a href="/{{=request.application}}/default/user/logout/">Logout</a>
+    {{ except AttributeError: }}
+        You are not logged in, please <a href="/{{=request.application}}/default/user/login/">login</a> or <a href="/{{=request.application}}/default/user/register/">register</a>.
+    {{ pass }}
+</div>
+
 <div id="nav">
     <ul>
-        <li><a href="#">OH</a></li>
-        <li><a href="#">HAI</a></li>
-        <li><a href="#">IS</a></li>
-        <li><a href="#">NAVIGATION</a></li>
-        <li><a href="#">KTHXBAI</a></li>
+        <li><a href="/{{=request.application}}/">Home</a></li>
+        <li><a href="/{{=request.application}}/radio/">Radio</a></li>
+        <li><a href="/{{=request.application}}/default/blog">Blog</a></li>
+        <li><a href="/{{=request.application}}/default/faq">FAQ</a></li>
+        <li><a href="/{{=request.application}}/default/about">About</a></li>
     </ul>
 </div>
