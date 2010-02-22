@@ -294,6 +294,8 @@ p {
     font-size: 1.6em;
     width: 100%;
     margin-top: 10px;
+    margin-bottom: 3px;
+    text-align: center;
 }
 
 .labelHigh {
@@ -405,8 +407,13 @@ p {
 
 .wrapper {
     margin: 10px;
-    padding: 10px;
     border: 2px solid #000000;
+    padding: 10px;
+}
+
+.playlist {
+    margin: 10px;
+    padding: 10px;
 }
 
 .playlist li {
@@ -562,6 +569,68 @@ p {
 
 .nudgeBar9 {
     width: 50px;
+}
+
+#userForm {
+    background-color: #cccccc;
+    width: 450px;
+    margin: 15px auto;
+    padding: 15px;
+    border: 2px solid #333333;
+}
+
+#userForm label {
+    font-size: 2em;
+    height: 25px;
+    line-height: 25px;
+    padding-right: 10px;
+}
+
+#userForm input.string,
+#userForm input.password,
+.auth_user_password_two__row input {
+    height: 25px;
+    padding: 5px;
+    width: 285px;
+    font-size: 2em;
+    border: 3px solid #333333;
+    background-color: #ffffff;
+    color: #333333;
+    -moz-border-radius: 10px; 
+    -webkit-border-radius: 10px;
+}
+
+#auth_user_remember {
+    height: 25px;
+    width: 25px;
+}
+
+#userForm input.password {
+    font-size: 2.5em;
+}
+
+#userForm td {
+    padding-bottom: 10px;
+}
+
+#submit_record__row input {
+    font-size: 2em;
+    height: 35px;
+    float: right;
+    padding: 0px 5px;
+}
+
+#user {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 10px;
+    border-bottom: 2px solid #333333;
+    border-left: 2px solid #333333;
+    -moz-border-radius-bottomleft: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    font-size: 1.2em;
+    background-color: #eeeeee;
 }
 
 /* </DECORATION> */
