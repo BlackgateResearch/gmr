@@ -23,13 +23,21 @@ def download():
     """
     return response.download(request,db)
     
+    
+def about():
+    return dict()  
+
+
+def faq():
+    return dict()
+
+    
+def blog():
+    redirect("http://blog.gamemasterradio.com")    
+    
   
 def index():
     """
     Home page for GMR
     """
-    response.title = "Game Master Radio"
-    response.subtitle = "Music for your worlds"
-    return dict(
-        message='Welcome to GMR!',    
-    )
+    return dict()
