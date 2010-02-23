@@ -134,8 +134,7 @@ db.define_table('faq',
 )
 
 db.define_table('about',
-    Field('gmr'),
-    Field('karl'),
-    Field('tris'),
-    Field('na')
+    Field('title'),
+    Field('body'),
+    Field('image','upload'),
 )
