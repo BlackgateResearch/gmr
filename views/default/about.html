@@ -7,6 +7,7 @@
         <h2>{{=entry.title}}</h2>
         <img src="{{=URL(r=request, f='image')}}/{{=entry.image}}" alt="{{=entry.title}}" />
         {{=XML(entry.body, sanitize=False)}}
+        <br class="clearFix" />
     </div>
 {{ pass }}  
 {{return}}

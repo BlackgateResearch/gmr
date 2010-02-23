@@ -649,7 +649,9 @@ p {
 }
 
 .basic {
-    margin: 15px;
+    margin: 0 auto;
+    width: 70%;
+    max-width: 800px;
 }
 
 .faq {
@@ -668,6 +670,24 @@ p {
 .answer {
     margin: 3px 2px;
 }
+
+.aboutEntry {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px dotted #333333;
+    clear: both;
+}
+
+.aboutEntry img {
+    float: right;
+    margin: 10px;
+}
+
+.clearFix {
+    clear: both;
+    width: 100%;
+}
+
 
 /* </DECORATION> */
 
