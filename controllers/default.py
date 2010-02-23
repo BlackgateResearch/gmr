@@ -23,6 +23,13 @@ def download():
     """
     return response.download(request, db)
     
+   
+def image(): #TODO:make sure people can only download images
+    """
+    allows downloading of uploaded files
+    http://..../[app]/default/download/[filename]
+    """
+    return response.download(request, db)   
     
 def about():
     """
