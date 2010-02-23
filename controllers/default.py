@@ -21,20 +21,26 @@ def download():
     allows downloading of uploaded files
     http://..../[app]/default/download/[filename]
     """
-    return response.download(request,db)
+    return response.download(request, db)
     
     
 def about():
-    return dict()  
+    """
+    About page
+    """
+    return dict(about = db().select(db.about.ALL)) 
 
 
 def faq():
-    return dict()
+    """
+    Frequently asked questions page
+    """
+    return dict(faqs = db().select(db.faq.ALL))
 
     
 def blog():
     redirect("http://blog.gamemasterradio.com")    
-    
+
   
 def index():
     """
