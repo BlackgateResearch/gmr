@@ -1,1 +1,12 @@
 {{extend 'basic.html'}}
+
+{{def mainContent():}}
+<h1>About Game Master Radio</h1>
+{{ for entry in about:  }}
+    <div class="aboutEntry">
+        <h2>{{=entry.title}}</h2>
+        <img src="{{=URL(r=request, f='image')}}/{{=entry.image}}" alt="{{=entry.title}}" />
+        {{=XML(entry.body, sanitize=False)}}
+    </div>
+{{ pass }}  
+{{return}}
