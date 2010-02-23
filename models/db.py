@@ -127,3 +127,15 @@ db.define_table('played_to_end',
     Field('track_id',db.track),
     Field('finishedTime','datetime')
 )
+
+db.define_table('faq',
+    Field('question'),
+    Field('answer')
+)
+
+db.define_table('about',
+    Field('gmr'),
+    Field('karl'),
+    Field('tris'),
+    Field('na')
+)
