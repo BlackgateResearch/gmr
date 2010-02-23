@@ -648,6 +648,27 @@ p {
     background-color: #eeeeee;
 }
 
+.basic {
+    margin: 15px;
+}
+
+.faq {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px dotted #333333;
+}
+
+.question {
+    font-style:italic;
+    padding: 2px 2px;
+    margin: 3px 0px;
+    background-color: #cccccc;
+}
+
+.answer {
+    margin: 3px 2px;
+}
+
 /* </DECORATION> */
 
 
