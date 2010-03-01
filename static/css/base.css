@@ -221,6 +221,14 @@ body {
 
 /* <DECORATION> */
 
+strong {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
 #header {
     background-color: #dddddd;
     border-bottom : 3px solid #333333;
@@ -688,6 +696,25 @@ p {
     width: 100%;
 }
 
+#gmrIntro {
+    margin-top: 20px;
+    padding: 30px;
+    background-color: #333333;
+}
+
+#gmrIntro h1,
+#gmrIntro p {
+    color: #ffffff;
+}
+
+.homeBox {
+    
+}
+
+.homeBox h2,
+.homeBox p {
+    margin: 10px;
+}
 
 /* </DECORATION> */
 
