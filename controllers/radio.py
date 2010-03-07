@@ -48,15 +48,26 @@ def getDeviation(positivity,aggression,speed,suspense,track):
 @auth.requires_login()
 def getArtists():
     """
-    Return all artists
+    Return all artists as a Dictionary
+    >>> isinstance(len(db().select(db.artist.ALL)),int)
+    True
     """
     return artistsDict(db().select(db.artist.ALL))
+
+def loginAsTestUser():
+    from gluon.storage import Storage     
+    session.auth=Storage() 
+    session.auth.user_id = 1
 
 @auth.requires_login()
 def artistsDict(artists):
     """
     Creates a dictionary containing the artist [id -> name]
     Input is a list of artist db objects
+
+    >>> #loginAsTestUser()
+    >>> isinstance(len(artistsDict(db().select(db.artist.ALL))),int)
+    True
     """
     artistDict = {}
     for artist in artists:
