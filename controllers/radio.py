@@ -55,6 +55,10 @@ def getArtists():
     return artistsDict(db().select(db.artist.ALL))
 
 def loginAsTestUser():
+    """
+    Aid to testing, allows code to be run as though user is logged in.
+    Does not function if called from web.
+    """
     from gluon.storage import Storage     
     session.auth=Storage() 
     session.auth.user_id = 1
@@ -65,7 +69,7 @@ def artistsDict(artists):
     Creates a dictionary containing the artist [id -> name]
     Input is a list of artist db objects
 
-    >>> #loginAsTestUser()
+    >>> loginAsTestUser()
     >>> isinstance(len(artistsDict(db().select(db.artist.ALL))),int)
     True
     """
@@ -99,9 +103,10 @@ def jsArtistLookup():
 def artistLookup(id):
     """
     Method for converting artist ID (int) to artist name (String)
+    Seems like it could be integrated into jsArtistLookup, but both provide
+    distinct functionality that makes the view readable.
     """
     return getArtists()[id]
-
 
 
 @auth.requires_login()
@@ -129,8 +134,8 @@ def getTrack():
 @auth.requires_login()
 def nextTrack():
     """
-    Gets the next track object,
-    while simultaniously removing it from the playlist
+    Returns the next track object, while simultaniously popping it off the end
+    of the playlist
     """
     if (len(session.currentPlaylist) > 0):
         return dict(
@@ -175,7 +180,8 @@ def queuePlaylist():
 @auth.requires_login()
 def previewPlaylist():
     """
-    Returns a playlist to user, given PASS query, with arists dictionary for looking up
+    Returns a playlist to user, given PASS query, with arists dictionary for
+    looking up
     """
     return dict(
     playlist = createPlaylist(),
@@ -272,7 +278,12 @@ def getPresets():
     Returns an alphabetical list of the currently logged-in user's presets
     """
     return(
-        dict(presets = db(db.preset.user_id==auth.user.id).select(db.preset.ALL,orderby=db.preset.name))
+        dict(presets = db(
+            db.preset.user_id==auth.user.id
+            ).select(
+                db.preset.ALL,orderby=db.preset.name
+            )
+        )
     )
 
 @auth.requires_login()
@@ -290,6 +301,7 @@ def getPlaylists():
 def updatePlaylist():
     """
     Creates new playlist, or updates existing
+    TODO: a little long, consider refactoring
     """
     playlistID = int(request.args(0))
     playlistName = request.args(1) 
@@ -340,12 +352,13 @@ def playlistBelongsToUser(playlistID):
     else:
         #Your german is very good
         #Thank you
-        authorised = False 
+        authorised = False
     return authorised
 
 def presetBelongsToUser(presetID):
     """
     Checks wether a preset (given by id) belongs to the current user
+    TODO: Discuss wheather this redundancy is worth it, re playlistBelongsToUser
     """  
     authorised = False
     thePreset = db(db.preset.id==presetID).select()[0]
@@ -395,7 +408,6 @@ def deletePreset():
         raise HTTP(401)
     else:
         pass   
-    
     db(db.preset.id==presetID).delete()
     
     return("OK")
@@ -414,6 +426,7 @@ def deletePlaylist():
         pass
             
     db(db.playlist_track.playlist_id==playlistID).delete()
+    
     db(db.playlist.id==playlistID).delete()
 
 
