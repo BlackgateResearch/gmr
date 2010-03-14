@@ -114,7 +114,6 @@ db.define_table('nudge',
     Field('pass_attribute','integer'),
     Field('direction')  
 )
-#db.mytable.myfield.requires=[IS_EMAIL(error_message="invalid email")]
 
 db.define_table('played',
     Field('user_id',db.auth_user),
