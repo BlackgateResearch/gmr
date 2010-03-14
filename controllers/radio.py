@@ -3,7 +3,7 @@
 import operator, datetime
 
 #########################################################################
-## This is a radio controller
+## This is the radio controller
 ## - index is the default action of any application
 ## - user is required for authentication and authorization
 ## - download is for downloading files uploaded in the db (does streaming)
