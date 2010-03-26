@@ -223,15 +223,14 @@ def sortTracks(genreDict):
     Takes a dictionary of deviation:track, sorts it by deviation,
     and returns the ordered list of tracks
     """
-    sortedTrackList = []    
+    #sortedTrackList = []    
     #sort the dictionary by value, convert to a list of tuples
-    sortedGenreDict = sorted(genreDict.keys()) 
+    #sortedGenreDict = sorted(genreDict.keys()) 
 
     #discard the deviation values to get back a sorted track list
-    for key in sortedGenreDict:
-        sortedTrackList.append(genreDict[key])
-        
-    return sortedTrackList
+    #for key in sortedGenreDict:
+    #    sortedTrackList.append(genreDict[key])
+    return [genreDict[key] for key in sorted(genreDict.keys())]
 
 
 @auth.requires_login()
