@@ -9,22 +9,6 @@ import operator, datetime
 ## - download is for downloading files uploaded in the db (does streaming)
 #########################################################################  
 
-def ensurePositive(val):
-    """
-    TODO: There must be a better way of doing this!
-    >>> ensurePositive(0)
-    0
-    >>> ensurePositive(1)
-    1
-    >>> ensurePositive(-1)
-    1
-    """
-    if val < 0:
-        return val * -1
-    else:
-        return val
-
-
 @auth.requires_login()
 def getDeviation(positivity,aggression,speed,suspense,track):
     """
@@ -37,10 +21,10 @@ def getDeviation(positivity,aggression,speed,suspense,track):
     deviationSuspense = int(speed) - int(track.speed)
     deviationPositive = int(suspense) - int(track.suspense)
 
-    deviation = ensurePositive(deviationSpeed) \
-        + ensurePositive(deviationCombat) \
-        + ensurePositive(deviationSuspense) \
-        + ensurePositive(deviationPositive)
+    deviation = abs(deviationSpeed) \
+        + abs(deviationCombat) \
+        + abs(deviationSuspense) \
+        + abs(deviationPositive)
 
     return deviation
 
