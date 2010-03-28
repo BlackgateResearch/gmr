@@ -21,3 +21,10 @@ def download():
     http://..../[app]/default/download/[filename]
     """
     return response.download(request,db)
+    
+def upload():
+    form = SQLFORM(db.track)
+    form.artistID = 1
+    if form.accepts(request.vars, session):
+        response.flash = 'track uploaded'
+    return dict(form = form)
