@@ -299,6 +299,103 @@ p {
     font-size: 1.6em;
 }
 
+/* Tabs and Jquery UI overrides */
+
+
+#tabset .ui-widget-content { 
+    border: 1px solid #dddddd; 
+    background: #eeeeee url(images/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top repeat-x; 
+    color: #333333; 
+}
+
+#tabset .ui-widget-content a { 
+    color: #333333; 
+}
+
+#tabset .ui-widget-header { 
+    border: none; 
+    background-image: none;
+    background-color: inherit;
+    color: inherit; 
+    font-weight: inherit; 
+}
+
+#tabset .ui-widget-header a { 
+    color: #ffffff;
+}
+
+#tabset .ui-tabs { padding: 0px; }
+#tabset .ui-tabs .ui-tabs-nav { list-style: none; position: relative; padding: 0px; }
+#tabset .ui-tabs .ui-tabs-nav li { position: relative; float: left; border-bottom-width: 0 !important; margin: 0px; padding: 0px; }
+#tabset .ui-tabs .ui-tabs-nav li a { float: left; text-decoration: none; padding: 0px; }
+#tabset .ui-tabs .ui-tabs-nav li.ui-tabs-selected { padding-bottom: 0px; border-bottom-width: 0; }
+#tabset .ui-tabs .ui-tabs-nav li.ui-tabs-selected a, 
+#tabset .ui-tabs .ui-tabs-nav li.ui-state-disabled a, 
+#tabset .ui-tabs .ui-tabs-nav li.ui-state-processing a { cursor: text; }
+#tabset .ui-tabs .ui-tabs-nav li a, 
+#tabset .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { cursor: pointer; } /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+#tabset .ui-tabs .ui-tabs-panel { padding: 0px; display: block; border-width: 0; background: none; }
+#tabset .ui-tabs .ui-tabs-hide { display: none !important; }
+
+#tabset .ui-state-default, 
+#tabset .ui-widget-content .ui-state-default { 
+    border: none;
+    background-image: none;
+    background-color: #333333;
+    font-weight: bold; 
+    color: #ffffff; 
+    outline: none;
+}
+
+#tabset .ui-state-default a, 
+#tabset .ui-state-default a:link, 
+#tabset .ui-state-default a:visited { 
+    color: #ffffff; 
+    text-decoration: none; 
+    outline: none; 
+}
+
+#tabset .ui-state-hover, 
+#tabset .ui-widget-content .ui-state-hover, 
+#tabset .ui-state-focus, 
+#tabset .ui-widget-content .ui-state-focus { 
+    border: none;
+    background-image: none;
+    background-color: #333333;
+    font-weight: bold; 
+    color: #ffffff; 
+    outline: none; 
+}
+
+#tabset .ui-state-hover a, 
+#tabset .ui-state-hover a:hover { 
+    color: #ffffff; 
+    text-decoration: none; 
+    outline: none;
+    font-weight: bold; 
+}
+
+#tabset .ui-state-active, 
+#tabset .ui-widget-content .ui-state-active { 
+    border: none;
+    background-image: none;
+    background-color: #777777;
+    font-weight: bold; 
+    color: #333333; 
+    outline: none; 
+}
+
+#tabset .ui-state-active a, 
+#tabset .ui-state-active a:link, 
+#tabset .ui-state-active a:visited { 
+    color: #333333; 
+    outline: none; 
+    text-decoration: none;
+    font-weight: bold; 
+}
+
+
+
 .button {
     display: block;
     width: 65px;
