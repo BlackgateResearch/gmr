@@ -76,10 +76,11 @@
      
             }
         });
-      
-
-
-
+        $( ".nudgeContainer a" ).each(
+            function(){
+                $(this).removeClass('disabled');
+            }
+        );
     }
 
     function stop() {
@@ -184,6 +185,11 @@
             type: 'GET',
             url: '/{{=request.application}}/radio/nudge/' + $('#trackID').text() + '/' + moodComponent + '/' + direction
         });
+        $( ".nudgeContainer a" ).each(
+            function(){
+                $(this).addClass('disabled');
+            }
+        );
     }
 
 </script>

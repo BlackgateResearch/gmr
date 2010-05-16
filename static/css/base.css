@@ -613,6 +613,14 @@ p {
     background-image: url(/gmr/static/images/arrow_down.png);
 }
 
+.nudgeUp.disabled {
+    background-image: url(/gmr/static/images/arrow_up_disabled.png);
+}
+
+.nudgeDown.disabled {
+    background-image: url(/gmr/static/images/arrow_down_disabled.png);
+}
+
 .nudgeBar {
     float: left;
     width: 50px;
