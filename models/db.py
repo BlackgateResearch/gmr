@@ -1,5 +1,9 @@
 # coding: utf8
 
+if False:
+    from gluon.sql import *
+    from gluon.validators import *
+
 #########################################################################
 ## This scaffolding model makes your app work on Google App Engine too
 #########################################################################

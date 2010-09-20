@@ -1,5 +1,14 @@
 # coding: utf8
 
+if False:
+    from gluon.globals import *
+    from gluon.html import *
+    from gluon.http import *
+    from gluon.sqlhtml import SQLFORM, SQLTABLE, form_factory
+    session = Session()
+    request = Request()
+    response = Response()
+
 import operator, datetime
 
 #########################################################################
@@ -157,7 +166,7 @@ def queuePlaylist():
     Returns playlist, given playlist ID query
     """
     return dict(
-        playlist = createPlaylist(),
+        playlist = createPlaylist(), #TODO: This is hax
         lookupArtist = getArtists()
     )
 
