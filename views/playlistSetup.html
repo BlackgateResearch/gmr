@@ -1,4 +1,5 @@
 <script type="text/javascript">
+  /* <![CDATA[ */
     function loadPlaylists () {
         $('#playlistWrapper').load(
             '/{{=request.application}}/radio/getPlaylistTracks/' + $('#playlistSelection').val(),
@@ -27,4 +28,5 @@
             console.log('Response recieved, triggering autoplay of next track');
         {{ pass }}
     }
+  /* ]]> */
 </script>

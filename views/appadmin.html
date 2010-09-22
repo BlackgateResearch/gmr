@@ -1,14 +1,16 @@
 {{extend 'admin.html'}}
 
-    <script><!--
-    jQuery(document).ready(function(){
-      jQuery("table.sortable tbody tr").mouseover( function() {
-         jQuery(this).addClass("highlight"); }).mouseout( function() { 
-         jQuery(this).removeClass("highlight"); });
-      jQuery('table.sortable tbody tr:odd').addClass('odd');
-      jQuery('table.sortable tbody tr:even').addClass('even');
-    });
-    //--></script>
+    <script type="text/javascript">
+      /* <![CDATA[ */
+      jQuery(document).ready(function(){
+        jQuery("table.sortable tbody tr").mouseover( function() {
+           jQuery(this).addClass("highlight"); }).mouseout( function() { 
+           jQuery(this).removeClass("highlight"); });
+        jQuery('table.sortable tbody tr:odd').addClass('odd');
+        jQuery('table.sortable tbody tr:even').addClass('even');
+      });
+      /* ]]> */
+    </script>
 
     {{if request.function=='index':}}
       <h1>{{=T("Available databases and tables")}}</h1>

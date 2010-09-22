@@ -1,7 +1,8 @@
 {{extend 'layout.html'}}
 
-<script type="text/javascript" src="/gmr/static/swfobject.js"></script>
+<script type="text/javascript" src="/gmr/static/swfobject.js" />
 		<script type="text/javascript">
+		  /* <![CDATA[ */
 			var flashvars = {};
 			var params = {};
 			var attributes = {};
@@ -65,6 +66,7 @@
      function sendToJavaScript(value) {
          document.forms["form1"].output.value += "ActionScript says: " + value + "\n";
      }
+     /* ]]> */
  </script>
 
 <body onload="pageInit();">

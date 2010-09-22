@@ -1,4 +1,5 @@
-<script>
+<script type="text/javascript">
+  /* <![CDATA[ */
     function savePreset( positivity, aggression, speed, suspense, presetName ) {
     //Saves PASS preset
         {{ if DEBUG: }}
@@ -41,4 +42,5 @@
         });
         $('#presetTab').load('/{{=request.application}}/radio/getPresets.html');
     }
+  /* ]]> */
 </script>

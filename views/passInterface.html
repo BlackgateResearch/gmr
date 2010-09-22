@@ -3,7 +3,7 @@
 <script type="text/JavaScript" src="{{=URL(r=request,c='static/js',f='ui.slider.js')}}"></script>
 
 <script type="text/JavaScript">
-
+  /* <![CDATA[ */
     function playPASS(positivity, aggression, speed, suspense ) {
     //Loads a PASS playlist into #currentPlaylistContainer and calls play()
         {{ if DEBUG: }}
@@ -85,5 +85,5 @@
         $("#sliderSuspense").slider('value', randomNum);
         $('#id_suspense').val(randomNum);
     }
-
+  /* ]]> */
 </script>
