@@ -1,0 +1,49 @@
+<div id="player">
+    <h2>GMR Player <span class="trackName">-</span></h2>
+    
+    <input type="hidden" id="trackID" />
+    
+    <div id="alternativeContent">
+	    <a href="http://www.adobe.com/go/getflashplayer">
+        	<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+	    </a>
+    </div>
+
+    {{= A('<< Prev', _href='#', _class='button', _id='playerNext', _onclick='previous();')}} 
+    {{= A('Stop', _href='#', _class='button', _id='playerStop', _onclick='stop();')}}
+    {{= A('Play', _href='#', _class='button', _id='playerPause', _onclick='playPause();')}}      
+    {{= A('Next >>', _href='#', _class='button', _id='playerNext', _onclick='next();')}} 
+
+    <p style="clear: both;">Track: <span class="trackName">-</span></p>
+    <p>Elapsed Time: <span class="trackMins">-</span>:<span class="trackSeconds">-</span></p>
+    <p>Artist: <span class="trackArtist">-</span></p>
+    <div class="nudgeContainer">
+        <span class="passNudge">
+            <span class="nudgeLabel">Positivity:</span>
+            <a class="nudgeDown" href="#" title="Nudge Down" onclick="nudge('0', 'd'); return true;">Down</a>
+            <span class="nudgeBar"><span id="barPositivity"> </span></span>
+            <a class="nudgeUp" href="#" title="Nudge Up" onclick="nudge('0', 'u'); return true;">Up</a>
+        </span>
+        <span class="passNudge">
+            <span class="nudgeLabel">Aggression:</span>
+            <a class="nudgeDown" href="#" title="Nudge Down" onclick="nudge('1', 'd'); return true;">Down</a>
+            <span class="nudgeBar"><span id="barAggression"> </span></span>
+            <a class="nudgeUp" href="#" title="Nudge Up" onclick="nudge('1', 'u'); return true;">Up</a>
+        </span>
+        <span class="passNudge">
+            <span class="nudgeLabel">Speed:</span>
+            <a class="nudgeDown" href="#" title="Nudge Down" onclick="nudge('2', 'd'); return true;">Down</a>
+            <span class="nudgeBar"><span id="barSpeed"> </span></span>
+            <a class="nudgeUp" href="#" title="Nudge Up" onclick="nudge('2', 'u'); return true;">Up</a>
+        </span>
+        <span class="passNudge">
+            <span class="nudgeLabel">Suspense:</span>
+            <a class="nudgeDown" href="#" title="Nudge Down" onclick="nudge('3', 'd'); return true;">Down</a>
+            <span class="nudgeBar"><span id="barSuspense"> </span></span>
+            <a class="nudgeUp" href="#" title="Nudge Up" onclick="nudge('3', 'u'); return true;">Up</a>
+        </span>
+    </div>
+</div>
+
+<div id="currentPlaylistContainer">
+</div>

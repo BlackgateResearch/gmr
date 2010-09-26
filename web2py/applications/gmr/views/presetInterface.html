@@ -1,0 +1,46 @@
+<script type="text/javascript">
+  /* <![CDATA[ */
+    function savePreset( positivity, aggression, speed, suspense, presetName ) {
+    //Saves PASS preset
+        {{ if DEBUG: }}
+            console.log('Save Preset Ajax request made: ' + 'P - ' + positivity + ', A - ' + aggression + ', S - ' + speed + ', S - ' + suspense + ', Name - ' + presetName);
+        {{ pass }}
+
+        $.ajax({
+            type: 'POST',
+            url: '/{{=request.application}}/radio/createPreset/',
+            data: ('name=' + presetName + '&positivity=' + positivity + '&aggression=' + aggression + '&speed=' + speed + '&suspense=' + suspense),
+            success: function() {
+                {{ if DEBUG: }}
+                    console.log('Preset Save Success');
+                {{ pass }}
+            },
+            error: function() {
+                {{ if DEBUG: }}
+                    console.log('Preset Save Error');
+                {{ pass }}
+            }
+        });
+        $('#presetTab').load('/{{=request.application}}/radio/getPresets.html');
+    }
+
+    function deletePreset(presetID) {
+    //Deletes the specified preset
+        $.ajax({
+            type: 'POST',
+            url: '/{{=request.application}}/radio/deletePreset/' + presetID,
+            success: function() {
+                {{ if DEBUG: }}
+                    console.log('Preset Delete Success');
+                {{ pass }}
+            },
+            error: function() {
+                {{ if DEBUG: }}
+                    console.log('Preset Delete Error');
+                {{ pass }}
+            }
+        });
+        $('#presetTab').load('/{{=request.application}}/radio/getPresets.html');
+    }
+  /* ]]> */
+</script>

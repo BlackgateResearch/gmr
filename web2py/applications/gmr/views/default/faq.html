@@ -1,0 +1,11 @@
+{{extend 'basic.html'}}
+
+{{def mainContent():}}
+<h1>FAQs</h1>
+{{ for faq in faqs:  }}
+    <div class="faq">
+        <p class="question">{{=faq.question}}</p>
+        <p class="answer">{{=faq.answer}}</p>
+    </div>
+{{ pass }}  
+{{return}}

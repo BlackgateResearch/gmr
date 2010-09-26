@@ -1,0 +1,45 @@
+  $('#id_speed').val('4');
+  $('#id_aggression').val('4');
+  $('#id_suspense').val('4');
+  $('#id_positivity').val('4');
+  
+  $("#genreForm").hide();
+  $("#jsGenreForm").show();
+  
+  $("#sliderSpeed").slider({
+			value:4,
+			min: 0,
+			max: 9,
+			step: 1,
+			slide: function(event, ui) {
+				$("#id_speed").val(ui.value);
+			}
+  });
+  $("#sliderAggression").slider({
+			value:4,
+			min: 0,
+			max: 9,
+			step: 1,
+			slide: function(event, ui) {
+				$("#id_aggression").val(ui.value);
+			}
+  });
+  $("#sliderSuspense").slider({
+			value:4,
+			min: 0,
+			max: 9,
+			step: 1,
+			slide: function(event, ui) {
+				$("#id_suspense").val(ui.value);
+			}
+  });
+  $("#sliderPositivity").slider({
+			value:4,
+			min: 0,
+			max: 9,
+			step: 1,
+			slide: function(event, ui) {
+				$("#id_positivity").val(ui.value);
+			}
+  });
+

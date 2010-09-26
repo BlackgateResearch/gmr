@@ -1,0 +1,32 @@
+<script type="text/javascript">
+  /* <![CDATA[ */
+    function loadPlaylists () {
+        $('#playlistWrapper').load(
+            '/{{=request.application}}/radio/getPlaylistTracks/' + $('#playlistSelection').val(),
+            function() {
+                $('#editPlaylist').sortable({
+                    handle : '.handle',
+                    update : function () {}
+                })
+            }
+        );
+        $('#selectedPlaylistID').text($('#playlistSelection').val());
+    }
+
+    function playPlaylist(playlistID) {
+        {{ if DEBUG: }}
+            console.log('Play playlist Ajax request made: ' + playlistID);
+        {{ pass }}
+        $.ajax({
+          type: "GET",
+          url: "/{{=request.application}}/radio/queuePlaylist/" + playlistID,
+          success: function() {
+            next();
+          }
+        });
+        {{ if DEBUG: }}
+            console.log('Response recieved, triggering autoplay of next track');
+        {{ pass }}
+    }
+  /* ]]> */
+</script>

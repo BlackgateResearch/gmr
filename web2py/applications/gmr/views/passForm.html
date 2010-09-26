@@ -1,0 +1,53 @@
+<div class="wrapper">
+    <form action="." method="post" id="genreForm"> 
+    <label for="id_speed">Speed:</label> <input id="id_speed" type="text" name="speed" maxlength="1" />
+    <label for="id_aggression">Aggression:</label> <input id="id_aggression" type="text" name="aggression" maxlength="1" />
+    <label for="id_suspense">Suspense:</label> <input id="id_suspense" type="text" name="suspense" maxlength="1" />
+    <label for="id_positivity">Positive:</label> <input id="id_positivity" type="text" name="positivity" maxlength="1" />
+    <input type="submit" value="Listen..." /> 
+    </form> 
+
+    <input type="button" id="randomisePASS" value="Randomise" onclick="randmisePASS();" />
+
+ 
+    <form action="." id="jsGenreForm" style="display: hidden;">
+      <span class="label">Positivity</span>
+      <span class="labelLow">Negative</span>
+      <div id="sliderPositivityContainer" class="slider">
+        <div id="sliderPositivity"></div>
+      </div>
+      <span class="labelHigh">Positive</span><br /><br />
+
+      <span class="label">Aggression</span>
+      <span class="labelLow">Peace</span>
+      <div id="sliderAggressionContainer" class="slider">
+        <div id="sliderAggression"></div>
+      </div>
+      <span class="labelLow">War</span><br /><br />
+
+      <span class="label">Speed</span>
+      <span class="labelLow">Slow</span>
+      <div id="sliderSpeedContainer" class="slider">
+        <div id="sliderSpeed"></div>
+      </div>
+      <span class="labelLow">Fast</span><br /><br />
+
+      <span class="label">Suspense</span>
+      <span class="labelLow">Relaxed</span>
+      <div id="sliderSuspenseContainer" class="slider">
+        <div id="sliderSuspense"></div>
+      </div>
+      <span class="labelLow">Suspense</span><br /><br />
+
+      <div class="buttons">
+          <input type="button" id="jsGenreFormPreview" value="Preview" onclick="previewPlaylist($('#id_positivity').val(), $('#id_aggression').val(), $('#id_speed').val(), $('#id_suspense').val() );" />
+
+          <input type="button" id="jsGenreFormListen" value="Listen" onclick="playPASS($('#id_positivity').val(), $('#id_aggression').val(), $('#id_speed').val(), $('#id_suspense').val() );" />
+      </div>
+    </form> 
+
+    {{ include 'savePresetForm.html' }}
+</div>
+
+<div id="previewPlaylistContainer">
+</div>

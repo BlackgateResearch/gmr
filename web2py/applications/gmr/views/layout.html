@@ -1,0 +1,88 @@
+{{ DEBUG = True }}
+
+{{def additionalHead():}}
+<!-- additionalJS not defined -->
+{{return}}
+
+{{def docReadyJS():}}
+/* docReadyJS not defined */
+{{return}}
+
+{{def bodyOnload():}}
+/* bodyOnload not defined */
+{{return}}
+
+{{def content1():}}
+<!-- content1 not defined -->
+{{return}}
+
+{{def content2():}}
+<!-- content2 not defined -->
+{{return}}
+
+{{def content3():}}
+<!-- content3 not defined -->
+{{return}}
+
+{{include}}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{=T.accepted_language or 'en'}}">
+  <head>
+    <title>{{=response.title or request.application}}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="keywords" content="{{=response.keywords}}" />
+    <meta name="description" content="{{=response.description}}" />
+    <meta name="author" content="{{=response.author}}" />
+
+    {{include 'web2py_ajax.html'}}
+    <script type="text/javascript" src="/{{=request.application}}/static/js/jquery-ui-1.7.2.custom.js"></script>
+    <script type="text/javascript" src="/{{=request.application}}/static/js/ui.sortable.js"></script>    
+
+    {{additionalHead()}}
+
+    <link href="{{=URL(r=request, c='static/css', f='base.css')}}" rel="stylesheet" type="text/css"/>
+    
+    <script type="text/javascript"> <!--
+    $(document).ready(function()
+        {
+            {{docReadyJS()}}
+        });
+    //--> </script>
+    
+  </head>
+  <body onload="{{bodyOnload()}}">
+    <div id="wrapper">
+        <div id="header">
+            <div id="headerInner">
+                <img id="logo" src="{{=URL(request.application,'static','gmr.png')}}" alt="" title="GMR - Music for your worlds" />
+                <h1>Game Master Radio</h1>
+                <span class="subtitle">Music for your worlds.</span>
+            </div>
+        {{include 'navigation.html'}}
+        </div>
+
+        <div id="mainContent">
+            <div class="flash">{{=response.flash or ''}}</div>
+         
+            <div id="content1" class="layout33 column">
+                {{content1()}}
+            </div>
+
+            <div id="content2" class="layout33 column">
+                {{content2()}}               
+            </div>
+                
+            <div id="content3" class="layout33 column">
+                {{content3()}}
+            </div>
+        </div>
+
+        <!--<div id="footer">
+            <p>{{=T('Copyright')}} &copy; Game Master Radio 2009</p>
+            <p><a href="http://nefariousapparatus.com/" target="_blank">Nefarious Apparatus</a></p>
+            <p>Debug Info: {{='/'.join(['',request.application,request.controller,request.function]+request.args)}}</p>
+        </div>-->
+    </div>
+    </body>
+</html>

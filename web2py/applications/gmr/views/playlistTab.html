@@ -1,0 +1,11 @@
+<h2>Playlists</h2>
+<input type="hidden" id="selectedPlaylistID" />
+<p>Select a playlist to load.</p>
+<select id="playlistSelection">
+    {{for playlist in playlists:}}
+    {{=OPTION(playlist.name, _value = playlist.id )}}
+    {{pass}}
+</select>
+<input type="submit" onclick="loadPlaylists(); return true;" value="Open" />
+
+<div id="playlistWrapper"></div>

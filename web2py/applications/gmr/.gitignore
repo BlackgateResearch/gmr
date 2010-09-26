@@ -1,0 +1,8 @@
+!.gitignore
+*.pyc
+*.py~
+*.html~
+*.*~
+*.sqlite
+databases/
+errors/

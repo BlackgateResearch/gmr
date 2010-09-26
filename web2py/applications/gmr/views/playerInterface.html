@@ -1,0 +1,195 @@
+<script type="text/javascript">
+
+     var state = "stopped";
+     var jsReady = false;
+
+     function flashIsReady() {
+        return jsReady;
+     }
+
+     function pageInit() {
+         jsReady = true;
+     }
+
+     function thisMovie(movieName) {
+         if (navigator.appName.indexOf("Microsoft") != -1) {
+             return window[movieName];
+         } else {
+             return document[movieName];
+         }
+     }
+
+    function setState(newState) {
+    //Updates the current playing state
+        state = newState;
+        {{ if DEBUG: }}
+        console.log('Current State: ' + newState);
+        {{ pass }}
+        switch (newState) {
+            case 'paused':
+                $('#playerPause').text('Play');
+                break;
+            case 'playing':
+                $('#playerPause').text('Pause');
+                break;
+            case 'stopped':
+                $('#playerPause').text('Play');
+                break;
+        }
+    }
+
+    function lastTrack() {
+    //Called when there are no more tracks in the playlist
+        $('.trackName').text('End of playlist');
+    }
+
+    function play() {
+    //sends an MP3 url to the flash player to play and sends a play to the server
+        $.ajax({
+            type: 'GET',
+            url: '/{{=request.application}}/radio/trackPlayed/' + $('.current .id').val(),
+            success: function() {
+                $.getJSON('/{{=request.application}}/radio/getTrack.json/' + $('.current .id').val(), function(data) {
+                    if (!data.end) {
+                        //Play and display the retrieved track
+                        thisMovie("GMRPlayer").play('{{=URL(r=request, f='download')}}' + '/' + data.track.mp3);
+                        $('.trackName').text(data.track.name);
+                        $('.trackArtist').load('{{=URL(r=request, f='jsArtistLookup')}}' + '/' + data.track.artist_id);
+                        $('#trackID').text(data.track.id);
+                        $('#barPositivity').text(data.track.positivity);
+                        $('#barAggression').text(data.track.aggression);
+                        $('#barSpeed').text(data.track.speed);
+                        $('#barSuspense').text(data.track.suspense);
+                        $('#barPositivity').removeClass();
+                        $('#barPositivity').addClass('nudgeBar' + data.track.positivity);
+                        $('#barAggression').removeClass();
+                        $('#barAggression').addClass('nudgeBar' + data.track.aggression);
+                        $('#barSpeed').removeClass();
+                        $('#barSpeed').addClass('nudgeBar' + data.track.speed);
+                        $('#barSuspense').removeClass();
+                        $('#barSuspense').addClass('nudgeBar' + data.track.suspense);
+                        setState('playing');
+                    } else {
+                        //Track details failed
+                    }
+            });
+     
+            }
+        });
+        $( ".nudgeContainer a" ).each(
+            function(){
+                $(this).removeClass('disabled');
+            }
+        );
+    }
+
+    function stop() {
+    //stops the currently playing track
+        thisMovie("GMRPlayer").stop();
+        setState('stopped');
+    }
+
+    function next() {
+    //Plays the next track in the playlist
+
+        stop();
+
+        //TODO: there's a better way to do this
+            if ( $('#currentPlaylistContainer ul.playlist li.current').next().length != 0 ) {
+            $('#currentPlaylistContainer ul.playlist li.current').next().addClass('next');
+            $('#currentPlaylistContainer ul.playlist li.current').removeClass('current')
+            $('#currentPlaylistContainer ul.playlist li.next').addClass('current');
+            $('#currentPlaylistContainer ul.playlist li.next').removeClass('next');
+        } else {
+            //Last track!
+        }
+        
+        play();
+
+    }
+
+    function previous() {
+    //Plays the previous track in the playlist
+
+        stop();
+
+        //TODO: there's a better way to do this
+        if ( $('#currentPlaylistContainer ul.playlist li.current').prev().length != 0 ) {
+            $('#currentPlaylistContainer ul.playlist li.current').prev().addClass('prev');
+            $('#currentPlaylistContainer ul.playlist li.current').removeClass('current')
+            $('#currentPlaylistContainer ul.playlist li.prev').addClass('current');
+            $('#currentPlaylistContainer ul.playlist li.prev').removeClass('prev');
+        } else {
+            //First track!
+        }
+        
+        play();
+    }
+
+    function playPause() {
+    //handles the play/pause button
+        switch(state) {
+            case 'paused':
+                setState('playing');
+                thisMovie("GMRPlayer").pause();
+                break;
+            case 'playing':
+                setState('paused');
+                thisMovie("GMRPlayer").pause();
+                break;
+            case 'stopped':
+                play();
+                break;
+        }
+    }
+
+    function progress(currentTime) {
+    //Updates the track seconds counter
+        $('.trackSeconds').text(((currentTime%60) < 10 ? '0' : '') + (currentTime%60)); //seconds padded to 2 digits
+        $('.trackMins').text(Math.floor(currentTime/60));
+        {{ if DEBUG: }}
+        //console.log(currentTime);
+        //console.log('SEC:' + (currentTime%60));
+        //console.log('MIN:' + Math.floor(currentTime/60));
+        {{ pass }}
+    }
+
+    function soundComplete() {
+    //Called by flash when a track finished playing, plays the next track
+        {{ if DEBUG: }}
+        console.log('Sound Complete');
+        {{ pass }}
+        next();
+    }
+
+    function loadComplete() {
+    //Called by flash when track is fully buffered
+        {{ if DEBUG: }}
+        console.log('Load Complete');
+        {{ pass }}
+    }
+
+    function playabckStart() {
+    //Called by flash when playback started
+        {{ if DEBUG: }}
+        console.log('Playback Started');
+        {{ pass }}
+    }
+
+    function sendToJavaScript(value) {
+        document.forms["form1"].output.value += "ActionScript says: " + value + "\n";
+    }
+
+    function nudge(moodComponent, direction) {
+        $.ajax({
+            type: 'GET',
+            url: '/{{=request.application}}/radio/nudge/' + $('#trackID').text() + '/' + moodComponent + '/' + direction
+        });
+        $( ".nudgeContainer a" ).each(
+            function(){
+                $(this).addClass('disabled');
+            }
+        );
+    }
+
+</script>

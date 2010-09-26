@@ -1,0 +1,873 @@
+/* <RESET> */
+
+html {
+	color: #000;
+	background: #FFF;
+}
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+button,
+textarea,
+p,
+blockquote,
+th,
+td {
+	margin: 0;
+	padding: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+fieldset,
+img {
+	border: 0;
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var,
+optgroup {
+	font-style: inherit;
+	font-weight: inherit;
+}
+
+del,
+ins {
+	text-decoration: none;
+}
+
+li {
+	list-style: none;
+}
+
+caption,
+th {
+	text-align: left;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: 100%;
+	font-weight: normal;
+}
+
+q:before,
+q:after {
+	content: '';
+}
+
+abbr,
+acronym {
+	border: 0;
+	font-variant: normal;
+}
+
+sup {
+	vertical-align: baseline;
+}
+
+sub {
+	vertical-align: baseline;
+}
+
+/*because legend doesn't inherit in IE */
+legend {
+	color: #000;
+}
+
+input,
+button,
+textarea,
+select,
+optgroup,
+option {
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+}
+
+/*@purpose To enable resizing for IE */
+/*@branch For IE6-Win, IE7-Win */
+input,
+button,
+textarea,
+select {
+	*font-size: 100%;
+}
+
+html {
+    font-size: 10px; /* reset for easy EM calculation */
+}
+
+/* </RESET> */
+
+/* <CONSTANTS> */
+
+.layout33 {
+    float: left;
+    width: 33.29%;
+}
+
+/* </CONSTANTS> */
+
+/* <LAYOUT> */
+
+html, body {
+    height: 100%;
+}
+
+#wrapper {
+    min-width: 900px;
+    position:relative;
+
+	height: 100%;
+}
+
+#header {
+    width: 100%;
+    height: 120px;
+    position: relative;
+}
+
+#headerInner {
+
+}
+
+#nav {
+    height: 40px;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+
+#nav ul {
+    
+}
+
+#nav ul li {
+    width: 10em;
+    float: left;
+}
+
+#mainContent {
+    height: 100%;
+}
+
+.column {
+    height: 100%;
+}
+
+.preset {
+    float: left;
+    width: 175px;
+    height: 25px;
+}
+
+#footer {
+    clear: both;
+    height: 100px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+}
+
+/* </LAYOUT> */
+
+
+
+/* <TEXT> */
+
+body {
+    font-family: arial, helvetica, sans-serif;
+}
+
+/* </TEXT> */
+
+
+
+/* <DECORATION> */
+
+strong {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
+#header {
+    background-color: #dddddd;
+    border-bottom : 3px solid #333333;
+}
+
+#header img {
+    float: left;
+    margin: 1em;
+}
+
+.subtitle {
+    font-size: 1.4em;
+    font-style: italic;
+}
+
+
+#nav {
+    background-color: #333333;
+    padding: 10px 10px 0px 10px;
+}
+
+#nav ul li {
+    height: 40px;
+}
+
+#nav ul li a {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    font-size: 1.5em;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+#nav ul li a:hover {
+    background-color: #666666;
+    color: #333333;
+    -moz-border-radius-topleft: 10px;
+    -webkit-border-top-left-radius: 10px;
+    -moz-border-radius-topright: 10px;
+    -webkit-border-top-right-radius: 10px;
+}
+
+.column {
+
+}
+
+#footer {
+    border-top: 3px solid #333333;
+    background-color: #dddddd;
+}
+
+h1 {
+    padding-top: 1em;
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 2em;
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #000000;
+}
+
+p {
+    font-size: 1.6em;
+}
+
+/* Tabs and Jquery UI overrides */
+
+
+#tabset .ui-widget-content { 
+    border: 1px solid #dddddd; 
+    background: #eeeeee url(images/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top repeat-x; 
+    color: #333333; 
+}
+
+#tabset .ui-widget-content a { 
+    color: #333333; 
+}
+
+#tabset .ui-widget-header { 
+    border: none; 
+    background-image: none;
+    background-color: inherit;
+    color: inherit; 
+    font-weight: inherit; 
+}
+
+#tabset .ui-widget-header a { 
+    color: #ffffff;
+}
+
+#tabset .ui-tabs { padding: 0px; }
+#tabset .ui-tabs .ui-tabs-nav { list-style: none; position: relative; padding: 0px; }
+#tabset .ui-tabs .ui-tabs-nav li { position: relative; float: left; border-bottom-width: 0 !important; margin: 0px; padding: 0px; }
+#tabset .ui-tabs .ui-tabs-nav li a { float: left; text-decoration: none; padding: 0px; }
+#tabset .ui-tabs .ui-tabs-nav li.ui-tabs-selected { padding-bottom: 0px; border-bottom-width: 0; }
+#tabset .ui-tabs .ui-tabs-nav li.ui-tabs-selected a, 
+#tabset .ui-tabs .ui-tabs-nav li.ui-state-disabled a, 
+#tabset .ui-tabs .ui-tabs-nav li.ui-state-processing a { cursor: text; }
+#tabset .ui-tabs .ui-tabs-nav li a, 
+#tabset .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { cursor: pointer; } /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+#tabset .ui-tabs .ui-tabs-panel { padding: 0px; display: block; border-width: 0; background: none; }
+#tabset .ui-tabs .ui-tabs-hide { display: none !important; }
+
+#tabset .ui-state-default, 
+#tabset .ui-widget-content .ui-state-default { 
+    border: none;
+    background-image: none;
+    background-color: #333333;
+    font-weight: bold; 
+    color: #ffffff; 
+    outline: none;
+}
+
+#tabset .ui-state-default a, 
+#tabset .ui-state-default a:link, 
+#tabset .ui-state-default a:visited { 
+    color: #ffffff; 
+    text-decoration: none; 
+    outline: none; 
+}
+
+#tabset .ui-state-hover, 
+#tabset .ui-widget-content .ui-state-hover, 
+#tabset .ui-state-focus, 
+#tabset .ui-widget-content .ui-state-focus { 
+    border: none;
+    background-image: none;
+    background-color: #333333;
+    font-weight: bold; 
+    color: #ffffff; 
+    outline: none; 
+}
+
+#tabset .ui-state-hover a, 
+#tabset .ui-state-hover a:hover { 
+    color: #ffffff; 
+    text-decoration: none; 
+    outline: none;
+    font-weight: bold; 
+}
+
+#tabset .ui-state-active, 
+#tabset .ui-widget-content .ui-state-active { 
+    border: none;
+    background-image: none;
+    background-color: #777777;
+    font-weight: bold; 
+    color: #333333; 
+    outline: none; 
+}
+
+#tabset .ui-state-active a, 
+#tabset .ui-state-active a:link, 
+#tabset .ui-state-active a:visited { 
+    color: #333333; 
+    outline: none; 
+    text-decoration: none;
+    font-weight: bold; 
+}
+
+
+
+.button {
+    display: block;
+    width: 65px;
+    height: 25px;
+    line-height: 25px;
+    padding: 0px 5px;
+    font-size: 1.8em;
+    text-decoration: none;
+    text-align: center;
+    float: left;
+    margin: 5px;
+}
+
+.label {
+    float: left;
+    font-size: 1.6em;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    text-align: center;
+}
+
+.labelHigh {
+    float: left;
+    width: 15%;
+    font-size: 1.4em;
+}
+
+.labelLow {
+    float: left;
+    width: 15%;
+    font-size: 1.4em;
+}
+
+.slider {
+    width: 69.9%;
+    float: left;
+}
+
+.buttons {
+    clear: both;
+}
+
+.preset {
+    color: #ffffff;
+    font-weight: bold;
+    line-height: 25px;
+    border: 2px solid #333333;
+    background-color: #777777;
+    margin: 5px;
+}
+
+.preset .histogram {
+    float: right;
+}
+
+.histogram {
+    margin: 2px;
+    border: 1px solid #000000;
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+.histogram .barPositivity,
+.histogram .barAggression,
+.histogram .barSpeed,
+.histogram .barSuspense {
+    display: block;
+    height: 5px;
+    text-indent: -99999px;
+}
+
+.histogram .barPositivity {
+    background-color: #40DE2F;
+}
+
+.histogram .barAggression {
+    background-color: #FF3838;
+}
+
+.histogram .barSpeed {
+    background-color: #ffa200;
+}
+
+.histogram .barSuspense {
+    background-color: #3845FF;
+}
+
+.bar0 {
+    width: 2px;
+}
+
+.bar1 {
+    width: 4px;
+}
+
+.bar2 {
+    width: 6px;
+}
+
+.bar3 {
+    width: 8px;
+}
+
+.bar4 {
+    width: 10px;
+}
+
+.bar5 {
+    width: 12px;
+}
+
+.bar6 {
+    width: 14px;
+}
+
+.bar7 {
+    width: 16px;
+}
+
+.bar8 {
+    width: 18px;
+}
+
+.bar9 {
+    width: 20px;
+}
+
+.wrapper {
+    margin: 10px;
+    border: 2px solid #000000;
+    padding: 10px;
+}
+
+.playlist {
+    margin: 10px;
+    padding: 10px;
+}
+
+.playlist li {
+    display: block;
+    width: 300px;
+    height: 30px;
+    background-color: #878787;
+    margin-top: 3px;
+    border: 1px solid #000000;
+}
+
+.playlist li.current {
+    background-color: #AD0026;
+}
+
+.playlist li p {
+    font-size: 1.2em;
+    float: left;
+    width: 220px;
+}
+
+.playlist li .histogram {
+    float: right;
+}
+
+.playlist .handle {
+    height: 20px;
+    float: left;
+    margin-right: 5px;
+}
+
+.delete {
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-image: url(/gmr/static/images/delete.png);
+    float: right;
+    text-indent: -99999px;
+}
+
+#player {
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid #000000;
+}
+
+.nudgeContainer {
+    font-size: 1.2em;
+    height: 64px;
+}
+
+.passNudge {
+    width: 200px;
+}
+
+.nudgeUp,
+.nudgeDown {
+    float: left;
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    text-indent: -9999px;
+}
+
+.nudgeLabel {
+    clear: both;
+    float: left;
+    width: 75px;
+}
+
+.nudgeUp {
+    background-image: url(/gmr/static/images/arrow_up.png);
+}
+
+.nudgeDown {
+    background-image: url(/gmr/static/images/arrow_down.png);
+}
+
+.nudgeUp.disabled {
+    background-image: url(/gmr/static/images/arrow_up_disabled.png);
+}
+
+.nudgeDown.disabled {
+    background-image: url(/gmr/static/images/arrow_down_disabled.png);
+}
+
+.nudgeBar {
+    float: left;
+    width: 50px;
+    height: 16px;
+}
+
+.nudgeBar {
+    text-indent: -99999px;
+}
+
+#barPositivity {
+    background-color: #40DE2F;
+    display: block;
+    float: left;
+    height: 16px;
+}
+
+#barAggression {
+    background-color: #FF3838;
+    display: block;
+    float: left;
+    height: 16px;
+}
+
+#barSpeed {
+    background-color: #ffa200;
+    display: block;
+    float: left;
+    height: 16px;
+}
+
+#barSuspense {
+    background-color: #3845FF;
+    display: block;
+    float: left;
+    height: 16px;
+}
+
+.nudgeBar0 {
+    width: 5px;
+}
+
+.nudgeBar1 {
+    width: 10px;
+}
+
+.nudgeBar2 {
+    width: 15px;
+}
+
+.nudgeBar3 {
+    width: 20px;
+}
+
+.nudgeBar4 {
+    width: 25px;
+}
+
+.nudgeBar5 {
+    width: 30px;
+}
+
+.nudgeBar6 {
+    width: 35px;
+}
+
+.nudgeBar7 {
+    width: 40px;
+}
+
+.nudgeBar8 {
+    width: 45px;
+}
+
+.nudgeBar9 {
+    width: 50px;
+}
+
+#userForm {
+    background-color: #cccccc;
+    width: 450px;
+    margin: 15px auto;
+    padding: 15px;
+    border: 2px solid #333333;
+}
+
+#userForm label {
+    font-size: 2em;
+    height: 25px;
+    line-height: 25px;
+    padding-right: 10px;
+}
+
+#userForm input.string,
+#userForm input.password,
+.auth_user_password_two__row input {
+    height: 25px;
+    padding: 5px;
+    width: 285px;
+    font-size: 2em;
+    border: 3px solid #333333;
+    background-color: #ffffff;
+    color: #333333;
+    -moz-border-radius: 10px; 
+    -webkit-border-radius: 10px;
+}
+
+#auth_user_remember {
+    height: 25px;
+    width: 25px;
+}
+
+#userForm input.password {
+    font-size: 2.5em;
+}
+
+#userForm td {
+    padding-bottom: 10px;
+}
+
+#submit_record__row input {
+    font-size: 2em;
+    height: 35px;
+    float: right;
+    padding: 0px 5px;
+}
+
+#user {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 10px;
+    border-bottom: 2px solid #333333;
+    border-left: 2px solid #333333;
+    -moz-border-radius-bottomleft: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    font-size: 1.2em;
+    background-color: #eeeeee;
+}
+
+.basic {
+    margin: 0 auto;
+    width: 70%;
+    max-width: 800px;
+}
+
+.faq {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px dotted #333333;
+}
+
+.question {
+    font-style:italic;
+    padding: 2px 2px;
+    margin: 3px 0px;
+    background-color: #cccccc;
+}
+
+.answer {
+    margin: 3px 2px;
+}
+
+.aboutEntry {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px dotted #333333;
+    clear: both;
+}
+
+.aboutEntry img {
+    float: right;
+    margin: 10px;
+}
+
+.clearFix {
+    clear: both;
+    width: 100%;
+}
+
+#gmrIntro {
+    margin-top: 20px;
+    padding: 30px;
+    background-color: #333333;
+}
+
+#gmrIntro h1,
+#gmrIntro p {
+    color: #ffffff;
+}
+
+.homeBox {
+    
+}
+
+.homeBox h2,
+.homeBox p {
+    margin: 10px;
+}
+
+/* </DECORATION> */
+
+
+
+/* <ADMIN> */
+.admin table {
+    font-size: 1.6em;
+}
+
+.admin .odd {
+    background-color: #cccccc;
+}
+
+.admin td,
+.admin th {
+    padding: 3px 10px;
+    border-left: 1px dotted #000000;
+    border-right: 1px dotted #000000;
+}
+
+.admin th, .admin th a {
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #333333;
+}
+
+/* </ADMIN> */
+
+
+/* <GENERIC> */
+
+
+
+/* </GENERIC> */
+
+
+/* <TEST> */
+#content1 {
+    background-color: #cccccc;
+}
+
+#content2 {
+    background-color: #dddddd;
+}
+
+#content3 {
+    background-color: #eeeeee;
+}
+
+/* </TEST> */

@@ -1,0 +1,20 @@
+<ul id="editPlaylist" class="playlist">
+{{for track in tracks:}}
+    <li>
+        <input class="id" type="hidden" value="{{=track.id}}" />
+        <img src="http://www.wil-linssen.com/demo/jquery-sortable-ajax/arrow.png" alt="move" width="16" height="16" class="handle" /> 
+        <p>{{=track.name}} - {{=lookupArtist[track.artist_id]}}</p>
+        <div class="histogram">
+            <span class="barPositivity bar{{=track.positivity}}">{{=track.positivity}}</span>
+            <span class="barAggression bar{{=track.aggression}}">{{=track.aggression}}</span>
+            <span class="barSpeed bar{{=track.speed}}">{{=track.speed}}</span>
+            <span class="barSuspense bar{{=track.suspense}}">{{=track.suspense}}</span>
+        </div>
+        <a href="#" class="delete" onclick="$(this).parent().remove();">Delete</a>
+    </li>
+{{pass}}
+</ul>
+
+<input type="button" id="savePlaylist" value="Save Playlist" onclick="savePlaylist('editPlaylist', '0', $('#selectedPlaylistID').text());" />
+
+<input type="button" id="playPlaylist" value="Play Playlist" onclick="playPlaylist($('#selectedPlaylistID').text()); return true;" />

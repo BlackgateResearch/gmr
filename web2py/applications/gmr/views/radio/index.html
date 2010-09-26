@@ -1,0 +1,32 @@
+{{extend 'layout.html'}}
+
+{{def docReadyJS():}}
+    {{include 'passSetup.html'}}
+    {{include 'presetSetup.html'}}
+    $("#tabset").tabs();
+{{return}}
+
+{{def additionalHead():}}
+    {{include 'playerSetup.html'}} 
+    {{include 'playerInterface.html'}}
+    {{include 'passInterface.html'}}
+    {{include 'presetInterface.html'}}
+    {{include 'playlistSetup.html'}} 
+{{return}}
+
+{{def bodyOnload():}}
+    pageInit();
+{{return}}
+
+{{def content1():}}
+    {{include 'passForm.html'}}
+{{return}}
+
+{{def content2():}}
+    {{ #TODO : Build a generalised tabset generator }}
+    {{include 'tabset.html'}}
+{{return}}
+
+{{def content3():}}
+    {{include 'player.html'}}
+{{return}}
