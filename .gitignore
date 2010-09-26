@@ -4,5 +4,6 @@
 *.html~
 *.*~
 *.sqlite
-databases/
-errors/
+web2py/databases/
+web2py/errors/
+web2py/httpserver.pid
